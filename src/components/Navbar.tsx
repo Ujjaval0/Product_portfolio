@@ -41,12 +41,7 @@ export default function Navbar() {
           >
             Tools
           </Link>
-          <Link 
-            href={isHome ? "#faqs" : "/#faqs"} 
-            className="hover:text-accent transition-custom"
-          >
-            FAQs
-          </Link>
+
           <Link 
             href={isHome ? "#connect" : "/#connect"} 
             className="inline-flex items-center justify-center bg-[#1F242E] text-white hover:bg-black px-4.5 py-2 rounded-full transition-custom font-bold text-[13px]"

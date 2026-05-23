@@ -1,37 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { portfolio } from "@/data/portfolio";
-import { ArrowRight, FileText, Mail, ArrowUpRight, ChevronDown, ChevronUp, MessageSquare, Phone } from "lucide-react";
+import { ArrowRight, FileText, Mail, ArrowUpRight, MessageSquare, Phone } from "lucide-react";
 
 export default function Home() {
-  // FAQs State
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  const toggleFaq = (idx: number) => {
-    setOpenFaq(openFaq === idx ? null : idx);
-  };
-
-  const faqs = [
-    {
-      question: "When does working together make sense?",
-      answer: "When you need a product builder who doesn't just write slide decks. I am most useful when you need someone to dig into SQL schemas, draft detailed feature specifications (PRDs), run model evaluations for AI features, and coordinate closely with developers to ship functional MVPs."
-    },
-    {
-      question: "How do you leverage your technical background?",
-      answer: "My Computer Applications (BCA) background allows me to read code, write SQL queries, and understand database architecture. I speak the same language as engineers, helping me identify technical constraints early, write clear edge-case specs, and gain developer trust immediately."
-    },
-    {
-      question: "What is your experience with LLMs and AI evaluations?",
-      answer: "I worked as an AI evaluator at Soul AI, where I analyzed model outputs for safety, accuracy, and alignment. I treat LLMs as a product interface: designing evaluation rubrics, testing prompt boundary safety (red-teaming), and building feedback loops to systematically improve model performance."
-    },
-    {
-      question: "How do you price your services or plug into teams?",
-      answer: "I am actively seeking full-time early-career PM roles, associate PM positions, or internships. I am also open to short-term contract assignments to help you spec an MVP, clean your datasets, or audit your AI outputs."
-    }
-  ];
-
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -39,12 +12,12 @@ export default function Home() {
         <div className="relative mx-auto max-w-6xl pt-0">
           {/* Badge */}
           <div className="inline-block px-4 py-1.5 bg-[#E8F0FE] border border-[#D2E3FC] text-dark font-sans font-bold text-lg md:text-xl rounded-md mb-8">
-            Make Decisions Confidently.
+            Product · Data · AI
           </div>
           
           {/* Giant Title with typography-split styling matching Screenshot 1 and exact CSS properties */}
-          <h1 className="font-sans text-4xl sm:text-7xl md:text-[110px] font-bold text-dark tracking-[-1px] leading-[1.1] md:leading-[121px] mb-12">
-            <span className="font-display italic font-normal">I shape</span> complex systems <span className="font-display italic font-normal">into</span> tools <span className="font-display italic font-normal">people actually use.</span>
+          <h1 className="font-sans text-4xl sm:text-6xl md:text-[85px] font-bold text-dark tracking-[-1px] leading-[1.1] md:leading-[1.1] mb-12">
+            <span className="font-display italic font-normal">Most people see</span> features. <span className="font-display italic font-normal">I see the friction behind them - and build to</span> remove it.
           </h1>
           
           {/* Actions Row */}
@@ -275,43 +248,6 @@ export default function Home() {
                 Stress-testing prompt boundaries, structuring safety and quality guidelines, and building taxonomy systems to prioritize training set corrections.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQs Section */}
-      <section id="faqs" className="py-20 md:py-28 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
-        <div className="mx-auto max-w-5xl">
-          <div className="text-center mb-12">
-            <span className="font-display italic font-medium text-accent text-[24px] leading-[28.8px] tracking-[-0.48px] block mb-2">FAQs</span>
-            <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
-              A few questions people usually ask.
-            </h2>
-          </div>
-
-          <div className="space-y-4">
-            {faqs.map((faq, idx) => {
-              const isOpen = openFaq === idx;
-              return (
-                <div 
-                  key={idx} 
-                  className="rounded-xl border border-warm-border bg-white overflow-hidden shadow-2xs transition-custom"
-                >
-                  <button
-                    onClick={() => toggleFaq(idx)}
-                    className="w-full flex items-center justify-between p-5 text-left font-sans font-bold text-dark hover:text-accent transition-custom focus:outline-none"
-                  >
-                    <span>{faq.question}</span>
-                    {isOpen ? <ChevronUp className="h-4 w-4 text-muted" /> : <ChevronDown className="h-4 w-4 text-muted" />}
-                  </button>
-                  {isOpen && (
-                    <div className="px-5 pb-5 pt-1 border-t border-warm-border/30">
-                      <p className="font-normal">{faq.answer}</p>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
           </div>
         </div>
       </section>
