@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #F7F9FB;
+  --text-primary: #2A2A3C;
+  --text-secondary: #565E6D;
+  --accent: #648DE5;
+  --accent-hover: #4F78CD;
+  --border: #E5E9F0;
+  --surface: #FFFFFF;
+}
+
+@theme {
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-warm-bg: var(--bg-primary);
+  --color-warm-surface: var(--surface);
+  --color-warm-border: var(--border);
+  --color-dark: var(--text-primary);
+  --color-muted: var(--text-secondary);
+
+  --font-display: var(--font-lora), serif;
+  --font-sans: var(--font-schibsted-grotesk), sans-serif;
+}
+
+body {
+  background-color: var(--bg-primary);
+  background-image: radial-gradient(#D3D9E5 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+  color: var(--text-primary);
+  font-family: var(--font-schibsted-grotesk), sans-serif;
+}
+
+p {
+  font-family: var(--font-schibsted-grotesk), sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 34.08px;
+  color: rgba(42, 42, 60, 0.85);
+}
+
+/* Custom transitions and styles */
+.transition-custom {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+

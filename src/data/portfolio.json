@@ -1,0 +1,121 @@
+{
+  "name": "Ujjaval Bhardwaj",
+  "role": "Aspiring Product Manager",
+  "tagline": "I bridge technical complexity and user experience through detailed specifications and data analytics.",
+  "email": "ujjavalbhardwaj.pm@gmail.com",
+  "linkedin": "https://linkedin.com/in/ujjaval-bhardwaj",
+  "github": "https://github.com/ujjavalanalyst",
+  "resumeUrl": "/documents/resume.pdf",
+  "about": {
+    "positioning": "With a technical background in Computer Applications (BCA) and professional experience in data analytics and LLM evaluation, I bridge the gap between engineering teams and business outcomes. I specialize in writing comprehensive PRDs, defining instrumentation metrics, and designing structured feedback loops for AI/data products to ensure what we build is secure, usable, and metrics-aligned.",
+    "skills": [
+      "Product Requirements (PRDs)",
+      "Data Analytics & Telemetry",
+      "User Persona & JTBD Mapping",
+      "Feature Scoping & Trade-offs",
+      "LLM Evaluation & Alignment",
+      "Prioritization (RICE/MoSCoW)",
+      "Figma Wireframing"
+    ],
+    "tools": [
+      "SQL",
+      "Power BI",
+      "Figma",
+      "Python",
+      "Vercel",
+      "Excel",
+      "Notion"
+    ]
+  },
+  "caseStudies": [
+    {
+      "slug": "data-editorial-prd",
+      "title": "Data Editorial: Bridging the SQL-to-Browser Workflow Gap",
+      "subtitle": "Writing a product requirements document and launching a browser-based database client MVP",
+      "description": "I defined product specs, designed database connection telemetry, and built a browser SQL client to validate web-based data sharing workflows.",
+      "tags": ["PRD", "User Research", "Scoping & Metrics", "MVP Specification"],
+      "skills": ["Product Spec Writing", "Telemetry Setup", "Scoping Trade-offs", "Security UX"],
+      "links": {
+        "prd": "https://docs.google.com/document/d/1ExamplePRD/edit",
+        "live": "https://data-editorial.vercel.app"
+      },
+      "problem": "Data analysts frequently switch between heavy desktop SQL clients (like DBeaver or pgAdmin) and web browsers to share results. This friction increases query-to-insight latency, slows team onboarding, and complicates query collaboration. Traditional web SQL tools are either insecure or too complex for ad-hoc analysis.",
+      "role": "Product Manager & Builder. I conducted user research with 5 analysts, defined the core target personas, drafted the PRD detailing functional requirements and security guidelines, and built a lightweight client MVP to validate adoption telemetry.",
+      "process": [
+        {
+          "title": "1. User Persona & JTBD Definition",
+          "content": "Conducted user interviews to map the primary Job-to-be-Done: 'When sharing query results with stakeholders, I want to quickly run a query and share a secure browser link, so that we can align on decisions without exporting CSVs.' Implemented local storage for query history to ensure user data remains fully client-side."
+        },
+        {
+          "title": "2. Product Scoping & Success Metrics",
+          "content": "Defined success using two north-star metrics: Activation Rate (% of users executing their first query within 120s of landing) and Connection Success Rate. Used MoSCoW prioritization to scope a read-only schema browser and editor for the MVP, deferring collaborative writing to version 2."
+        },
+        {
+          "title": "3. PM Rationale on Development Scope",
+          "content": "Made the product decision to build a browser-based client rather than a desktop app, prioritizing friction-free onboarding (zero installation) and instant shareability of queries, which directly improved testing velocity."
+        }
+      ],
+      "outcome": "Successfully validated the query-sharing value proposition. The PRD served as a strict scope-control document during development. The MVP achieved a 100% Activation Rate among test users and reported a 15% perceived speedup in ad-hoc query sharing cycles.",
+      "learnings": "I underestimated user concern around database credential safety in web applications. If I were repeating this cycle, I would prioritize prominent client-side credential indicators in the UI to build trust and increase the Activation Rate."
+    },
+    {
+      "slug": "ai-economy-dashboard",
+      "title": "AI Economy: Translating Market Data into Career Direction",
+      "subtitle": "Designing and building a market intelligence dashboard tracking AI jobs and funding",
+      "description": "I scoped and launched an analytical dashboard translating AI labor market shifts and funding data into clear career path recommendations.",
+      "tags": ["Persona Scoping", "Data Storytelling", "Dashboard Design", "Next.js"],
+      "skills": ["Market Research", "Feature Prioritization", "User Flows", "Information Architecture"],
+      "links": {
+        "live": "https://ai-jobs-impact-2024-2030.vercel.app",
+        "github": "https://github.com/ujjavalanalyst/ai-jobs-dashboard"
+      },
+      "problem": "Job seekers transitioning into the AI space struggle to identify which skills are in high demand and where VC funding is concentrating. While massive raw datasets exist, they lack context, leading to decision paralysis for users attempting to upskill.",
+      "role": "Product Manager & Analyst. I narrowed the target audience specifically to transitioning job seekers, mapped their information search journey, selected momentum-focused metrics (AI Funding Velocity, Skill Frequency), and designed the UI layout.",
+      "process": [
+        {
+          "title": "1. User Persona & JTBD Focus",
+          "content": "Focused on the persona of the 'Upskilling Technical Professional.' Map their core JTBD: 'When planning my upskilling roadmap, I want to identify which skills correlate with growing VC funding, so that I can study topics with high hiring probability.'"
+        },
+        {
+          "title": "2. Information Architecture & Usability Testing",
+          "content": "Created wireframes focusing on a 3-step scroll. Iterated with 3 peers, discovering that complex multi-line charts caused cognitive overload. Replaced dense graphics with direct percentage callouts and interactive top-5 bar charts."
+        },
+        {
+          "title": "3. Scoping & Feature Reduction",
+          "content": "Evaluated 12 potential charts using a Value vs. Complexity framework. To prevent information overload, cut 9 charts (including historical pre-2023 aggregates) to prioritize real-time trend velocity and skill correlations."
+        }
+      ],
+      "outcome": "Launched the dashboard, attracting 500+ unique visitors in its first week. The refined, 3-chart layout successfully guided users to key career takeaways, validating that simplified data storytelling improves user engagement.",
+      "learnings": "I learned that data-driven PMs must focus on curation. Presenting less data with high context is far more valuable to a user than presenting exhaustive raw datasets. Scoping out 70% of the metrics was the key to product clarity."
+    },
+    {
+      "slug": "llm-evaluation-soul-ai",
+      "title": "LLM Evaluation at Soul AI: Designing Feedback Systems",
+      "subtitle": "Designing evaluation methodologies and structured feedback loops to improve LLM accuracy",
+      "description": "I designed prompt safety rubrics and structured feedback pipelines to help engineering teams systematically align LLM outputs.",
+      "tags": ["AI/LLM Product", "Quality Systems", "Feedback Loops", "Dataset Design"],
+      "skills": ["System Rubrics", "Boundary Testing", "Requirement Translation", "Quality Engineering"],
+      "links": {
+        "note": "https://docs.google.com/document/d/1ExampleLLM/edit"
+      },
+      "problem": "AI models frequently generate outputs that fail user expectations in tone, safety, or formatting. Machine learning engineering teams require structured, repeatable feedback pipelines to identify failure modes and guide dataset adjustments.",
+      "role": "AI Quality Product Partner. I co-authored prompt evaluation guidelines, stress-tested LLM response boundaries, built structured feedback loops, and translated semantic failure modes into technical data requirements.",
+      "process": [
+        {
+          "title": "1. Designing the Quality Rubric System",
+          "content": "Designed structured evaluation rubrics measuring truthfulness, helpfulness, and safety. Translated qualitative human preferences into clear, quantifiable data markers to standardize model evaluation scoring."
+        },
+        {
+          "title": "2. Boundary Testing & Adversarial Scoping",
+          "content": "Conducted boundary and adversarial prompt testing (red-teaming) to simulate edge-case user queries. Documented where model safety policies clashed with helpfulness, mapping out safety guardrail requirements."
+        },
+        {
+          "title": "3. Creating the Engineering Feedback Pipeline",
+          "content": "Developed a bug taxonomy system categorizing model errors (semantic drift, formatting failure, tone mismatch). This structured pipeline allowed developers to prioritize dataset fine-tuning cycles based on error volume."
+        }
+      ],
+      "outcome": "Delivered 1,000+ high-quality annotated training data evaluations. The structured feedback loops and failure taxonomies directly helped developers refine training sets, leading to a measurable reduction in hallucination rates.",
+      "learnings": "Working on AI products taught me that model safety and usability must be managed as product requirements. An mathematically sound model fails if its output lacks context or safety. PMs must act as the user's voice during dataset alignment."
+    }
+  ]
+}
