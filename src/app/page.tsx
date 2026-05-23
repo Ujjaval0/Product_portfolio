@@ -42,32 +42,36 @@ export default function Home() {
 
       {/* Profile & Identity Section */}
       <section className="relative overflow-hidden py-20 px-3 md:px-4 border-b border-warm-border/60 bg-transparent">
-        <div className="relative mx-auto max-w-6xl grid md:grid-cols-12 gap-12 items-center">
-          {/* Left Column: Identity details */}
-          <div className="md:col-span-7 flex flex-col items-start text-left">
+        <div className="relative mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-8 md:gap-10">
+          {/* Left Column: Identity details (65%) */}
+          <div className="w-full md:w-[65%] flex flex-col items-start text-left">
             <h2 className="font-sans text-xl sm:text-2xl font-extrabold text-dark tracking-tight mb-3">
               Hello 👋 I’m Ujjaval,
             </h2>
-            <p className="font-sans text-[24px] font-normal leading-[34.08px] text-[#2A2A3C]/85 mb-6 text-left">
-              an engineer-minded product builder with an eye for design, systems, and the little details.
+            <p className="font-sans text-[22px] font-normal leading-[32px] text-[#2A2A3C]/85 mb-6 text-left">
+              A self-taught fresher who got genuinely obsessed with AI and decided to build a career around it.
             </p>
             
-            <div className="space-y-6 font-normal">
+            <div className="space-y-6 font-normal text-dark/85">
               <p>
-                <strong className="font-bold text-dark font-sans">Builder:</strong> I design specs, query schemas, and help build functional React/Vercel MVPs to validate assumptions early (leveraging my BCA technical foundation).
+                Every day there's a new model, a new benchmark. Most people see the headline. I want to understand what problem it's actually solving and whether that problem is even real.
               </p>
               <p>
-                <strong className="font-bold text-dark font-sans">Bridge:</strong> I sit between founders, engineers, data pipelines, and user research so everyone works from the same picture.
+                That curiosity led me to Soul AI, where I spent months at evaluating GPT-4, Claude, and Gemini outputs sharpening how I think about product quality, user expectations, and what "good" actually looks like.
               </p>
               <p>
-                <strong className="font-bold text-dark font-sans">Craft:</strong> I care about the database tables under the hood and the visual clarity on the surface so people trust and use what we ship.
+                I understand how systems work, the architectures, and what happens when product decisions disconnect from technical reality. 
+              </p>
+              <p>
+                No MBA. No shortcuts. Just genuine interest, real work, and a clear direction.<br/>
+                <strong>Based in India. Building toward PM.</strong>
               </p>
             </div>
           </div>
 
-          {/* Right Column: Profile Image styled matching Screenshot 2 */}
-          <div className="md:col-span-5 flex justify-center">
-            <div className="relative max-w-[320px] w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-lg border border-warm-border bg-white">
+          {/* Right Column: Profile Image (35%) */}
+          <div className="w-full md:w-[35%] flex justify-end mt-12 md:mt-0">
+            <div className="relative w-full max-w-[340px] aspect-[3/4] rounded-3xl overflow-hidden shadow-lg border border-warm-border bg-white">
               <img 
                 src="/images/profile.png" 
                 alt={portfolio.name} 
@@ -83,7 +87,7 @@ export default function Home() {
       <section id="works" className="py-20 md:py-28 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
         <div className="mx-auto max-w-6xl">
           <div className="border-b border-warm-border/60 pb-6 mb-12">
-            <span className="font-display italic font-medium text-accent text-[24px] leading-[28.8px] tracking-[-0.48px] block mb-2">Selected Works</span>
+            <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Selected Works</span>
             <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
               What this looks like in practice.
             </h2>
@@ -169,7 +173,7 @@ export default function Home() {
       <section id="approach" className="py-20 md:py-28 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
         <div className="mx-auto max-w-6xl">
           <div className="border-b border-warm-border/60 pb-6 mb-12">
-            <span className="font-display italic font-medium text-accent text-[24px] leading-[28.8px] tracking-[-0.48px] block mb-2">Approach</span>
+            <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Approach</span>
             <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
               How I usually plug in.
             </h2>
@@ -214,38 +218,47 @@ export default function Home() {
       <section id="tools" className="py-20 md:py-28 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
         <div className="mx-auto max-w-6xl">
           <div className="border-b border-warm-border/60 pb-6 mb-12">
-            <span className="font-display italic font-medium text-accent text-[24px] leading-[28.8px] tracking-[-0.48px] block mb-2">Tools & Stack</span>
+            <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Tools & Stack</span>
             <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
               My PM toolkit.
             </h2>
             <p className="mt-2 font-normal">The applications, languages, and frameworks I use to structure requirements and analyze product data.</p>
           </div>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 gap-6">
             {/* Analytics & Data Card */}
-            <div className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)]">
-              <span className="text-xs font-bold uppercase tracking-wider text-accent mb-3 block">Analytics & Data</span>
+            <div className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)]">
+              <span className="text-xs font-bold uppercase tracking-wider text-accent mb-3 block">ANALYTICS & DATA</span>
               <h3 className="font-sans font-bold text-dark text-lg mb-4">SQL, Power BI, Python, Excel</h3>
               <p className="font-normal text-sm text-muted">
-                Writing database queries, building operations dashboards, cleaning raw telemetry logs, and tracking cohort behavior patterns.
+                Writing database queries, building operations dashboards, cleaning raw datasets, and tracking user behavior patterns to inform product decisions.
               </p>
             </div>
 
             {/* Product & Design Card */}
-            <div className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)]">
-              <span className="text-xs font-bold uppercase tracking-wider text-accent mb-3 block">Product & Design</span>
-              <h3 className="font-sans font-bold text-dark text-lg mb-4">Figma, Notion, Vercel</h3>
+            <div className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)]">
+              <span className="text-xs font-bold uppercase tracking-wider text-accent mb-3 block">PRODUCT & DESIGN</span>
+              <h3 className="font-sans font-bold text-dark text-lg mb-4">Figma, Notion, Miro</h3>
               <p className="font-normal text-sm text-muted">
-                Mapping high-fidelity user journeys, drafting comprehensive specifications (PRDs), and launching React-based web MVPs to gather direct customer feedback.
+                Mapping user journeys, wireframing product flows, writing PRDs, and collaborating on specs that engineers and designers can actually build from.
               </p>
             </div>
 
-            {/* AI & Model Alignment Card */}
-            <div className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)]">
-              <span className="text-xs font-bold uppercase tracking-wider text-accent mb-3 block">AI & Model Alignment</span>
-              <h3 className="font-sans font-bold text-dark text-lg mb-4">LLM Eval, Red-Teaming</h3>
+            {/* AI & LLM Tools Card */}
+            <div className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)]">
+              <span className="text-xs font-bold uppercase tracking-wider text-accent mb-3 block">AI & LLM TOOLS</span>
+              <h3 className="font-sans font-bold text-dark text-lg mb-4">Claude, ChatGPT, Google AI Studio, LLM Eval</h3>
               <p className="font-normal text-sm text-muted">
-                Stress-testing prompt boundaries, structuring safety and quality guidelines, and building taxonomy systems to prioritize training set corrections.
+                Evaluating LLM response quality, designing prompt taxonomies, stress-testing model boundaries, and flagging hallucination and safety patterns across production datasets.
+              </p>
+            </div>
+
+            {/* Research & Discovery Card */}
+            <div className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)]">
+              <span className="text-xs font-bold uppercase tracking-wider text-accent mb-3 block">RESEARCH & DISCOVERY</span>
+              <h3 className="font-sans font-bold text-dark text-lg mb-4">Mixpanel, Perplexity, Amplitude</h3>
+              <p className="font-normal text-sm text-muted">
+                Synthesizing user feedback, analyzing funnel drop-offs, running competitive research, and translating raw signals into actionable product insights.
               </p>
             </div>
           </div>
@@ -265,11 +278,11 @@ export default function Home() {
               </div>
               
               <h2 className="font-sans text-3xl md:text-4xl font-bold text-dark tracking-tight mb-4">
-                You’re right... we should connect!
+                Open to the right conversations!
               </h2>
               
               <p className="mb-8 max-w-md font-normal">
-                A short conversation is usually enough to see if there’s a fit. Let me know how you prefer to talk.
+                Available for PM roles, collabs, and honest feedback. Reply within 24 hours.
               </p>
 
               {/* Grid of CTAs */}

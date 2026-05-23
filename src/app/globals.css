@@ -33,11 +33,12 @@ body {
 
 p {
   font-family: var(--font-schibsted-grotesk), sans-serif;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 400;
-  line-height: 34.08px;
+  line-height: 32px;
   color: rgba(42, 42, 60, 0.85);
 }
+
 
 /* Custom transitions and styles */
 .transition-custom {
