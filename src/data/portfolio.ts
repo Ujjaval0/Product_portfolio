@@ -3,6 +3,8 @@ import portfolioData from "./portfolio.json";
 export interface CaseStudy {
   slug: string;
   title: string;
+  oneLiner: string;
+  outcomePunch: string;
   subtitle: string;
   description: string;
   tags: string[];
@@ -13,7 +15,28 @@ export interface CaseStudy {
     github?: string;
     note?: string;
   };
+  // Section 2: Problem Statement
   problem: string;
+  problemUser: string;
+  problemData: string;
+  // Section 3: Goal / Success Metrics
+  goalMetrics: {
+    goal: string;
+    metrics: string[];
+  };
+  // Section 4: Research / Insights
+  research: {
+    title: string;
+    content: string;
+  }[];
+  // Section 5: Solution
+  solution: string;
+  solutionDetails: string[];
+  // Section 6: Prioritization (optional)
+  prioritization?: string;
+  // Section 7: Outcome / Measurement
+  measurement: string;
+  // Legacy fields
   role: string;
   process: {
     title: string;

@@ -119,81 +119,77 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid gap-8">
-            {portfolio.caseStudies.map((project, idx) => (
-              <div 
-                key={idx} 
-                className="group relative grid md:grid-cols-12 gap-6 p-6 md:p-8 rounded-2xl border border-warm-border bg-white hover:border-accent/40 shadow-[0_2px_8px_rgba(26,26,26,0.02)] hover:shadow-[0_8px_24px_rgba(26,26,26,0.05)] transition-custom"
-              >
-                {/* Meta details column */}
-                <div className="md:col-span-4 flex flex-col justify-between border-b md:border-b-0 md:border-r border-warm-border/60 pb-6 md:pb-0 md:pr-6">
-                  <div>
-                    <div className="flex flex-wrap gap-1">
+          <div className="grid gap-4">
+            {portfolio.caseStudies.map((project, idx) => {
+              const covers = [
+                "from-blue-100 via-accent/20 to-blue-50",
+                "from-emerald-100 via-teal-100 to-emerald-50",
+                "from-purple-100 via-violet-100 to-purple-50",
+              ];
+              const coverGrad = covers[idx % covers.length];
+
+              return (
+                <div
+                  key={idx}
+                  className="group flex flex-col sm:flex-row rounded-2xl border border-warm-border bg-white hover:border-accent/40 shadow-[0_2px_8px_rgba(26,26,26,0.02)] hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)] transition-custom overflow-hidden"
+                >
+                  {/* ── Left: Cover ── */}
+                  <div className={`sm:w-44 md:w-56 shrink-0 bg-gradient-to-br ${coverGrad} flex items-center justify-center min-h-[110px] sm:min-h-0`}>
+                    <div className="flex flex-col items-center gap-2 opacity-35">
+                      <div className="w-9 h-9 rounded-full bg-white/70 flex items-center justify-center">
+                        <ArrowUpRight className="h-4 w-4 text-dark" />
+                      </div>
+                      <span className="text-[8px] font-bold uppercase tracking-widest text-dark/60">
+                        {project.slug === "data-editorial-prd" ? "PRD · MVP" : project.slug === "ai-economy-dashboard" ? "Dashboard · Data" : "AI · Evaluation"}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* ── Right: Content ── */}
+                  <div className="flex-1 flex flex-col justify-between p-4 md:p-5 border-l border-warm-border/40">
+
+                    {/* Tags — flat spaced uppercase row */}
+                    <div className="flex flex-wrap items-center gap-x-5 gap-y-1 mb-2">
                       {project.tags.map((tag, tIdx) => (
-                        <span 
-                          key={tIdx} 
-                          className="px-2 py-0.5 rounded bg-warm-surface text-[9px] font-bold tracking-wider text-muted uppercase border border-warm-border/40"
+                        <span
+                          key={tIdx}
+                          className="text-[10px] font-bold tracking-widest text-muted uppercase"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
 
-                    <div className="space-y-3 mt-5 text-xs text-muted">
-                      <div>
-                        <span className="font-bold text-dark uppercase text-[10px] tracking-wider block">Scope Focus</span>
-                        <span className="text-[11px]">{project.slug === 'data-editorial-prd' ? 'PRD & MVP Specification' : project.slug === 'ai-economy-dashboard' ? 'Market Dashboard & Telemetry' : 'LLM Evaluation & Feedback'}</span>
-                      </div>
-                      <div>
-                        <span className="font-bold text-dark uppercase text-[10px] tracking-wider block">Key Deliverables</span>
-                        <div className="flex flex-wrap gap-1 mt-1">
-                          {project.links.prd && <span className="bg-accent/5 text-[9px] px-1.5 py-0.5 rounded text-accent font-semibold border border-accent/10">PRD Document</span>}
-                          {project.links.live && <span className="bg-emerald-500/5 text-[9px] px-1.5 py-0.5 rounded text-emerald-600 font-semibold border border-emerald-500/10">Vercel Deploy</span>}
-                          {project.links.note && <span className="bg-blue-500/5 text-[9px] px-1.5 py-0.5 rounded text-blue-600 font-semibold border border-blue-500/10">Methodology Doc</span>}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content details column */}
-                <div className="md:col-span-8 flex flex-col justify-between md:pl-2">
-                  <div>
-                    <h3 className="font-sans text-xl md:text-2xl font-bold text-dark group-hover:text-accent transition-custom mb-3 leading-tight">
+                    {/* Title */}
+                    <h3 className="font-sans text-base md:text-lg font-bold text-accent group-hover:text-accent-hover transition-custom leading-snug mb-0.5">
                       {project.title}
                     </h3>
-                    
-                    <p className="mb-6 font-normal">
-                      {project.description}
-                    </p>
-                  </div>
 
-                  <div className="flex flex-wrap items-center justify-between gap-4 border-t border-warm-border/40 pt-4 mt-auto">
-                    <div className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
-                      <span className="font-bold text-dark text-[9px] uppercase tracking-wider mr-1">Skills:</span>
-                      {project.skills.map((skill, sIdx) => (
-                        <span 
-                          key={sIdx} 
-                          className="px-1.5 py-0.5 rounded bg-warm-surface border border-warm-border/20 text-[10px] text-muted font-medium"
-                        >
-                          {skill}
-                        </span>
-                      ))}
+                    {/* One-liner */}
+                    <p className="font-display italic text-dark/70 text-sm mb-3">
+                      — {project.oneLiner}
+                    </p>
+
+                    {/* CTA */}
+                    <div>
+                      <Link
+                        href={`/work/${project.slug}`}
+                        className="inline-flex items-center gap-1.5 text-sm font-bold text-accent hover:text-accent-hover transition-custom group/cta"
+                      >
+                        Read Case Study
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover/cta:translate-x-1" />
+                      </Link>
                     </div>
 
-                    <Link 
-                      href={`/work/${project.slug}`}
-                      className="inline-flex items-center gap-0.5 text-xs font-bold text-accent group-hover:text-accent-hover transition-custom"
-                    >
-                      Read Case Study <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                    </Link>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
+
         </div>
       </section>
+
 
 
       {/* Approach Section */}

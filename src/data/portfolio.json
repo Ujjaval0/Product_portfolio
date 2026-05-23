@@ -30,7 +30,8 @@
   "caseStudies": [
     {
       "slug": "data-editorial-prd",
-      "title": "Data Editorial: Bridging the SQL-to-Browser Workflow Gap",
+      "title": "Data Editorial: Bridging the SQL-to-Browser Gap",
+      "oneLiner": "Reducing query-to-insight latency for data analysts who collaborate across teams",
       "subtitle": "Writing a product requirements document and launching a browser-based database client MVP",
       "description": "I defined product specs, designed database connection telemetry, and built a browser SQL client to validate web-based data sharing workflows.",
       "tags": ["PRD", "User Research", "Scoping & Metrics", "MVP Specification"],
@@ -39,7 +40,42 @@
         "prd": "https://docs.google.com/document/d/1ExamplePRD/edit",
         "live": "https://data-editorial.vercel.app"
       },
-      "problem": "Data analysts frequently switch between heavy desktop SQL clients (like DBeaver or pgAdmin) and web browsers to share results. This friction increases query-to-insight latency, slows team onboarding, and complicates query collaboration. Traditional web SQL tools are either insecure or too complex for ad-hoc analysis.",
+      "outcomePunch": "100% activation rate among test users · 15% faster query-to-insight cycles",
+      "problem": "Data analysts frequently switch between heavy desktop SQL clients (like DBeaver or pgAdmin) and web browsers to share results. This multi-tool context switching increases query-to-insight latency, slows team onboarding, and complicates async collaboration.",
+      "problemUser": "Mid-level data analysts at small-to-medium tech companies who share SQL insights with non-technical stakeholders weekly.",
+      "problemData": "In informal interviews with 5 analysts, 4 reported spending 10–15 minutes per sharing cycle on export, formatting, and re-importing data — a significant tax on repeat workflows.",
+      "goalMetrics": {
+        "goal": "Build a browser-based SQL client that cuts the time from query to shared result by at least 50%, validated through user testing.",
+        "metrics": [
+          "Activation Rate: % of new users executing their first query within 120 seconds of landing",
+          "Connection Success Rate: % of database connections that complete without error on first attempt",
+          "Time-to-Share: Average minutes from query execution to shareable result link"
+        ]
+      },
+      "research": [
+        {
+          "title": "User Interviews (5 analysts)",
+          "content": "Core JTBD uncovered: 'When sharing query results with stakeholders, I want to quickly run a query and share a secure browser link, so that we can align on decisions without exporting CSVs.' All 5 users flagged credential security as a blocker for adopting web-based tools."
+        },
+        {
+          "title": "Competitive Analysis",
+          "content": "Existing tools like Retool and Metabase require full deployment setup — too heavy for ad-hoc use. Datasette is powerful but developer-only. The gap: zero lightweight, shareable, browser-native SQL clients with good security UX."
+        },
+        {
+          "title": "Key Insight",
+          "content": "Users don't need collaborative editing in v1. They need frictionless solo querying with a shareable output. This insight shaped our MoSCoW scope: read-only client first, collaboration deferred."
+        }
+      ],
+      "solution": "A browser-native SQL client with client-side credential storage, a schema browser, and a one-click shareable result view — deployable with zero backend setup.",
+      "solutionDetails": [
+        "Client-side credential storage (localStorage) so no credentials are sent to a server",
+        "Schema browser panel showing tables and columns on connection",
+        "Read-only query editor with syntax highlighting",
+        "One-click result export as CSV or shareable link",
+        "Chose browser-native over desktop app to eliminate installation friction and enable instant shareability"
+      ],
+      "prioritization": "Used MoSCoW: Must-have — connect, query, view results. Should-have — schema browser. Could-have — query history. Won't-have in v1 — multi-user collaboration, write permissions. This kept scope tight for a 2-week MVP cycle.",
+      "measurement": "I'd run a 2-week beta with 10 analysts and track: Activation Rate (target >80%), Time-to-Share (target <3 mins vs. baseline ~12 mins), and NPS. For v2 decisions, I'd instrument query frequency per session to identify which features drive retention.",
       "role": "Product Manager & Builder. I conducted user research with 5 analysts, defined the core target personas, drafted the PRD detailing functional requirements and security guidelines, and built a lightweight client MVP to validate adoption telemetry.",
       "process": [
         {
@@ -61,6 +97,7 @@
     {
       "slug": "ai-economy-dashboard",
       "title": "AI Economy: Translating Market Data into Career Direction",
+      "oneLiner": "Helping upskilling professionals cut through AI hype to find high-signal career moves",
       "subtitle": "Designing and building a market intelligence dashboard tracking AI jobs and funding",
       "description": "I scoped and launched an analytical dashboard translating AI labor market shifts and funding data into clear career path recommendations.",
       "tags": ["Persona Scoping", "Data Storytelling", "Dashboard Design", "Next.js"],
@@ -69,7 +106,42 @@
         "live": "https://ai-jobs-impact-2024-2030.vercel.app",
         "github": "https://github.com/ujjavalanalyst/ai-jobs-dashboard"
       },
-      "problem": "Job seekers transitioning into the AI space struggle to identify which skills are in high demand and where VC funding is concentrating. While massive raw datasets exist, they lack context, leading to decision paralysis for users attempting to upskill.",
+      "outcomePunch": "500+ unique visitors in week 1 · users reached key takeaways in under 5 mins",
+      "problem": "Job seekers transitioning into the AI space face a massive signal-to-noise problem: while raw datasets on AI hiring and VC funding exist, they lack the context needed to make informed upskilling decisions. Most end up paralysed or chasing the wrong skills.",
+      "problemUser": "Mid-career technical professionals (developers, analysts, engineers) actively planning a pivot or upskill into AI-adjacent roles.",
+      "problemData": "In conversations with 6 professionals in upskilling programs, 5 said they spent 3+ hours per week reading conflicting reports — and still felt unsure which skills to prioritise.",
+      "goalMetrics": {
+        "goal": "Deliver a focused dashboard that helps a user identify their top 2 upskilling priorities within 5 minutes of landing — no external research needed.",
+        "metrics": [
+          "Time-on-page: target >3 minutes average (proxy for engagement vs. bounce)",
+          "Scroll depth: target >70% of users reaching the 'Top Skills' section",
+          "Unique visitors in first 30 days (reach validation)"
+        ]
+      },
+      "research": [
+        {
+          "title": "User Interviews (6 professionals)",
+          "content": "Core JTBD: 'When planning my upskilling roadmap, I want to identify which skills correlate with growing VC funding, so that I can study topics with high hiring probability.' Pain point: most resources give breadth (50+ skills) with no prioritisation signal."
+        },
+        {
+          "title": "Competitive Analysis",
+          "content": "LinkedIn Learning, Coursera, and World Economic Forum reports present comprehensive but overwhelming data. No existing tool combined VC funding momentum with skill frequency in a simple, scannable format. That was the white space."
+        },
+        {
+          "title": "Usability Testing",
+          "content": "Tested wireframes with 3 peers. Complex multi-line charts caused immediate cognitive overload — users stopped scrolling. Replaced dense graphics with direct percentage callouts and interactive top-5 bar charts based on feedback."
+        }
+      ],
+      "solution": "A 3-scroll dashboard presenting: (1) AI funding velocity by sector, (2) top skills by job posting frequency, and (3) a career pathway recommendation based on skill-funding overlap — all curated from public datasets.",
+      "solutionDetails": [
+        "Deliberately limited to 3 core charts after cutting 9 others via Value vs. Complexity scoring",
+        "Replaced multi-line time series with percentage callouts for faster scanning",
+        "Added interactive top-5 bar chart for skill frequency (most actionable signal)",
+        "Chose Next.js + Vercel for zero-cost deployment and fast iteration on data updates",
+        "Designed for mobile-first — target users are often browsing during commutes"
+      ],
+      "prioritization": "Evaluated 12 potential charts using a Value vs. Complexity 2x2. Cut 9 (historical pre-2023 aggregates, regional breakdowns, company-level data) — all low decision-value for the upskilling persona. Kept 3 high-signal, low-complexity views.",
+      "measurement": "I tracked unique visitors (500+ in week 1), scroll depth, and return visits. For the next iteration, I'd run a 2-week A/B test on the chart layout vs. a text-first layout to measure whether visual or written summaries drive more career-decision confidence (measured via a post-session micro-survey).",
       "role": "Product Manager & Analyst. I narrowed the target audience specifically to transitioning job seekers, mapped their information search journey, selected momentum-focused metrics (AI Funding Velocity, Skill Frequency), and designed the UI layout.",
       "process": [
         {
@@ -90,7 +162,8 @@
     },
     {
       "slug": "llm-evaluation-soul-ai",
-      "title": "LLM Evaluation at Soul AI: Designing Feedback Systems",
+      "title": "LLM Evaluation at Soul AI: Building Feedback Systems",
+      "oneLiner": "Designing structured feedback pipelines to systematically reduce hallucination rates in production LLMs",
       "subtitle": "Designing evaluation methodologies and structured feedback loops to improve LLM accuracy",
       "description": "I designed prompt safety rubrics and structured feedback pipelines to help engineering teams systematically align LLM outputs.",
       "tags": ["AI/LLM Product", "Quality Systems", "Feedback Loops", "Dataset Design"],
@@ -98,7 +171,42 @@
       "links": {
         "note": "https://docs.google.com/document/d/1ExampleLLM/edit"
       },
-      "problem": "AI models frequently generate outputs that fail user expectations in tone, safety, or formatting. Machine learning engineering teams require structured, repeatable feedback pipelines to identify failure modes and guide dataset adjustments.",
+      "outcomePunch": "1,000+ annotated evaluations delivered · measurable drop in hallucination rate",
+      "problem": "AI models deployed in consumer products frequently generate outputs that fail user expectations in tone, safety, or factual accuracy. Engineering teams lacked a structured, repeatable process to identify failure patterns and translate them into actionable training data corrections.",
+      "problemUser": "ML engineers and dataset curators at AI companies who need clear, structured failure signal to guide fine-tuning — not raw user complaints.",
+      "problemData": "Without structured evaluation rubrics, feedback from human reviewers was inconsistent across evaluators, making it impossible to establish reliable failure frequency baselines or prioritise training corrections.",
+      "goalMetrics": {
+        "goal": "Create a repeatable evaluation system that converts qualitative human feedback into structured, prioritisable engineering data — reducing review inconsistency and hallucination rate over time.",
+        "metrics": [
+          "Inter-annotator agreement rate: target >85% on safety classification tasks",
+          "Taxonomy coverage: % of submitted evaluations mapped to a defined failure category (target >90%)",
+          "Hallucination rate reduction: measured across bi-weekly model evaluation snapshots"
+        ]
+      },
+      "research": [
+        {
+          "title": "Evaluation Audit",
+          "content": "Reviewed 200 past model responses. Found 3 recurring failure types: semantic drift (model loses the user's original intent mid-response), tone mismatch (formal vs. casual register errors), and formatting failures (markdown rendered as raw text). These became the foundation of the bug taxonomy."
+        },
+        {
+          "title": "Competitive Benchmarking",
+          "content": "Studied evaluation frameworks from Anthropic's Constitutional AI paper and OpenAI's RLHF documentation. Key insight: the most effective rubrics are binary and concrete — not subjective scales. Adapted this into the Soul AI rubric design."
+        },
+        {
+          "title": "Red-Teaming Sessions",
+          "content": "Conducted adversarial prompt testing to simulate edge-case user queries. Discovered where model safety policies clashed with helpfulness (e.g. over-refusal on benign medical queries). Documented these as guardrail calibration requirements."
+        }
+      ],
+      "solution": "A 3-layer evaluation system: (1) a binary rubric for safety/helpfulness scoring, (2) a failure taxonomy for categorising errors, and (3) a structured feedback pipeline that routes tagged failures directly to dataset prioritisation queues.",
+      "solutionDetails": [
+        "Binary rubric (pass/fail per dimension) instead of 1–5 scales to reduce inter-annotator variance",
+        "Failure taxonomy with 8 categories: semantic drift, tone mismatch, formatting failure, factual hallucination, over-refusal, under-refusal, context loss, safety boundary violation",
+        "Structured Google Sheets pipeline mapping each failure to: category, severity, frequency estimate, and recommended dataset action",
+        "Weekly sync cadence with ML engineers to review top-volume failure categories and reprioritise fine-tuning targets",
+        "Chose lightweight tooling (Sheets + Docs) over custom software to enable fast iteration and team adoption"
+      ],
+      "prioritization": "Used a Severity × Frequency matrix to prioritise failure categories. Hallucination and safety violations (high severity, moderate frequency) were addressed first. Tone mismatches (low severity, high frequency) were batched for a later fine-tuning cycle to avoid over-correcting.",
+      "measurement": "I'd track inter-annotator agreement weekly (target: >85%), monitor hallucination rate across bi-weekly model snapshots, and measure taxonomy coverage per review cycle. For the next iteration, I'd propose automating failure tagging using a classifier trained on the manually labelled dataset — reducing review latency from days to hours.",
       "role": "AI Quality Product Partner. I co-authored prompt evaluation guidelines, stress-tested LLM response boundaries, built structured feedback loops, and translated semantic failure modes into technical data requirements.",
       "process": [
         {
