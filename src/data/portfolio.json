@@ -225,5 +225,32 @@
       "outcome": "Delivered 1,000+ high-quality annotated training data evaluations. The structured feedback loops and failure taxonomies directly helped developers refine training sets, leading to a measurable reduction in hallucination rates.",
       "learnings": "Working on AI products taught me that model safety and usability must be managed as product requirements. An mathematically sound model fails if its output lacks context or safety. PMs must act as the user's voice during dataset alignment."
     }
+  ],
+  "experience": [
+    {
+      "role": "Prompt Engineer",
+      "company": "Soul AI",
+      "duration": "Feb 2025 – Dec 2025",
+      "location": "Remote",
+      "bullets": [
+        "Evaluated GPT-4, Claude, and Gemini outputs across quality, reasoning, and safety dimensions at scale."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Computer Applications (BCA)",
+      "institution": "Chaudhary Charan Singh University",
+      "duration": "",
+      "location": "UP",
+      "bullets": []
+    },
+    {
+      "degree": "Data Analytics Diploma",
+      "institution": "Ducat Institute",
+      "duration": "",
+      "location": "Noida",
+      "bullets": []
+    }
   ]
 }

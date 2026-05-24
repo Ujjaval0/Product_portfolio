@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-8 pb-20 md:pt-12 md:pb-24 px-3 md:px-4 border-b border-warm-border/60 bg-transparent">
+      <section id="hero" className="relative overflow-hidden pt-8 pb-20 md:pt-12 md:pb-24 px-3 md:px-4 border-b border-warm-border/60 bg-transparent">
         <div className="relative mx-auto max-w-6xl pt-0">
           {/* Badge */}
           <div className="inline-block px-4 py-1.5 bg-[#E8F0FE] border border-[#D2E3FC] text-dark font-sans font-bold text-lg md:text-xl rounded-md mb-8">
@@ -41,7 +41,7 @@ export default function Home() {
       </section>
 
       {/* Profile & Identity Section */}
-      <section className="relative overflow-hidden py-20 px-3 md:px-4 border-b border-warm-border/60 bg-transparent">
+      <section id="about" className="relative overflow-hidden py-20 px-3 md:px-4 border-b border-warm-border/60 bg-transparent">
         <div className="relative mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-8 md:gap-10">
           {/* Left Column: Identity details (65%) */}
           <div className="w-full md:w-[65%] flex flex-col items-start text-left">
@@ -175,9 +175,9 @@ export default function Home() {
           <div className="border-b border-warm-border/60 pb-6 mb-12">
             <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Approach</span>
             <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
-              How I usually plug in.
+              How I think through a problem.
             </h2>
-            <p className="mt-2 font-normal">A simple, linear framework for solving unstructured product problems.</p>
+            <p className="mt-2 font-normal font-display italic">Find it. Spec it. Ship it.</p>
           </div>
 
           <div className="relative border-l border-warm-border/60 pl-8 ml-4 space-y-12">
@@ -185,9 +185,9 @@ export default function Home() {
               <span className="absolute -left-[41px] top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-warm-bg border-2 border-accent text-accent">
                 <span className="h-2 w-2 rounded-full bg-accent" />
               </span>
-              <h3 className="font-sans text-xl font-bold text-dark mb-2">1. Start where it hurts</h3>
+              <h3 className="font-sans text-xl font-bold text-dark mb-2">1. Find the real problem</h3>
               <p className="max-w-2xl font-normal">
-                You walk me through the bottleneck: the friction point, raw metrics, or speculative features. I talk with support, dig into SQL tables, or query LLM response sheets to identify the root cause of the friction.
+                Most problems people bring to a PM aren't the actual problem. I dig into funnel drop-offs, query the data, and cross-reference user complaints until I find the root cause not just the symptom on the surface. That's where the real work starts.
               </p>
             </div>
 
@@ -195,9 +195,9 @@ export default function Home() {
               <span className="absolute -left-[41px] top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-warm-bg border-2 border-accent text-accent">
                 <span className="h-2 w-2 rounded-full bg-accent" />
               </span>
-              <h3 className="font-sans text-xl font-bold text-dark mb-2">2. Structure & Direction</h3>
+              <h3 className="font-sans text-xl font-bold text-dark mb-2">2. Define and spec it out</h3>
               <p className="max-w-2xl font-normal">
-                I map the findings into tangible specifications. This includes drawing system schemas, sketching user journeys, writing requirements (PRDs), and wireframing wire models, so we have a concrete structure to align on.
+                Once I've identified what's actually broken, I translate it into something actionable. User journeys, PRDs, acceptance criteria, scope boundaries, and tradeoff decisions written clearly so engineering, design, and stakeholders are all working from the same picture.
               </p>
             </div>
 
@@ -205,9 +205,9 @@ export default function Home() {
               <span className="absolute -left-[41px] top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-warm-bg border-2 border-accent text-accent">
                 <span className="h-2 w-2 rounded-full bg-accent" />
               </span>
-              <h3 className="font-sans text-xl font-bold text-dark mb-2">3. Build, instrument, refine</h3>
+              <h3 className="font-sans text-xl font-bold text-dark mb-2">3. Ship, instrument, iterate</h3>
               <p className="max-w-2xl font-normal">
-                I support engineering through delivery. I help test the MVP, set up tracking metrics to monitor usage, collect feedback loops, and structure iterations based on telemetry data rather than guesswork.
+                Shipping is just the beginning. I define success metrics before we build, set up tracking to monitor activation and retention, and use real usage data and feedback loops to drive the next iteration.
               </p>
             </div>
           </div>
@@ -261,6 +261,103 @@ export default function Home() {
                 Synthesizing user feedback, analyzing funnel drop-offs, running competitive research, and translating raw signals into actionable product insights.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="py-20 md:py-28 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
+        <div className="mx-auto max-w-6xl">
+          <div className="border-b border-warm-border/60 pb-6 mb-12">
+            <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Experience</span>
+            <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
+              Where I've built and evaluated.
+            </h2>
+            <p className="mt-2 font-normal">Professional and freelance experience bridging technology and user experience.</p>
+          </div>
+
+          <div className="space-y-6">
+            {portfolio.experience.map((exp, idx) => (
+              <div 
+                key={idx} 
+                className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)]"
+              >
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-accent block mb-1">
+                      {exp.company}
+                    </span>
+                    <h3 className="font-sans font-bold text-dark text-lg md:text-xl">
+                      {exp.role}
+                    </h3>
+                  </div>
+                  <div className="text-left md:text-right">
+                    <span className="text-sm font-semibold text-dark/70 block">
+                      {exp.duration}
+                    </span>
+                    <span className="text-xs text-muted block">
+                      {exp.location}
+                    </span>
+                  </div>
+                </div>
+                {exp.bullets && exp.bullets.length > 0 && (
+                  <ul className="list-disc list-outside ml-4 space-y-2 text-sm text-muted font-normal">
+                    {exp.bullets.map((bullet, bIdx) => (
+                      <li key={bIdx} className="leading-relaxed">
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section id="education" className="py-20 md:py-28 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
+        <div className="mx-auto max-w-6xl">
+          <div className="border-b border-warm-border/60 pb-6 mb-12">
+            <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Education</span>
+            <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
+              Academic & professional foundations.
+            </h2>
+            <p className="mt-2 font-normal">My structured learning path and certifications.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {portfolio.education.map((edu, idx) => (
+              <div 
+                key={idx} 
+                className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)] flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-accent block mb-1">
+                    {edu.institution} {edu.location ? `· ${edu.location}` : ""}
+                  </span>
+                  <h3 className="font-sans font-bold text-dark text-lg md:text-xl mb-3">
+                    {edu.degree}
+                  </h3>
+                  {edu.bullets && edu.bullets.length > 0 && (
+                    <ul className="list-disc list-outside ml-4 space-y-1.5 text-sm text-muted font-normal">
+                      {edu.bullets.map((bullet, bIdx) => (
+                        <li key={bIdx} className="leading-relaxed">
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+                {edu.duration && (
+                  <div className="mt-4 pt-3 border-t border-warm-border/30 text-left">
+                    <span className="text-sm font-semibold text-dark/70">
+                      {edu.duration}
+                    </span>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>

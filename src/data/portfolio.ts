@@ -46,6 +46,22 @@ export interface CaseStudy {
   learnings: string;
 }
 
+export interface Experience {
+  role: string;
+  company: string;
+  duration: string;
+  location: string;
+  bullets: string[];
+}
+
+export interface Education {
+  degree: string;
+  institution: string;
+  duration: string;
+  location: string;
+  bullets?: string[];
+}
+
 export interface PortfolioData {
   name: string;
   role: string;
@@ -60,6 +76,8 @@ export interface PortfolioData {
     tools: string[];
   };
   caseStudies: CaseStudy[];
+  experience: Experience[];
+  education: Education[];
 }
 
 export const portfolio: PortfolioData = portfolioData as PortfolioData;
