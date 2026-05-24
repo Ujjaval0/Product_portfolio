@@ -86,69 +86,57 @@ export default function Home() {
       {/* Selected Works Section */}
       <section id="works" className="py-20 md:py-28 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
         <div className="mx-auto max-w-6xl">
-          <div className="border-b border-warm-border/60 pb-6 mb-12">
+          <div className="border-b border-warm-border/60 pb-6 mb-6">
             <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Selected Works</span>
             <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
-              What this looks like in practice.
+              Things I actually built.
             </h2>
-            <p className="max-w-xl mt-2 font-normal">
-              Curated product artifacts showing how I analyze markets, scope requirements, and test AI.
-            </p>
           </div>
 
-          <div className="grid gap-4">
+          <div className="grid md:grid-cols-3 gap-6">
             {portfolio.caseStudies.map((project, idx) => {
-              const covers = [
-                "from-blue-100 via-accent/20 to-blue-50",
-                "from-emerald-100 via-teal-100 to-emerald-50",
-                "from-purple-100 via-violet-100 to-purple-50",
-              ];
-              const coverGrad = covers[idx % covers.length];
+              const prdLink = project.links.prd || project.links.note;
+              const liveLink = project.links.live || project.links.github;
 
               return (
                 <div
                   key={idx}
-                  className="group flex flex-col sm:flex-row rounded-2xl border border-warm-border bg-white hover:border-accent/40 shadow-[0_2px_8px_rgba(26,26,26,0.02)] hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)] transition-custom overflow-hidden"
+                  className="group flex flex-col rounded-2xl border border-warm-border bg-white hover:border-accent/40 shadow-[0_2px_8px_rgba(26,26,26,0.02)] hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)] transition-custom overflow-hidden"
                 >
-                  {/* ── Left: Cover ── */}
-                  <div className={`sm:w-44 md:w-56 shrink-0 bg-gradient-to-br ${coverGrad} flex items-center justify-center min-h-[110px] sm:min-h-0`}>
-                    <div className="flex flex-col items-center gap-2 opacity-35">
-                      <div className="w-9 h-9 rounded-full bg-white/70 flex items-center justify-center">
-                        <ArrowUpRight className="h-4 w-4 text-dark" />
-                      </div>
-                      <span className="text-[8px] font-bold uppercase tracking-widest text-dark/60">
-                        {project.slug === "data-editorial-prd" ? "PRD · MVP" : project.slug === "ai-economy-dashboard" ? "Dashboard · Data" : "AI · Evaluation"}
-                      </span>
-                    </div>
-                  </div>
+                  {/* ── Top: Project Image / Screenshot ── */}
+                  <Link href={`/work/${project.slug}`} className="relative aspect-[16/10] overflow-hidden bg-warm-bg border-b border-warm-border/50 block">
+                    <img 
+                      src={`/images/${project.slug}.png`}
+                      alt={project.title}
+                      className="object-cover w-full h-full group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                  </Link>
 
-                  {/* ── Right: Content ── */}
-                  <div className="flex-1 flex flex-col justify-between p-4 md:p-5 border-l border-warm-border/40">
-
-                    {/* Tags — flat spaced uppercase row */}
-                    <div className="flex flex-wrap items-center gap-x-5 gap-y-1 mb-2">
-                      {project.tags.map((tag, tIdx) => (
-                        <span
-                          key={tIdx}
-                          className="text-[10px] font-bold tracking-widest text-muted uppercase"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="font-sans text-base md:text-lg font-bold text-accent group-hover:text-accent-hover transition-custom leading-snug mb-0.5">
-                      {project.title}
-                    </h3>
-
-                    {/* One-liner */}
-                    <p className="font-display italic text-dark/70 text-sm mb-3">
-                      — {project.oneLiner}
-                    </p>
-
-                    {/* CTA */}
+                  {/* ── Middle: Content ── */}
+                  <div className="flex-1 flex flex-col justify-between p-5">
                     <div>
+                      {/* Tags — small spaced uppercase row */}
+                      <div className="flex flex-wrap gap-x-2 gap-y-1 mb-2">
+                        {project.tags.map((tag, tIdx) => (
+                          <span
+                            key={tIdx}
+                            className="text-[9px] font-bold tracking-wider text-muted uppercase bg-warm-bg px-2 py-0.5 rounded border border-warm-border/40"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Project Title */}
+                      <Link href={`/work/${project.slug}`} className="block group/title mt-1">
+                        <h3 className="font-sans text-[17px] md:text-lg font-bold text-dark group-hover/title:text-accent transition-custom leading-snug mb-2">
+                          {project.title}
+                        </h3>
+                      </Link>
+                    </div>
+
+                    {/* ── Bottom: Action ── */}
+                    <div className="pt-4 border-t border-warm-border/40 mt-auto">
                       <Link
                         href={`/work/${project.slug}`}
                         className="inline-flex items-center gap-1.5 text-sm font-bold text-accent hover:text-accent-hover transition-custom group/cta"
@@ -157,7 +145,6 @@ export default function Home() {
                         <ArrowRight className="h-4 w-4 transition-transform group-hover/cta:translate-x-1" />
                       </Link>
                     </div>
-
                   </div>
                 </div>
               );
@@ -172,7 +159,7 @@ export default function Home() {
       {/* Approach Section */}
       <section id="approach" className="py-20 md:py-28 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
         <div className="mx-auto max-w-6xl">
-          <div className="border-b border-warm-border/60 pb-6 mb-12">
+          <div className="border-b border-warm-border/60 pb-6 mb-6">
             <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Approach</span>
             <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
               How I think through a problem.
@@ -217,12 +204,11 @@ export default function Home() {
       {/* Tools Section */}
       <section id="tools" className="py-20 md:py-28 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
         <div className="mx-auto max-w-6xl">
-          <div className="border-b border-warm-border/60 pb-6 mb-12">
+          <div className="border-b border-warm-border/60 pb-6 mb-6">
             <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Tools & Stack</span>
             <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
-              My PM toolkit.
+              Tools I actually use.
             </h2>
-            <p className="mt-2 font-normal">The applications, languages, and frameworks I use to structure requirements and analyze product data.</p>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-6">
@@ -268,12 +254,11 @@ export default function Home() {
       {/* Experience Section */}
       <section id="experience" className="py-20 md:py-28 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
         <div className="mx-auto max-w-6xl">
-          <div className="border-b border-warm-border/60 pb-6 mb-12">
+          <div className="border-b border-warm-border/60 pb-6 mb-6">
             <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Experience</span>
             <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
-              Where I've built and evaluated.
+              Where I've shown up so far.
             </h2>
-            <p className="mt-2 font-normal">Professional and freelance experience bridging technology and user experience.</p>
           </div>
 
           <div className="space-y-6">
@@ -318,12 +303,11 @@ export default function Home() {
       {/* Education Section */}
       <section id="education" className="py-20 md:py-28 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
         <div className="mx-auto max-w-6xl">
-          <div className="border-b border-warm-border/60 pb-6 mb-12">
+          <div className="border-b border-warm-border/60 pb-6 mb-6">
             <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Education</span>
             <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
-              Academic & professional foundations.
+              Where it started.
             </h2>
-            <p className="mt-2 font-normal">My structured learning path and certifications.</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
