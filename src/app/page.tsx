@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { portfolio } from "@/data/portfolio";
-import { ArrowRight, FileText, Mail, ArrowUpRight, MessageSquare, Phone } from "lucide-react";
+import { ArrowRight, FileText, Mail } from "lucide-react";
 
 export default function Home() {
   return (
@@ -93,7 +93,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {portfolio.caseStudies.map((project, idx) => {
               const prdLink = project.links.prd || project.links.note;
               const liveLink = project.links.live || project.links.github;
@@ -310,7 +310,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {portfolio.education.map((edu, idx) => (
               <div 
                 key={idx} 
