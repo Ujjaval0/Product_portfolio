@@ -24,7 +24,7 @@ export default function Home() {
           </div>
           
           {/* Giant Title with typography-split styling matching Screenshot 1 and exact CSS properties */}
-          <h1 className="font-sans text-[2.8rem] md:text-[95px] lg:text-[105px] font-extrabold font-[800] text-dark tracking-[-2px] md:tracking-[-4px] leading-[1.05] md:leading-[1.05] mb-6 md:mb-8">
+          <h1 className="font-sans text-[2.8rem] md:text-[95px] lg:text-[105px] font-extrabold font-[800] text-[#1a1a2e] tracking-[-2px] md:tracking-[-4px] leading-[1.05] md:leading-[1.05] mb-6 md:mb-8">
             <span className="font-display italic font-light font-[300]">Most people see</span> features. <span className="font-display italic font-light font-[300]">I see the friction behind them - and build to</span> remove it.
           </h1>
           
@@ -79,7 +79,7 @@ export default function Home() {
 
           {/* Right Column: Profile Image (35%) */}
           <div className="w-full md:w-[35%] flex justify-center md:justify-end mt-8 md:mt-0">
-            <div className="relative w-full max-w-[340px] aspect-[3/4] rounded-3xl overflow-hidden shadow-lg border border-warm-border bg-white">
+            <div className="relative w-full max-w-[290px] aspect-[3/4] rounded-3xl overflow-hidden shadow-lg border border-warm-border bg-white">
               <img 
                 src="/images/profile.png" 
                 alt={portfolio.name} 
