@@ -8,38 +8,35 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section id="hero" className="relative overflow-hidden pt-6 pb-12 md:pt-10 md:pb-16 px-3 md:px-4 border-b border-warm-border/60 bg-transparent">
+      <section id="hero" className="relative overflow-hidden pt-6 pb-6 px-6 md:pt-10 md:pb-16 md:px-4 border-b border-warm-border/60 bg-transparent">
         <div className="relative mx-auto max-w-6xl pt-0">
-          {/* Badge with focus/crop corner accents */}
-          <div className="relative inline-block w-fit max-w-max px-5 py-1.5 bg-[#dce3f5]/20 mb-6 select-none">
-            {/* Corner brackets */}
-            <span className="absolute left-0 top-0 w-2 h-2 border-t-2 border-l-2 border-accent/60" />
-            <span className="absolute right-0 top-0 w-2 h-2 border-t-2 border-r-2 border-accent/60" />
-            <span className="absolute left-0 bottom-0 w-2 h-2 border-b-2 border-l-2 border-accent/60" />
-            <span className="absolute right-0 bottom-0 w-2 h-2 border-b-2 border-r-2 border-accent/60" />
+          {/* Unique Glassmorphic Tag */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-warm-border/80 bg-white/80 backdrop-blur-md shadow-[0_2px_12px_rgba(100,141,229,0.08)] mb-6 select-none">
+            {/* Glowing Accent Indicator */}
+            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
             
-            <span className="relative font-sans font-bold text-[14px] md:text-[16px] text-dark tracking-wider uppercase">
+            <span className="font-sans font-bold text-[13px] md:text-[14px] text-dark/95 tracking-widest uppercase">
               Product · Data · AI
             </span>
           </div>
           
           {/* Giant Title with typography-split styling matching Screenshot 1 and exact CSS properties */}
-          <h1 className="font-sans text-[2.8rem] md:text-[95px] lg:text-[105px] font-bold font-[700] text-[#1a1a2e] tracking-[-2px] md:tracking-[-4px] leading-[1.05] md:leading-[1.05] mb-6 md:mb-8">
-            <span className="font-display italic font-[400]">Most people see</span> <span className="opacity-[0.92]">features.</span> <span className="font-display italic font-[400]">I see the friction behind them - and build to</span> <span className="opacity-[0.92]">remove it.</span>
+          <h1 className="font-sans text-[4rem] md:text-[95px] lg:text-[105px] font-extrabold font-[800] md:font-bold md:font-[700] text-[#1a1a2e] tracking-[-0.02em] md:tracking-[-4px] leading-[1.05] md:leading-[1.05] mb-6 md:mb-8 ml-0 pl-0">
+            <span className="font-display italic font-light font-[300] md:font-normal md:font-[400]">Most people see</span> <span className="opacity-[0.92]">features.</span> <span className="font-display italic font-light font-[300] md:font-normal md:font-[400]">I see the friction behind them - and build to</span> <span className="opacity-[0.92]">remove it.</span>
           </h1>
           
           {/* Actions Row */}
           <div className="pt-5 border-t border-warm-border/30">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col md:flex-row items-center gap-3 w-full">
               <Link 
                 href="#connect" 
-                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-accent text-white font-semibold hover:bg-accent-hover transition-custom shadow-xs text-base"
+                className="inline-flex items-center justify-center w-full md:w-auto px-4 py-4 md:px-8 md:py-3.5 rounded-[50px] md:rounded-full bg-accent text-white font-semibold hover:bg-accent-hover transition-custom shadow-xs text-base"
               >
                 Ways to Connect
               </Link>
               <Link 
                 href="#works" 
-                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-transparent border border-dark text-dark font-bold hover:bg-dark/5 transition-custom text-base"
+                className="hidden md:inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-transparent border border-dark text-dark font-bold hover:bg-dark/5 transition-custom text-base"
               >
                 Go on..
               </Link>
