@@ -21,7 +21,7 @@ export default function Home() {
           </div>
           
           {/* Giant Title with typography-split styling matching Screenshot 1 and exact CSS properties */}
-          <h1 className="font-sans text-[4rem] md:text-[95px] lg:text-[105px] font-extrabold font-[800] md:font-bold md:font-[700] text-[#1a1a2e] tracking-[-0.02em] md:tracking-[-4px] leading-[1.05] md:leading-[1.05] mb-6 md:mb-8 ml-0 pl-0">
+          <h1 className="font-sans text-[2.8rem] md:text-[95px] lg:text-[105px] font-extrabold font-[800] md:font-bold md:font-[700] text-[#1a1a2e] tracking-[-0.02em] md:tracking-[-4px] leading-[1.1] md:leading-[1.05] mb-6 md:mb-8 ml-0 pl-0">
             <span className="font-display italic font-light font-[300] md:font-normal md:font-[400]">Most people see</span> <span className="opacity-[0.92]">features.</span> <span className="font-display italic font-light font-[300] md:font-normal md:font-[400]">I see the friction behind them - and build to</span> <span className="opacity-[0.92]">remove it.</span>
           </h1>
           
