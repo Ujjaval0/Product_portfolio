@@ -10,39 +10,14 @@ export default function Home() {
       {/* Hero Section */}
       <section id="hero" className="relative overflow-hidden pt-6 pb-12 md:pt-10 md:pb-16 px-3 md:px-4 border-b border-warm-border/60 bg-transparent">
         <div className="relative mx-auto max-w-6xl pt-0">
-          {/* Badge with hand-drawn pen stroke style */}
-          <div className="relative inline-flex items-center justify-center px-5 py-2 mb-6">
-            {/* Sketchy SVG background */}
-            <svg 
-              className="absolute inset-0 w-full h-full pointer-events-none text-accent" 
-              viewBox="0 0 160 48" 
-              fill="none" 
-              preserveAspectRatio="none"
-            >
-              <path 
-                d="M5,6 C45,3 85,5 155,4 C156,13 154,26 153,44 C115,45 75,42 7,44 C5,33 6,18 5,6 Z" 
-                stroke="currentColor" 
-                strokeWidth="2.5" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              />
-              <path 
-                d="M8,9 C50,7 90,6 153,8 C155,16 153,26 154,41 C110,40 60,43 9,42 C8,31 7,21 8,9" 
-                stroke="currentColor" 
-                strokeWidth="1.5" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-                className="opacity-70"
-              />
-            </svg>
-            <span className="relative font-sans font-bold text-[15px] md:text-[17px] text-dark tracking-wide uppercase">
-              Product · Data · AI
-            </span>
+          {/* Badge styled like a text highlighter marker */}
+          <div className="inline-block px-4 py-1.5 bg-[#dce3f5] text-dark font-sans font-bold text-[15px] md:text-[17px] rounded-[2px] mb-6">
+            Product · Data · AI
           </div>
           
           {/* Giant Title with typography-split styling matching Screenshot 1 and exact CSS properties */}
-          <h1 className="font-sans text-[42px] sm:text-[68px] md:text-[85px] font-bold text-dark tracking-[-1.5px] md:tracking-[-3px] leading-[1.05] md:leading-[1.05] mb-6 md:mb-8">
-            <span className="font-display italic font-normal">Most people see</span> features. <span className="font-display italic font-normal">I see the friction behind them - and build to</span> remove it.
+          <h1 className="font-sans text-[48px] sm:text-[80px] md:text-[95px] lg:text-[105px] font-extrabold font-[800] text-dark tracking-[-2px] md:tracking-[-4px] leading-[1.05] md:leading-[1.05] mb-6 md:mb-8">
+            <span className="font-display italic font-light font-[300]">Most people see</span> features. <span className="font-display italic font-light font-[300]">I see the friction behind them - and build to</span> remove it.
           </h1>
           
           {/* Actions Row */}
