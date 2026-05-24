@@ -10,13 +10,21 @@ export default function Home() {
       {/* Hero Section */}
       <section id="hero" className="relative overflow-hidden pt-6 pb-12 md:pt-10 md:pb-16 px-3 md:px-4 border-b border-warm-border/60 bg-transparent">
         <div className="relative mx-auto max-w-6xl pt-0">
-          {/* Badge styled like a text highlighter marker */}
-          <div className="inline-block px-4 py-1.5 bg-[#dce3f5] text-dark font-sans font-bold text-[15px] md:text-[17px] rounded-[2px] mb-6">
-            Product · Data · AI
+          {/* Badge with focus/crop corner accents */}
+          <div className="relative inline-block w-fit max-w-max px-5 py-1.5 bg-[#dce3f5]/20 mb-6 select-none">
+            {/* Corner brackets */}
+            <span className="absolute left-0 top-0 w-2 h-2 border-t-2 border-l-2 border-accent/60" />
+            <span className="absolute right-0 top-0 w-2 h-2 border-t-2 border-r-2 border-accent/60" />
+            <span className="absolute left-0 bottom-0 w-2 h-2 border-b-2 border-l-2 border-accent/60" />
+            <span className="absolute right-0 bottom-0 w-2 h-2 border-b-2 border-r-2 border-accent/60" />
+            
+            <span className="relative font-sans font-bold text-[14px] md:text-[16px] text-dark tracking-wider uppercase">
+              Product · Data · AI
+            </span>
           </div>
           
           {/* Giant Title with typography-split styling matching Screenshot 1 and exact CSS properties */}
-          <h1 className="font-sans text-[48px] sm:text-[80px] md:text-[95px] lg:text-[105px] font-extrabold font-[800] text-dark tracking-[-2px] md:tracking-[-4px] leading-[1.05] md:leading-[1.05] mb-6 md:mb-8">
+          <h1 className="font-sans text-[2.8rem] md:text-[95px] lg:text-[105px] font-extrabold font-[800] text-dark tracking-[-2px] md:tracking-[-4px] leading-[1.05] md:leading-[1.05] mb-6 md:mb-8">
             <span className="font-display italic font-light font-[300]">Most people see</span> features. <span className="font-display italic font-light font-[300]">I see the friction behind them - and build to</span> remove it.
           </h1>
           
@@ -46,7 +54,7 @@ export default function Home() {
           {/* Left Column: Identity details (65%) */}
           <div className="w-full md:w-[65%] flex flex-col items-start text-left">
             <h2 className="font-sans text-xl sm:text-2xl font-extrabold text-dark tracking-tight mb-3">
-              Hello 👋 I’m Ujjaval,
+              Hello, I'm Ujjaval.
             </h2>
             <p className="font-sans text-[22px] font-normal leading-[32px] text-[#2A2A3C]/85 mb-6 text-left">
               A self-taught fresher who got genuinely obsessed with AI and decided to build a career around it.
@@ -101,7 +109,7 @@ export default function Home() {
               return (
                 <div
                   key={idx}
-                  className="group flex flex-col rounded-2xl border border-warm-border bg-white hover:border-accent/40 shadow-[0_2px_8px_rgba(26,26,26,0.02)] hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)] transition-custom overflow-hidden"
+                  className="group flex flex-col rounded-2xl border border-warm-border bg-white hover:border-accent/40 shadow-[0_2px_8px_rgba(26,26,26,0.02)] hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)] hover:-translate-y-1.5 transition-custom overflow-hidden"
                 >
                   {/* ── Top: Project Image / Screenshot ── */}
                   <Link href={`/work/${project.slug}`} className="relative aspect-[16/10] overflow-hidden bg-warm-bg border-b border-warm-border/50 block">
@@ -213,7 +221,7 @@ export default function Home() {
 
           <div className="grid sm:grid-cols-2 gap-6">
             {/* Analytics & Data Card */}
-            <div className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)]">
+            <div className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)] hover:-translate-y-1">
               <span className="text-xs font-bold uppercase tracking-wider text-accent mb-3 block">ANALYTICS & DATA</span>
               <h3 className="font-sans font-bold text-dark text-lg mb-4">SQL, Power BI, Python, Excel</h3>
               <p className="font-normal text-sm text-muted">
@@ -222,7 +230,7 @@ export default function Home() {
             </div>
 
             {/* Product & Design Card */}
-            <div className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)]">
+            <div className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)] hover:-translate-y-1">
               <span className="text-xs font-bold uppercase tracking-wider text-accent mb-3 block">PRODUCT & DESIGN</span>
               <h3 className="font-sans font-bold text-dark text-lg mb-4">Figma, Notion, Miro</h3>
               <p className="font-normal text-sm text-muted">
@@ -231,7 +239,7 @@ export default function Home() {
             </div>
 
             {/* AI & LLM Tools Card */}
-            <div className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)]">
+            <div className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)] hover:-translate-y-1">
               <span className="text-xs font-bold uppercase tracking-wider text-accent mb-3 block">AI & LLM TOOLS</span>
               <h3 className="font-sans font-bold text-dark text-lg mb-4">Claude, ChatGPT, Google AI Studio, LLM Eval</h3>
               <p className="font-normal text-sm text-muted">
@@ -240,7 +248,7 @@ export default function Home() {
             </div>
 
             {/* Research & Discovery Card */}
-            <div className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)]">
+            <div className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)] hover:-translate-y-1">
               <span className="text-xs font-bold uppercase tracking-wider text-accent mb-3 block">RESEARCH & DISCOVERY</span>
               <h3 className="font-sans font-bold text-dark text-lg mb-4">Mixpanel, Perplexity, Amplitude</h3>
               <p className="font-normal text-sm text-muted">
@@ -265,7 +273,7 @@ export default function Home() {
             {portfolio.experience.map((exp, idx) => (
               <div 
                 key={idx} 
-                className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)]"
+                className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)] hover:-translate-y-1"
               >
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
                   <div>
@@ -314,7 +322,7 @@ export default function Home() {
             {portfolio.education.map((edu, idx) => (
               <div 
                 key={idx} 
-                className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)] flex flex-col justify-between"
+                className="p-6 rounded-2xl border border-warm-border bg-white shadow-[0_2px_8px_rgba(26,26,26,0.02)] transition-custom hover:border-accent/40 hover:shadow-[0_8px_24px_rgba(26,26,26,0.06)] hover:-translate-y-1 flex flex-col justify-between"
               >
                 <div>
                   <span className="text-xs font-bold uppercase tracking-wider text-accent block mb-1">

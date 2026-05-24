@@ -25,9 +25,9 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-warm-border/60 bg-warm-bg/80 backdrop-blur-md">
       <div className="mx-auto max-w-6xl px-3 md:px-4 h-16 flex items-center justify-between">
-        <Link href="/" onClick={closeMenu} className="flex items-center hover:opacity-90 transition-opacity">
-          <span className="font-display italic text-dark text-[17px] mr-1.5">by</span>
-          <span className="font-sans font-bold tracking-tight text-dark text-[17px] mr-1.5">Ujjaval Bhardwaj</span>
+        <Link href="/" onClick={closeMenu} className="flex items-center hover:opacity-90 transition-opacity min-w-0 mr-2">
+          <span className="font-display italic text-dark text-[17px] mr-1.5 shrink-0">by</span>
+          <span className="font-sans font-bold tracking-tight text-dark text-[17px] mr-1.5 truncate">Ujjaval Bhardwaj</span>
         </Link>
         
         {/* Desktop Navigation */}
@@ -51,17 +51,17 @@ export default function Navbar() {
         </nav>
 
         {/* Mobile Navigation Controls */}
-        <div className="flex lg:hidden items-center space-x-3">
+        <div className="flex lg:hidden items-center space-x-2.5 shrink-0">
           <Link 
             href={isHome ? "#connect" : "/#connect"} 
             onClick={closeMenu}
-            className="inline-flex items-center justify-center bg-[#1F242E] text-white hover:bg-black px-3.5 py-1.5 rounded-full transition-custom font-bold text-[12px]"
+            className="hidden md:inline-flex shrink-0 items-center justify-center bg-[#1F242E] text-white hover:bg-black px-3 py-1.5 rounded-full transition-custom font-bold text-[12px]"
           >
             Connect
           </Link>
           <button
             onClick={toggleMenu}
-            className="p-1.5 text-dark hover:bg-dark/5 rounded-lg transition-custom"
+            className="p-1.5 text-dark hover:bg-dark/5 rounded-lg transition-custom shrink-0"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -82,6 +82,14 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
+          {/* Connect link shown inside hamburger menu ONLY on mobile (under 768px) */}
+          <Link
+            href={isHome ? "#connect" : "/#connect"}
+            onClick={closeMenu}
+            className="md:hidden text-[15px] font-semibold text-accent hover:text-accent-hover py-1 transition-custom border-t border-warm-border/30 pt-3"
+          >
+            Connect
+          </Link>
         </div>
       )}
     </header>
