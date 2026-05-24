@@ -25,7 +25,7 @@ export default function Home() {
           
           {/* Giant Title with typography-split styling matching Screenshot 1 and exact CSS properties */}
           <h1 className="font-sans text-[2.8rem] md:text-[95px] lg:text-[105px] font-extrabold font-[800] text-[#1a1a2e] tracking-[-2px] md:tracking-[-4px] leading-[1.05] md:leading-[1.05] mb-6 md:mb-8">
-            <span className="font-display italic font-light font-[300]">Most people see</span> features. <span className="font-display italic font-light font-[300]">I see the friction behind them - and build to</span> remove it.
+            <span className="font-display italic font-light font-[300]">Most people see</span> <span className="opacity-[0.92]">features.</span> <span className="font-display italic font-light font-[300]">I see the friction behind them - and build to</span> <span className="opacity-[0.92]">remove it.</span>
           </h1>
           
           {/* Actions Row */}
