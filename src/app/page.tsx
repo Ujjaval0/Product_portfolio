@@ -8,20 +8,20 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section id="hero" className="relative overflow-hidden pt-8 pb-20 md:pt-12 md:pb-24 px-3 md:px-4 border-b border-warm-border/60 bg-transparent">
+      <section id="hero" className="relative overflow-hidden pt-6 pb-12 md:pt-10 md:pb-16 px-3 md:px-4 border-b border-warm-border/60 bg-transparent">
         <div className="relative mx-auto max-w-6xl pt-0">
           {/* Badge */}
-          <div className="inline-block px-4 py-1.5 bg-[#E8F0FE] border border-[#D2E3FC] text-dark font-sans font-bold text-lg md:text-xl rounded-md mb-8">
+          <div className="inline-block px-4 py-1.5 bg-[#E8F0FE] border border-[#D2E3FC] text-dark font-sans font-bold text-lg md:text-xl rounded-md mb-6">
             Product · Data · AI
           </div>
           
           {/* Giant Title with typography-split styling matching Screenshot 1 and exact CSS properties */}
-          <h1 className="font-sans text-4xl sm:text-6xl md:text-[85px] font-bold text-dark tracking-[-1px] leading-[1.1] md:leading-[1.1] mb-12">
+          <h1 className="font-sans text-[42px] sm:text-[68px] md:text-[85px] font-bold text-dark tracking-[-1.5px] md:tracking-[-3px] leading-[1.05] md:leading-[1.05] mb-6 md:mb-8">
             <span className="font-display italic font-normal">Most people see</span> features. <span className="font-display italic font-normal">I see the friction behind them - and build to</span> remove it.
           </h1>
           
           {/* Actions Row */}
-          <div className="pt-6 border-t border-warm-border/30">
+          <div className="pt-5 border-t border-warm-border/30">
             <div className="flex items-center gap-3">
               <Link 
                 href="#connect" 
@@ -41,7 +41,7 @@ export default function Home() {
       </section>
 
       {/* Profile & Identity Section */}
-      <section id="about" className="relative overflow-hidden py-20 px-3 md:px-4 border-b border-warm-border/60 bg-transparent">
+      <section id="about" className="relative overflow-hidden py-12 md:py-16 px-3 md:px-4 border-b border-warm-border/60 bg-transparent">
         <div className="relative mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-8 md:gap-10">
           {/* Left Column: Identity details (65%) */}
           <div className="w-full md:w-[65%] flex flex-col items-start text-left">
@@ -70,7 +70,7 @@ export default function Home() {
           </div>
 
           {/* Right Column: Profile Image (35%) */}
-          <div className="w-full md:w-[35%] flex justify-end mt-12 md:mt-0">
+          <div className="w-full md:w-[35%] flex justify-center md:justify-end mt-8 md:mt-0">
             <div className="relative w-full max-w-[340px] aspect-[3/4] rounded-3xl overflow-hidden shadow-lg border border-warm-border bg-white">
               <img 
                 src="/images/profile.png" 
@@ -84,7 +84,7 @@ export default function Home() {
 
 
       {/* Selected Works Section */}
-      <section id="works" className="py-20 md:py-28 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
+      <section id="works" className="py-12 md:py-16 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
         <div className="mx-auto max-w-6xl">
           <div className="border-b border-warm-border/60 pb-6 mb-6">
             <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Selected Works</span>
@@ -157,7 +157,7 @@ export default function Home() {
 
 
       {/* Approach Section */}
-      <section id="approach" className="py-20 md:py-28 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
+      <section id="approach" className="py-12 md:py-16 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
         <div className="mx-auto max-w-6xl">
           <div className="border-b border-warm-border/60 pb-6 mb-6">
             <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Approach</span>
@@ -202,7 +202,7 @@ export default function Home() {
       </section>
 
       {/* Tools Section */}
-      <section id="tools" className="py-20 md:py-28 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
+      <section id="tools" className="py-12 md:py-16 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
         <div className="mx-auto max-w-6xl">
           <div className="border-b border-warm-border/60 pb-6 mb-6">
             <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Tools & Stack</span>
@@ -252,7 +252,7 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 md:py-28 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
+      <section id="experience" className="py-12 md:py-16 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
         <div className="mx-auto max-w-6xl">
           <div className="border-b border-warm-border/60 pb-6 mb-6">
             <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Experience</span>
@@ -301,7 +301,7 @@ export default function Home() {
       </section>
 
       {/* Education Section */}
-      <section id="education" className="py-20 md:py-28 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
+      <section id="education" className="py-12 md:py-16 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
         <div className="mx-auto max-w-6xl">
           <div className="border-b border-warm-border/60 pb-6 mb-6">
             <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Education</span>
@@ -347,7 +347,7 @@ export default function Home() {
       </section>
 
       {/* Connect Section */}
-      <section id="connect" className="py-24 px-3 md:px-4 bg-transparent">
+      <section id="connect" className="py-14 md:py-16 px-3 md:px-4 bg-transparent">
         <div className="mx-auto max-w-6xl text-center">
           <div className="relative p-8 md:p-12 rounded-3xl border border-warm-border bg-white shadow-[0_4px_16px_rgba(26,26,26,0.02)] overflow-hidden">
             {/* Background Grid Pattern inside card */}
