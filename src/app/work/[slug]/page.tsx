@@ -221,7 +221,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={`mailto:${portfolio.email}`}
+              href="mailto:ujjavalbhardwaj6@gmail.com"
               className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-accent text-white font-medium hover:bg-accent-hover transition-custom shadow-sm text-sm"
             >
               Email Ujjaval

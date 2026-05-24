@@ -369,7 +369,7 @@ export default function Home() {
               {/* Grid of CTAs */}
               <div className="grid sm:grid-cols-2 gap-3 w-full max-w-md">
                 <a 
-                  href={`mailto:${portfolio.email}`}
+                  href="mailto:ujjavalbhardwaj6@gmail.com"
                   className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-accent text-white font-semibold hover:bg-accent-hover transition-custom shadow-xs text-sm"
                 >
                   <Mail className="h-4 w-4" /> Email Me
