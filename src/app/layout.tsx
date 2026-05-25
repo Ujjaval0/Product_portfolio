@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${lora.variable} ${schibstedGrotesk.variable} h-full antialiased scroll-smooth`}
+      className={`${lora.variable} ${schibstedGrotesk.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-warm-bg text-dark font-sans selection:bg-accent/10 selection:text-accent">
         <Navbar />

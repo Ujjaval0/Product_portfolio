@@ -55,7 +55,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
           </h1>
 
           <p className="text-lg sm:text-xl text-accent font-semibold mb-6 italic font-display">
-            — {project.oneLiner}
+            {project.oneLiner}
           </p>
 
           {/* Links Row */}
@@ -86,6 +86,15 @@ export default async function CaseStudyPage({ params }: PageProps) {
             )}
           </div>
         </header>
+
+        {/* Project Screenshot */}
+        <div className="relative w-full overflow-hidden rounded-2xl border border-warm-border bg-warm-bg mb-12 shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex justify-center">
+          <img 
+            src={`/images/${project.slug}.png`}
+            alt={project.title}
+            className="w-full h-auto max-h-[600px] object-contain"
+          />
+        </div>
 
         {/* ── Content Sections ── */}
         <div className="space-y-10">

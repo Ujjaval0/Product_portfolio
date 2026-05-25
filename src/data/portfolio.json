@@ -29,70 +29,74 @@
   },
   "caseStudies": [
     {
-      "slug": "data-editorial-prd",
-      "title": "Data Editorial: Bridging the SQL-to-Browser Gap",
-      "oneLiner": "Reducing query-to-insight latency for data analysts who collaborate across teams",
-      "subtitle": "Writing a product requirements document and launching a browser-based database client MVP",
-      "description": "I defined product specs, designed database connection telemetry, and built a browser SQL client to validate web-based data sharing workflows.",
-      "tags": ["PRD", "User Research", "Scoping & Metrics", "MVP Specification"],
-      "skills": ["Product Spec Writing", "Telemetry Setup", "Scoping Trade-offs", "Security UX"],
+      "slug": "accredian-connect",
+      "title": "Accredian Connect",
+      "oneLiner": "Eliminating WhatsApp dependency by building a structured learning community directly inside Accredian's student portal",
+      "subtitle": "Designing a student communication dashboard that eliminates dependency on third-party chat apps",
+      "description": "I designed a student communication dashboard to eliminate WhatsApp, Telegram, and LinkedIn dependencies for post-graduate students, creating structured in-portal communities and study spaces.",
+      "tags": ["Product Plan", "Feature Design", "Community Architecture", "Tradeoff Decisions"],
+      "skills": ["Product Spec Writing", "User Journeys", "Prioritization", "Launch Strategy"],
       "links": {
-        "prd": "https://docs.google.com/document/d/1ExamplePRD/edit",
-        "live": "https://data-editorial.vercel.app"
+        "prd": "/documents/Accredian Connect- Ujjaval (2).pdf",
+        "live": "https://accerdian-connect-pm.vercel.app/"
       },
-      "outcomePunch": "100% activation rate among test users · 15% faster query-to-insight cycles",
-      "problem": "Data analysts frequently switch between heavy desktop SQL clients (like DBeaver or pgAdmin) and web browsers to share results. This multi-tool context switching increases query-to-insight latency, slows team onboarding, and complicates async collaboration.",
-      "problemUser": "Mid-level data analysts at small-to-medium tech companies who share SQL insights with non-technical stakeholders weekly.",
-      "problemData": "In informal interviews with 5 analysts, 4 reported spending 10–15 minutes per sharing cycle on export, formatting, and re-importing data — a significant tax on repeat workflows.",
+      "outcomePunch": "70% newly enrolled active in 3 months · Sub-30s resource discovery rate",
+      "problem": "Accredian offers postgraduate programs with IIT Kanpur and IIM Lucknow. Their students are working professionals with full-time jobs on weekdays and classes on weekends. The moment they enroll, they create WhatsApp groups themselves because Accredian has nothing inside the platform. The result: resources disappear within hours, mentor visibility ends when class ends, struggling students go unidentified, and Accredian loses all community engagement data to platforms it has zero control over. The problem isn't that WhatsApp is better; it's that Accredian has nothing, and students fill that gap with whatever they already know.",
+      "problemUser": "Working professional students who need resource accessibility and mentor support outside class hours.",
+      "problemData": "Students immediately create external WhatsApp groups upon enrollment, leading to lost resources, end of mentor visibility post-class, and zero data visibility for Accredian.",
       "goalMetrics": {
-        "goal": "Build a browser-based SQL client that cuts the time from query to shared result by at least 50%, validated through user testing.",
+        "goal": "Build a native communication dashboard directly integrated into the student portal that eliminates WhatsApp/Telegram dependencies and structures student-mentor interactions.",
         "metrics": [
-          "Activation Rate: % of new users executing their first query within 120 seconds of landing",
-          "Connection Success Rate: % of database connections that complete without error on first attempt",
-          "Time-to-Share: Average minutes from query execution to shareable result link"
+          "North Star: Weekly active posting rate per student inside the platform",
+          "Activation Rate: 70% of newly enrolled students active within 3 months of launch",
+          "Findability: Any resource findable in under 30 seconds via search",
+          "Dependency Reduction: Measurable reduction in external WhatsApp groups created by enrolled students",
+          "Referral Performance: Alumni mentor response rate to referral requests staying above 60%"
         ]
       },
       "research": [
         {
-          "title": "User Interviews (5 analysts)",
-          "content": "Core JTBD uncovered: 'When sharing query results with stakeholders, I want to quickly run a query and share a secure browser link, so that we can align on decisions without exporting CSVs.' All 5 users flagged credential security as a blocker for adopting web-based tools."
+          "title": "Rejected Slack/Discord Integration",
+          "content": "Both are strong tools but have zero academic context awareness. A student on Slack is just a workspace user. Integrating a third-party tool also defeats the entire point of keeping everything in one place and gives Accredian no data ownership."
         },
         {
-          "title": "Competitive Analysis",
-          "content": "Existing tools like Retool and Metabase require full deployment setup — too heavy for ad-hoc use. Datasette is powerful but developer-only. The gap: zero lightweight, shareable, browser-native SQL clients with good security UX."
+          "title": "Constrained AI Implementation",
+          "content": "Limited AI to two jobs only: Smart Catch-Up summaries for students who've been offline, and auto resource tagging. A general AI assistant replaces human conversation, which is the core value this platform is built around."
         },
         {
-          "title": "Key Insight",
-          "content": "Users don't need collaborative editing in v1. They need frictionless solo querying with a shareable output. This insight shaped our MoSCoW scope: read-only client first, collaboration deferred."
+          "title": "Open Community vs. Cohort-Specific",
+          "content": "Cohort-only spaces go dead on slow days and students return to WhatsApp. Cross-program activity ensures there's always energy on the platform regardless of individual cohort schedules."
+        },
+        {
+          "title": "Performance-Based Referral Gates",
+          "content": "Unrestricted alumni requests cause mentor burnout and disengagement. Tying referral eligibility to academic performance protects mentor time and makes every interaction between a serious student and a willing mentor high-value."
         }
       ],
-      "solution": "A browser-native SQL client with client-side credential storage, a schema browser, and a one-click shareable result view — deployable with zero backend setup.",
+      "solution": "A communication dashboard integrated directly into the existing student portal. No separate app, no new login. Three spaces built around how working professionals actually learn.",
       "solutionDetails": [
-        "Client-side credential storage (localStorage) so no credentials are sent to a server",
-        "Schema browser panel showing tables and columns on connection",
-        "Read-only query editor with syntax highlighting",
-        "One-click result export as CSV or shareable link",
-        "Chose browser-native over desktop app to eliminate installation friction and enable instant shareability"
+        "Open Community: Cross-program public space with Study Rooms that stay populated regardless of cohort schedule, keeping solo studiers engaged.",
+        "Course Community: Private cohort space with four organized tabs: Course Feed, Module Discussions, Resource Library, and Announcements.",
+        "Private Chat: Consent-based messaging request system that completely prevents unsolicited DMs."
       ],
-      "prioritization": "Used MoSCoW: Must-have — connect, query, view results. Should-have — schema browser. Could-have — query history. Won't-have in v1 — multi-user collaboration, write permissions. This kept scope tight for a 2-week MVP cycle.",
-      "measurement": "I'd run a 2-week beta with 10 analysts and track: Activation Rate (target >80%), Time-to-Share (target <3 mins vs. baseline ~12 mins), and NPS. For v2 decisions, I'd instrument query frequency per session to identify which features drive retention.",
-      "role": "Product Manager & Builder. I conducted user research with 5 analysts, defined the core target personas, drafted the PRD detailing functional requirements and security guidelines, and built a lightweight client MVP to validate adoption telemetry.",
+      "prioritization": "Used a strict prioritization framework to focus AI features on automation (Smart Catch-Up and auto-tagging) while keeping the core experience focused on human-to-human connection. Gated mentor access through performance-based referral criteria to avoid mentor burnout.",
+      "measurement": "Success is measured by our North Star: weekly active posting rate per student inside the platform. Supporting signals include 70% onboarding activation in the first 3 months, sub-30-second resource discovery, reduction in student-created WhatsApp groups, and maintaining a >60% mentor response rate to referral requests.",
+      "role": "Product Manager. I owned the entire product plan solo—from background research and problem framing to feature design, trade-off decisions, launch strategy, and designing the working live prototype.",
       "process": [
         {
-          "title": "1. User Persona & JTBD Definition",
-          "content": "Conducted user interviews to map the primary Job-to-be-Done: 'When sharing query results with stakeholders, I want to quickly run a query and share a secure browser link, so that we can align on decisions without exporting CSVs.' Implemented local storage for query history to ensure user data remains fully client-side."
+          "title": "1. Problem Framing & Persona Analysis",
+          "content": "Analyzed how working professionals balance weekday jobs and weekend classes, identifying how WhatsApp groups fill the gap left by the absence of an in-portal learning community."
         },
         {
-          "title": "2. Product Scoping & Success Metrics",
-          "content": "Defined success using two north-star metrics: Activation Rate (% of users executing their first query within 120s of landing) and Connection Success Rate. Used MoSCoW prioritization to scope a read-only schema browser and editor for the MVP, deferring collaborative writing to version 2."
+          "title": "2. Feature Design & Space Architecture",
+          "content": "Designed three distinct communication spaces (Open Community, Course Community, Private Chat) specifically optimized for academic context and cohort needs."
         },
         {
-          "title": "3. PM Rationale on Development Scope",
-          "content": "Made the product decision to build a browser-based client rather than a desktop app, prioritizing friction-free onboarding (zero installation) and instant shareability of queries, which directly improved testing velocity."
+          "title": "3. Trade-off Decisions & Scoping",
+          "content": "Made key scoping decisions such as rejecting third-party integrations (Slack/Discord) for data ownership, limiting AI to non-conversational tasks, and performance-gating mentor access."
         }
       ],
-      "outcome": "Successfully validated the query-sharing value proposition. The PRD served as a strict scope-control document during development. The MVP achieved a 100% Activation Rate among test users and reported a 15% perceived speedup in ad-hoc query sharing cycles.",
-      "learnings": "I underestimated user concern around database credential safety in web applications. If I were repeating this cycle, I would prioritize prominent client-side credential indicators in the UI to build trust and increase the Activation Rate."
+      "outcome": "Designed a comprehensive communication dashboard integrated directly into the student portal, along with a detailed product launch plan and a working live prototype.",
+      "learnings": "The mentor participation model: one discussion prompt per week minimum works cleanly at small scale. But at 50 cohorts running simultaneously, that becomes an operational problem nobody has solved for. I'd build the mentor accountability and incentive structure in parallel with the platform itself."
     },
     {
       "slug": "ai-economy-dashboard",

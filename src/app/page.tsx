@@ -36,9 +36,9 @@ export default function Home() {
               </Link>
               <Link 
                 href="#works" 
-                className="hidden md:inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-transparent border border-dark text-dark font-bold hover:bg-dark/5 transition-custom text-base"
+                className="inline-flex items-center justify-center w-full md:w-auto px-4 py-4 md:px-8 md:py-3.5 rounded-[50px] md:rounded-full bg-transparent border border-dark text-dark font-bold hover:bg-dark/5 transition-custom text-base"
               >
-                Go on..
+                See My Work
               </Link>
             </div>
           </div>

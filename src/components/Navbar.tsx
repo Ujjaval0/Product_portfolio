@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
@@ -12,6 +12,45 @@ export default function Navbar() {
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
+
+  useEffect(() => {
+    // Force instant scroll behavior by default on page load / path change
+    document.documentElement.style.scrollBehavior = "auto";
+    document.documentElement.classList.remove("scroll-smooth");
+    window.scrollTo(0, 0);
+
+    let timer: NodeJS.Timeout;
+
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest("a");
+      if (!anchor) return;
+      
+      const href = anchor.getAttribute("href");
+      if (!href) return;
+      
+      // Check if it is a same-page anchor link
+      const isHash = href.startsWith("#") || (pathname === "/" && href.startsWith("/#"));
+      
+      if (isHash) {
+        clearTimeout(timer);
+        // Temporarily enable smooth scroll for this user action
+        document.documentElement.style.scrollBehavior = "smooth";
+        document.documentElement.classList.add("scroll-smooth");
+        
+        timer = setTimeout(() => {
+          document.documentElement.style.scrollBehavior = "auto";
+          document.documentElement.classList.remove("scroll-smooth");
+        }, 1200);
+      }
+    };
+
+    document.addEventListener("click", handleAnchorClick, { passive: true });
+    return () => {
+      document.removeEventListener("click", handleAnchorClick);
+      clearTimeout(timer);
+    };
+  }, [pathname]);
 
   const navLinks = [
     { name: "About", href: isHome ? "#about" : "/#about" },
@@ -71,7 +110,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="lg:hidden border-t border-warm-border/60 bg-warm-bg/95 backdrop-blur-md py-4 px-4 flex flex-col space-y-4 shadow-md">
+        <div className="absolute top-full left-0 w-full lg:hidden border-b border-warm-border/60 bg-warm-bg/95 backdrop-blur-md py-4 px-4 flex flex-col space-y-4 shadow-lg">
           {navLinks.map((link) => (
             <Link
               key={link.name}
