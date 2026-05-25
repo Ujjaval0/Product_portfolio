@@ -6,6 +6,7 @@ import {
   BookOpen, ExternalLink, Target, Lightbulb,
   FlaskConical, BarChart3, Layers
 } from "lucide-react";
+import ScrollProgress from "@/components/ScrollProgress";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -27,6 +28,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
   return (
     <article className="min-h-screen py-12 px-3 md:px-4 md:py-20">
+      <ScrollProgress />
       <div className="mx-auto max-w-5xl">
 
         {/* Back Link */}

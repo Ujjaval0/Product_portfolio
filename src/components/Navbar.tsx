@@ -17,7 +17,17 @@ export default function Navbar() {
     // Force instant scroll behavior by default on page load / path change
     document.documentElement.style.scrollBehavior = "auto";
     document.documentElement.classList.remove("scroll-smooth");
-    window.scrollTo(0, 0);
+
+    // Reset scroll position to top instantly if there is no hash in the URL
+    if (window.location.hash) {
+      const targetId = window.location.hash.substring(1);
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "auto" });
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
 
     let timer: NodeJS.Timeout;
 
