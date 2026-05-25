@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [isOpen, setIsOpen] = useState(false);
+  const isFirstMount = useRef(true);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
@@ -18,15 +19,25 @@ export default function Navbar() {
     document.documentElement.style.scrollBehavior = "auto";
     document.documentElement.classList.remove("scroll-smooth");
 
-    // Reset scroll position to top instantly if there is no hash in the URL
-    if (window.location.hash) {
-      const targetId = window.location.hash.substring(1);
-      const element = document.getElementById(targetId);
-      if (element) {
-        element.scrollIntoView({ behavior: "auto" });
+    if (isFirstMount.current) {
+      isFirstMount.current = false;
+      // On fresh load / reload, always start from the top
+      window.scrollTo(0, 0);
+      // Clean up any hash in the URL quietly so reload doesn't trigger scroll next time
+      if (window.location.hash) {
+        window.history.replaceState(null, "", window.location.pathname);
       }
     } else {
-      window.scrollTo(0, 0);
+      // Reset scroll position to top instantly if there is no hash in the URL
+      if (window.location.hash) {
+        const targetId = window.location.hash.substring(1);
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "auto" });
+        }
+      } else {
+        window.scrollTo(0, 0);
+      }
     }
 
     let timer: NodeJS.Timeout;
