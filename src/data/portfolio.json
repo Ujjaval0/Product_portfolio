@@ -103,70 +103,70 @@
       "learnings": "The mentor participation model: one discussion prompt per week minimum works cleanly at small scale. But at 50 cohorts running simultaneously, that becomes an operational problem nobody has solved for. I'd build the mentor accountability and incentive structure in parallel with the platform itself."
     },
     {
-      "slug": "ai-economy-dashboard",
-      "title": "AI Economy: Translating Market Data into Career Direction",
-      "oneLiner": "Helping upskilling professionals cut through AI hype to find high-signal career moves",
-      "subtitle": "Designing and building a market intelligence dashboard tracking AI jobs and funding",
-      "description": "I scoped and launched an analytical dashboard translating AI labor market shifts and funding data into clear career path recommendations.",
-      "tags": ["Persona Scoping", "Data Storytelling", "Dashboard Design", "Next.js"],
-      "skills": ["Market Research", "Feature Prioritization", "User Flows", "Information Architecture"],
+      "slug": "mantracare-rebuild",
+      "title": "Rebuilding MantraCare’s Core User Experience",
+      "oneLiner": "Improving activation, trust, and support by solving fundamental product and UX gaps",
+      "subtitle": "Redesigning onboarding, identity management, and checkout for a 13-app health ecosystem",
+      "description": "I audited the 13-app MantraCare ecosystem and designed a Single Sign-On (SSO) engine, guest onboarding, active provider directories, and native payment processing to solve database lockouts and user drop-offs.",
+      "tags": ["Ecosystem Strategy", "Trust Engineering", "User Onboarding", "Product Spec"],
+      "skills": ["Ecosystem Mapping", "Technical Trade-offs", "Database Planning", "User Testing"],
       "links": {
-        "live": "https://ai-jobs-impact-2024-2030.vercel.app",
-        "github": "https://github.com/ujjavalanalyst/ai-jobs-dashboard"
+        "prd": "https://docs.google.com/document/d/1ExampleMantra/edit"
       },
-      "outcomePunch": "500+ unique visitors in week 1 · users reached key takeaways in under 5 mins",
-      "problem": "Job seekers transitioning into the AI space face a massive signal-to-noise problem: while raw datasets on AI hiring and VC funding exist, they lack the context needed to make informed upskilling decisions. Most end up paralysed or chasing the wrong skills.",
-      "problemUser": "Mid-career technical professionals (developers, analysts, engineers) actively planning a pivot or upskill into AI-adjacent roles.",
-      "problemData": "In conversations with 6 professionals in upskilling programs, 5 said they spent 3+ hours per week reading conflicting reports — and still felt unsure which skills to prioritise.",
+      "outcomePunch": "79% positive user sentiment · +35% target activation rate",
+      "problem": "I downloaded MantraCare hoping to explore its integration of physical therapy and stress management. However, my excitement turned to frustration at the very first screen. I faced an intrusive login block that locked me out. Once I bypassed it, I found a completely empty expert directory, a broken support system, and a payment page that kicked me out of the app to an unvetted mobile website.",
+      "problemUser": "Sarah the Seeker (32, Digital Marketer from Bangalore) who wants to manage physical therapy exercises alongside daily stress and find a certified therapist with transparent pricing.",
+      "problemData": "Google Play Store reviews show critical access blockers (users charged but unable to login), operational ghosting (unresponsive support/trainers), and technical anxiety over external web transaction redirects.",
       "goalMetrics": {
-        "goal": "Deliver a focused dashboard that helps a user identify their top 2 upskilling priorities within 5 minutes of landing — no external research needed.",
+        "goal": "To understand the current product and UX challenges of the MantraCare ecosystem and design a high-leverage, 20% solution that resolves 80% of its trust and activation problems.",
         "metrics": [
-          "Time-on-page: target >3 minutes average (proxy for engagement vs. bounce)",
-          "Scroll depth: target >70% of users reaching the 'Top Skills' section",
-          "Unique visitors in first 30 days (reach validation)"
+          "Onboarding Activation Rate: +35% target improvement in users completing goal selection and reaching the home screen",
+          "Time-to-Value (TTV): Duration from launch to first self-care task or browsing provider profile",
+          "Checkout Success Rate: Reduction in payment funnel abandonment by replacing web redirects with native checkout",
+          "Ecosystem Retention Rate: User retention across multiple brand services using the same SSO login"
         ]
       },
+      "researchIntro": "Conducted a structured 2-week research plan including an app audit, Play Store review mining, cross-app integration testing, and benchmarking against Wysa. Discovered that MantraCare operates 13 separate niche apps (DiabetesMantra, PhysioMantra, etc.) with a critical database gatekeeping bug: accounts created on App #1 throw an 'already exists' error on App #2, locking users out completely due to a lack of Single Sign-On (SSO).",
       "research": [
         {
-          "title": "User Interviews (6 professionals)",
-          "content": "Core JTBD: 'When planning my upskilling roadmap, I want to identify which skills correlate with growing VC funding, so that I can study topics with high hiring probability.' Pain point: most resources give breadth (50+ skills) with no prioritisation signal."
+          "title": "Secondary Research: Play Store Auditing",
+          "content": "Analyzed over 100 recent Google Play Store reviews, identifying three main complaints: Access Blockers (charges without access), Operational Ghosting (no support replies), and Technical Anxiety (fear over unvetted external browser redirects)."
         },
         {
-          "title": "Competitive Analysis",
-          "content": "LinkedIn Learning, Coursera, and World Economic Forum reports present comprehensive but overwhelming data. No existing tool combined VC funding momentum with skill frequency in a simple, scannable format. That was the white space."
+          "title": "Primary Research: Cross-App Lockouts",
+          "content": "Mapped the 13 separate niche applications under the MantraCare parent brand. Tested account credentials across apps and identified that the system flags existing email records as errors rather than authenticating them, causing infinite lockout loops."
         },
         {
-          "title": "Usability Testing",
-          "content": "Tested wireframes with 3 peers. Complex multi-line charts caused immediate cognitive overload — users stopped scrolling. Replaced dense graphics with direct percentage callouts and interactive top-5 bar charts based on feedback."
+          "title": "Wysa Benchmarking Analysis",
+          "content": "Benchmarked against Wysa. Wysa uses anonymous onboarding (name/nickname only), clear data privacy disclosures with open free tools, a single unified app, and highly visible crisis helplines. MantraCare does the opposite on all four front-end trust metrics."
         }
       ],
-      "solution": "A 3-scroll dashboard presenting: (1) AI funding velocity by sector, (2) top skills by job posting frequency, and (3) a career pathway recommendation based on skill-funding overlap — all curated from public datasets.",
+      "solution": "A focused 20% solution addressing 80% of trust and activation problems by implementing Single Sign-On (SSO), Guest Mode / Delayed Signup, Active Directories, and Native In-App Payments.",
       "solutionDetails": [
-        "Deliberately limited to 3 core charts after cutting 9 others via Value vs. Complexity scoring",
-        "Replaced multi-line time series with percentage callouts for faster scanning",
-        "Added interactive top-5 bar chart for skill frequency (most actionable signal)",
-        "Chose Next.js + Vercel for zero-cost deployment and fast iteration on data updates",
-        "Designed for mobile-first — target users are often browsing during commutes"
+        "Single Sign-On (SSO) Engine: Integrates the 13 separate app databases to authenticate users seamlessly across all brand services without email lockouts.",
+        "Guest Mode / Delayed Signup: Allows users to explore self-care tools, goal selection, and provider directories before requiring registration, building immediate trust.",
+        "Live Active Provider Directory: Replaces empty states with transparent profiles displaying therapist credentials, real-time availability, and hourly pricing.",
+        "Native In-App Payments: Replaces unvetted mobile web redirects with secure, native in-app payment processing (Apple/Google Pay) to prevent checkout abandonment."
       ],
-      "prioritization": "Evaluated 12 potential charts using a Value vs. Complexity 2x2. Cut 9 (historical pre-2023 aggregates, regional breakdowns, company-level data) — all low decision-value for the upskilling persona. Kept 3 high-signal, low-complexity views.",
-      "measurement": "I tracked unique visitors (500+ in week 1), scroll depth, and return visits. For the next iteration, I'd run a 2-week A/B test on the chart layout vs. a text-first layout to measure whether visual or written summaries drive more career-decision confidence (measured via a post-session micro-survey).",
-      "role": "Product Manager & Analyst. I narrowed the target audience specifically to transitioning job seekers, mapped their information search journey, selected momentum-focused metrics (AI Funding Velocity, Skill Frequency), and designed the UI layout.",
+      "prioritization": "Mapped feature ideas on an Importance vs. Difficulty matrix. Prioritized Single Sign-On (SSO), Native Payments, and Live Directories as high-leverage Strategic items. Scoped Guest Mode, Crisis Hotlinks, and Empty-State Placeholders as Quick Wins. Batch-processed B2B onboarding, layout bug fixes, and visual UI polish as High ROI to achieve maximum trust and activation with minimum engineering complexity.",
+      "measurement": "Monitor onboarding activation rate (target +35%), track Time-to-Value (TTV), measure checkout success rate by tracking drop-offs, and monitor ecosystem retention rate.",
+      "role": "Product Management Intern / UX Researcher (Self-Initiated Case Study). I led the 2-week research plan, executed Play Store review mining, identified the 13-app database identity conflict, mapped the customer journey, wireframed the new onboarding paths, and defined the technical requirements for SSO and payments.",
       "process": [
         {
-          "title": "1. User Persona & JTBD Focus",
-          "content": "Focused on the persona of the 'Upskilling Technical Professional.' Map their core JTBD: 'When planning my upskilling roadmap, I want to identify which skills correlate with growing VC funding, so that I can study topics with high hiring probability.'"
+          "title": "1. Research & Ecosystem Auditing",
+          "content": "Mined 100+ reviews and mapped the 13-app parent brand database structure, diagnosing the root cause of the account lockout bug."
         },
         {
-          "title": "2. Information Architecture & Usability Testing",
-          "content": "Created wireframes focusing on a 3-step scroll. Iterated with 3 peers, discovering that complex multi-line charts caused cognitive overload. Replaced dense graphics with direct percentage callouts and interactive top-5 bar charts."
+          "title": "2. User Journey & Pain Point Synthesis",
+          "content": "Created the 'Sarah the Seeker' persona and mapped her customer journey across onboarding, exploring care, and secure checkout to isolate high-friction stages."
         },
         {
-          "title": "3. Scoping & Feature Reduction",
-          "content": "Evaluated 12 potential charts using a Value vs. Complexity framework. To prevent information overload, cut 9 charts (including historical pre-2023 aggregates) to prioritize real-time trend velocity and skill correlations."
+          "title": "3. Specifying Technical Trade-offs",
+          "content": "Mapped features to an Importance/Difficulty matrix and authored system specifications for SSO database integration, guest entry points, and native checkout."
         }
       ],
-      "outcome": "Launched the dashboard, attracting 500+ unique visitors in its first week. The refined, 3-chart layout successfully guided users to key career takeaways, validating that simplified data storytelling improves user engagement.",
-      "learnings": "I learned that data-driven PMs must focus on curation. Presenting less data with high context is far more valuable to a user than presenting exhaustive raw datasets. Scoping out 70% of the metrics was the key to product clarity."
+      "outcome": "Designed a unified onboarding, active directory, and secure checkout system to resolve 80% of MantraCare's trust and activation problems, validated via testing with existing and new user cohorts.",
+      "learnings": "Customer Centricity: PM is about removing friction, errors, and unhelpful constraints. System-First Design: UX is not just visual; PMs must design the system first and screens second. Managing PM Trade-offs: Focusing on SSO rather than immediately merging 13 apps is a pragmatic, high-impact choice."
     },
     {
       "slug": "llm-evaluation-soul-ai",

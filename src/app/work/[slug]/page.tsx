@@ -7,6 +7,7 @@ import {
   FlaskConical, BarChart3, Layers
 } from "lucide-react";
 import ScrollProgress from "@/components/ScrollProgress";
+import MantraCareCaseStudy from "@/components/MantraCareCaseStudy";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -26,10 +27,14 @@ export default async function CaseStudyPage({ params }: PageProps) {
     notFound();
   }
 
+  if (slug === "mantracare-rebuild") {
+    return <MantraCareCaseStudy project={project} />;
+  }
+
   return (
-    <article className="min-h-screen py-12 px-3 md:px-4 md:py-20">
+    <article className="min-h-screen py-12 px-2 md:px-3 md:py-20">
       <ScrollProgress />
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl w-full">
 
         {/* Back Link */}
         <Link
