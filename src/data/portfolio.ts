@@ -25,6 +25,7 @@ export interface CaseStudy {
     metrics: string[];
   };
   // Section 4: Research / Insights
+  researchIntro?: string;
   research: {
     title: string;
     content: string;
@@ -36,6 +37,10 @@ export interface CaseStudy {
   prioritization?: string;
   // Section 7: Outcome / Measurement
   measurement: string;
+  measurementPoints?: {
+    northStar: string;
+    points: string[];
+  };
   // Legacy fields
   role: string;
   process: {

@@ -46,14 +46,9 @@
       "problemData": "Students immediately create external WhatsApp groups upon enrollment, leading to lost resources, end of mentor visibility post-class, and zero data visibility for Accredian.",
       "goalMetrics": {
         "goal": "Build a native communication dashboard directly integrated into the student portal that eliminates WhatsApp/Telegram dependencies and structures student-mentor interactions.",
-        "metrics": [
-          "North Star: Weekly active posting rate per student inside the platform",
-          "Activation Rate: 70% of newly enrolled students active within 3 months of launch",
-          "Findability: Any resource findable in under 30 seconds via search",
-          "Dependency Reduction: Measurable reduction in external WhatsApp groups created by enrolled students",
-          "Referral Performance: Alumni mentor response rate to referral requests staying above 60%"
-        ]
+        "metrics": []
       },
+      "researchIntro": "Observed that students create external WhatsApp groups within hours of enrollment. Resources become unfindable within 48 hours. Mentor visibility drops to zero outside live class hours. These three observations shaped every decision below.",
       "research": [
         {
           "title": "Rejected Slack/Discord Integration",
@@ -79,7 +74,16 @@
         "Private Chat: Consent-based messaging request system that completely prevents unsolicited DMs."
       ],
       "prioritization": "Used a strict prioritization framework to focus AI features on automation (Smart Catch-Up and auto-tagging) while keeping the core experience focused on human-to-human connection. Gated mentor access through performance-based referral criteria to avoid mentor burnout.",
-      "measurement": "Success is measured by our North Star: weekly active posting rate per student inside the platform. Supporting signals include 70% onboarding activation in the first 3 months, sub-30-second resource discovery, reduction in student-created WhatsApp groups, and maintaining a >60% mentor response rate to referral requests.",
+      "measurement": "",
+      "measurementPoints": {
+        "northStar": "Weekly active posting rate per student",
+        "points": [
+          "70% activation within 3 months",
+          "Resource findable in under 30 seconds",
+          "Reduction in external WhatsApp groups",
+          "Alumni mentor response rate above 60%"
+        ]
+      },
       "role": "Product Manager. I owned the entire product plan solo—from background research and problem framing to feature design, trade-off decisions, launch strategy, and designing the working live prototype.",
       "process": [
         {

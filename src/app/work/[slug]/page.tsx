@@ -130,19 +130,23 @@ export default async function CaseStudyPage({ params }: PageProps) {
               <div className="p-2 rounded-lg bg-accent/10 border border-accent/20">
                 <Target className="h-5 w-5 text-accent" />
               </div>
-              <h2 className="font-sans text-xl font-bold text-dark">3. Goal & Success Metrics</h2>
+              <h2 className="font-sans text-xl font-bold text-dark">
+                {project.goalMetrics.metrics && project.goalMetrics.metrics.length > 0 ? "3. Goal & Success Metrics" : "3. Goal"}
+              </h2>
             </div>
 
             <p className="font-normal text-dark/85 mb-5">{project.goalMetrics.goal}</p>
 
-            <div className="space-y-2">
-              {project.goalMetrics.metrics.map((metric, idx) => (
-                <div key={idx} className="flex items-start gap-3 bg-white rounded-xl border border-accent/10 px-4 py-3">
-                  <CheckCircle2 className="h-4 w-4 text-accent mt-0.5 shrink-0" />
-                  <span className="text-sm font-normal text-dark/80">{metric}</span>
-                </div>
-              ))}
-            </div>
+            {project.goalMetrics.metrics && project.goalMetrics.metrics.length > 0 && (
+              <div className="space-y-2">
+                {project.goalMetrics.metrics.map((metric, idx) => (
+                  <div key={idx} className="flex items-start gap-3 bg-white rounded-xl border border-accent/10 px-4 py-3">
+                    <CheckCircle2 className="h-4 w-4 text-accent mt-0.5 shrink-0" />
+                    <span className="text-sm font-normal text-dark/80">{metric}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* ── Section 4: Research / Insights ── */}
@@ -153,6 +157,12 @@ export default async function CaseStudyPage({ params }: PageProps) {
               </div>
               <h2 className="font-sans text-xl font-bold text-dark">4. Research & Insights</h2>
             </div>
+
+            {project.researchIntro && (
+              <p className="text-dark/85 font-normal mb-8 leading-relaxed">
+                {project.researchIntro}
+              </p>
+            )}
 
             <div className="relative border-l border-warm-border/60 pl-6 ml-3 space-y-8">
               {project.research.map((item, idx) => (
@@ -209,9 +219,32 @@ export default async function CaseStudyPage({ params }: PageProps) {
               <div className="p-2 rounded-lg bg-accent/15 border border-accent/20">
                 <BarChart3 className="h-5 w-5 text-accent" />
               </div>
-              <h2 className="font-sans text-xl font-bold text-dark">7. Outcome & What I'd Measure</h2>
+              <h2 className="font-sans text-xl font-bold text-dark">
+                {project.measurementPoints ? "7. What I'd Measure" : "7. Outcome & What I'd Measure"}
+              </h2>
             </div>
-            <p className="font-normal text-dark/85">{project.measurement}</p>
+            {project.measurementPoints ? (
+              <div className="space-y-6">
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-accent/90 block mb-1">North Star</span>
+                  <p className="text-lg font-bold text-dark">{project.measurementPoints.northStar}</p>
+                </div>
+                
+                <div className="space-y-2">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-accent/90 block mb-2">Supporting Metrics</span>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {project.measurementPoints.points.map((point, idx) => (
+                      <div key={idx} className="flex items-start gap-2.5 bg-white/80 backdrop-blur-xs rounded-xl border border-accent/10 px-4 py-3 shadow-[0_2px_8px_rgba(26,26,26,0.02)]">
+                        <CheckCircle2 className="h-4.5 w-4.5 text-accent mt-0.5 shrink-0" />
+                        <span className="text-sm font-medium text-dark/95">{point}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <p className="font-normal text-dark/85 whitespace-pre-line">{project.measurement}</p>
+            )}
           </div>
 
           {/* ── Self-Reflection ── */}
