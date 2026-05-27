@@ -10,6 +10,7 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+import { useState } from "react";
 
 const FONT = 'Manrope, "Manrope Placeholder", sans-serif';
 
@@ -31,6 +32,16 @@ const SOCIAL_LINKS = [
 
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  // Detect desktop viewport (>= 1024px) to conditionally enable sticky+animations
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   // Raw progress 0→1 as footer is revealed by scrolling
   const raw = useMotionValue(0);
@@ -38,6 +49,11 @@ export default function Footer() {
   const progress = useSpring(raw, { stiffness: 80, damping: 22, mass: 0.8 });
 
   useEffect(() => {
+    // Only run scroll-tracking on desktop for the reveal animation
+    if (!isDesktop) {
+      raw.set(1); // Force fully visible on mobile/tablet
+      return;
+    }
     const onScroll = () => {
       const footer = footerRef.current;
       if (!footer) return;
@@ -51,7 +67,7 @@ export default function Footer() {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, [raw]);
+  }, [raw, isDesktop]);
 
   // ── Derived animation values ──────────────────────────────────────
 
@@ -103,16 +119,8 @@ export default function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="w-full bg-black text-white overflow-hidden"
-      style={{
-        position: "sticky",
-        bottom: 0,
-        zIndex: 0,
-        paddingLeft: "80px",
-        paddingRight: "80px",
-        paddingTop: "64px",
-        paddingBottom: "48px",
-      }}
+      className="w-full bg-black text-white overflow-hidden px-6 md:px-12 lg:px-20 pt-14 pb-12"
+      style={isDesktop ? { position: "sticky", bottom: 0, zIndex: 0 } : { position: "relative", zIndex: 10 }}
     >
       <div className="w-full flex flex-col">
 
@@ -183,7 +191,7 @@ export default function Footer() {
           </div>
 
           {/* ── Right links ── */}
-          <div className="flex gap-20 lg:gap-24">
+          <div className="flex flex-wrap gap-x-16 gap-y-8 lg:gap-x-24">
 
             {/* Nav links */}
             <div className="flex flex-col gap-4">

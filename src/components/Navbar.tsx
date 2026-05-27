@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { getLenisInstance } from "@/components/SmoothScroll";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -12,13 +13,12 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const lastScrollY = useRef(0);
-  const isFirstMount = useRef(true);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleMenu = () => setIsOpen((o) => !o);
   const closeMenu = () => setIsOpen(false);
 
-  // ── Scroll-direction hide/show ──────────────────────────────────────
+  // ── Navbar show/hide on scroll direction ─────────────────────────────
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
@@ -32,7 +32,6 @@ export default function Navbar() {
       } else if (delta < -6) {
         setVisible(true);
       }
-
       lastScrollY.current = currentY;
     };
 
@@ -40,54 +39,39 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ── Scroll behaviour & anchor handling ─────────────────────────────
+  // ── Close mobile menu on route change ────────────────────────────────
   useEffect(() => {
+    closeMenu();
+    // Always disable native smooth scroll — Lenis handles it
     document.documentElement.style.scrollBehavior = "auto";
-    document.documentElement.classList.remove("scroll-smooth");
+  }, [pathname]);
 
-    if (isFirstMount.current) {
-      isFirstMount.current = false;
-      window.scrollTo(0, 0);
-      if (window.location.hash) {
-        window.history.replaceState(null, "", window.location.pathname);
-      }
-    } else {
-      if (window.location.hash) {
-        const targetId = window.location.hash.substring(1);
-        const element = document.getElementById(targetId);
-        if (element) element.scrollIntoView({ behavior: "auto" });
-      } else {
-        window.scrollTo(0, 0);
-      }
-    }
-
-    let timer: NodeJS.Timeout;
-
+  // ── Intercept hash-link clicks and route through Lenis ───────────────
+  useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const anchor = target.closest("a");
+      const anchor = (e.target as HTMLElement).closest("a");
       if (!anchor) return;
       const href = anchor.getAttribute("href");
       if (!href) return;
-      const isHash =
-        href.startsWith("#") ||
-        (pathname === "/" && href.startsWith("/#"));
-      if (isHash) {
-        clearTimeout(timer);
-        document.documentElement.style.scrollBehavior = "smooth";
-        document.documentElement.classList.add("scroll-smooth");
-        timer = setTimeout(() => {
-          document.documentElement.style.scrollBehavior = "auto";
-          document.documentElement.classList.remove("scroll-smooth");
-        }, 1200);
+
+      const isHashOnly = href.startsWith("#");
+      const isHomeHash = pathname === "/" && href.startsWith("/#");
+
+      if (isHashOnly || isHomeHash) {
+        const lenis = getLenisInstance();
+        if (!lenis) return; // let browser handle it if Lenis not ready
+
+        e.preventDefault();
+        const hash = href.startsWith("/#") ? href.substring(2) : href.substring(1);
+        const element = document.getElementById(hash);
+        if (element) {
+          lenis.scrollTo(element, { offset: -80, duration: 0.9 });
+        }
       }
     };
 
-    document.addEventListener("click", handleAnchorClick, { passive: true });
-    return () => {
-      document.removeEventListener("click", handleAnchorClick);
-      clearTimeout(timer);
-    };
+    document.addEventListener("click", handleAnchorClick);
+    return () => document.removeEventListener("click", handleAnchorClick);
   }, [pathname]);
 
   const navLinks = [
@@ -101,28 +85,28 @@ export default function Navbar() {
     <motion.header
       initial={{ y: 0 }}
       animate={{ y: visible ? 0 : "-100%" }}
-      transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-      className="fixed top-0 z-50 w-full"
+      transition={{ duration: visible ? 0.4 : 0.2, ease: [0.4, 0, 0.2, 1] }}
+      className="fixed top-0 z-50 w-full pt-4 md:pt-6"
     >
-      <div className="w-full h-16 flex items-center justify-between relative" style={{ paddingLeft: "80px", paddingRight: "80px" }}>
+      <div className="w-full h-16 flex items-center justify-between relative px-6 md:px-12 lg:px-20">
 
-        {/* Logo — left */}
+        {/* Logo */}
         <Link
           href="/"
           onClick={closeMenu}
           className="flex items-center hover:opacity-70 transition-opacity duration-200 min-w-0"
           style={{
             fontFamily: 'Manrope, "Manrope Placeholder", sans-serif',
-            fontSize: '18px',
+            fontSize: "18px",
             fontWeight: 500,
-            lineHeight: '25.2px',
-            color: 'rgb(0, 0, 0)',
+            lineHeight: "25.2px",
+            color: "rgb(0, 0, 0)",
           }}
         >
           <span className="shrink-0">by Ujjaval</span>
         </Link>
 
-        {/* Desktop Nav — absolutely centered */}
+        {/* Desktop Nav — centered */}
         <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-1">
           {navLinks.map((link) => (
             <Link
@@ -132,17 +116,14 @@ export default function Navbar() {
               onMouseLeave={() => setHoveredLink(null)}
               style={{
                 fontFamily: 'Manrope, "Manrope Placeholder", sans-serif',
-                fontSize: '18px',
+                fontSize: "18px",
                 fontWeight: 500,
-                lineHeight: '25.2px',
-                color: 'rgb(0, 0, 0)',
-                backgroundColor: 'rgba(0, 0, 0, 0)',
-                textAlign: 'left',
-                verticalAlign: 'baseline',
+                lineHeight: "25.2px",
+                color: "rgb(0, 0, 0)",
+                backgroundColor: "rgba(0, 0, 0, 0)",
               }}
               className="relative px-4 py-2 rounded-lg"
             >
-              {/* Hover pill background */}
               <AnimatePresence>
                 {hoveredLink === link.name && (
                   <motion.span
@@ -155,13 +136,9 @@ export default function Navbar() {
                   />
                 )}
               </AnimatePresence>
-
-              {/* Link text with subtle lift */}
               <motion.span
                 className="relative z-10"
-                animate={{
-                  y: hoveredLink === link.name ? -1 : 0,
-                }}
+                animate={{ y: hoveredLink === link.name ? -1 : 0 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 {link.name}
@@ -170,10 +147,10 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Right spacer (keeps logo truly left-aligned) */}
+        {/* Right spacer */}
         <div className="hidden lg:block w-[110px]" />
 
-        {/* Mobile Controls */}
+        {/* Mobile hamburger */}
         <div className="flex lg:hidden items-center shrink-0">
           <button
             onClick={toggleMenu}
@@ -193,7 +170,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-            className="absolute top-full left-0 w-full lg:hidden bg-white/95 backdrop-blur-md py-4 px-4 flex flex-col space-y-1 shadow-lg border-b border-warm-border/40"
+            className="absolute top-full left-0 w-full lg:hidden bg-white/95 backdrop-blur-md py-4 px-6 md:px-12 flex flex-col space-y-1 shadow-lg border-b border-warm-border/40 z-50"
           >
             {navLinks.map((link, i) => (
               <motion.div
@@ -207,10 +184,10 @@ export default function Navbar() {
                   onClick={closeMenu}
                   style={{
                     fontFamily: 'Manrope, "Manrope Placeholder", sans-serif',
-                    fontSize: '18px',
+                    fontSize: "18px",
                     fontWeight: 500,
-                    lineHeight: '25.2px',
-                    color: 'rgb(0, 0, 0)',
+                    lineHeight: "25.2px",
+                    color: "rgb(0, 0, 0)",
                   }}
                   className="block py-2.5 px-2 rounded-lg hover:bg-dark/5 transition-colors duration-150 border-b border-warm-border/20 last:border-b-0"
                 >

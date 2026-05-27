@@ -2,12 +2,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { portfolio } from "@/data/portfolio";
 import {
-  ArrowLeft, ArrowUpRight, CheckCircle2, AlertTriangle,
-  BookOpen, ExternalLink, Target, Lightbulb,
+  ArrowLeft, CheckCircle2, AlertTriangle,
+  BookOpen, Target, Lightbulb,
   FlaskConical, BarChart3, Layers
 } from "lucide-react";
 import ScrollProgress from "@/components/ScrollProgress";
+import ScrollReveal from "@/components/ScrollReveal";
 import MantraCareCaseStudy from "@/components/MantraCareCaseStudy";
+import PremiumActionButtons from "@/components/PremiumActionButtons";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -32,240 +34,224 @@ export default async function CaseStudyPage({ params }: PageProps) {
   }
 
   return (
-    <article className="min-h-screen pt-24 pb-12 md:pt-28 md:pb-20">
+    <article className="min-h-screen pt-36 pb-12 md:pt-44 md:pb-20">
       <ScrollProgress />
       <div className="w-full">
 
 
 
-          <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-extrabold text-dark tracking-tight leading-[1.15] mb-3">
+          <h1 className="element mb-6">
             {project.title}
           </h1>
 
-          <p className="text-lg sm:text-xl text-accent font-semibold mb-6 italic font-display">
+          <p className="text-lg sm:text-xl text-accent font-semibold mb-6">
             {project.oneLiner}
           </p>
 
           {/* Links Row */}
-          <div className="flex flex-wrap gap-3">
-            {project.links.prd && (
-              <a href={project.links.prd} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-hover transition-custom shadow-sm">
-                View Live PRD <ArrowUpRight className="h-4 w-4" />
-              </a>
-            )}
-            {project.links.live && (
-              <a href={project.links.live} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white border border-warm-border text-dark text-sm font-medium hover:bg-warm-surface transition-custom">
-                Launch Live App <ExternalLink className="h-3.5 w-3.5 text-muted" />
-              </a>
-            )}
-            {project.links.github && (
-              <a href={project.links.github} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white border border-warm-border text-dark text-sm font-medium hover:bg-warm-surface transition-custom">
-                GitHub Repository <ExternalLink className="h-3.5 w-3.5 text-muted" />
-              </a>
-            )}
-            {project.links.note && (
-              <a href={project.links.note} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white border border-warm-border text-dark text-sm font-medium hover:bg-warm-surface transition-custom">
-                View Methodology Doc <ArrowUpRight className="h-4 w-4" />
-              </a>
-            )}
-          </div>
+          <PremiumActionButtons links={project.links} />
 
 
         {/* Project Screenshot */}
-        <div className="relative w-full overflow-hidden rounded-2xl border border-warm-border bg-warm-bg mb-12 shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex justify-center">
+        <div className="relative w-full overflow-hidden rounded-2xl border border-warm-border bg-warm-bg mt-16 md:mt-24 mb-12 shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex justify-center">
           <img 
             src={`/images/${project.slug}.png`}
             alt={project.title}
-            className="w-full h-auto max-h-[600px] object-contain"
+            className="w-full h-auto max-h-[240px] sm:max-h-[380px] md:max-h-[600px] object-contain"
           />
         </div>
 
         {/* ── Content Sections ── */}
-        <div className="space-y-10">
+        <div className="mt-16 space-y-16 md:space-y-24">
 
-          {/* ── Section 2: Problem Statement ── */}
-          <div className="rounded-2xl border border-amber-200 bg-amber-50/60 p-6 md:p-8">
-            <div className="flex items-center gap-2.5 mb-5">
-              <div className="p-2 rounded-lg bg-amber-100 border border-amber-200">
-                <AlertTriangle className="h-5 w-5 text-amber-600" />
+          {/* ── Section 1: Problem Statement ── */}
+          <ScrollReveal>
+            <div className="flex flex-col md:flex-row gap-6 md:gap-10 pt-12 border-t border-warm-border/50">
+              <div className="w-full md:w-[22%] shrink-0">
+                <span className="section-label block">01. Problem</span>
               </div>
-              <h2 className="font-sans text-xl font-bold text-dark">2. Problem Statement</h2>
-            </div>
+              <div className="w-full md:w-[78%]">
+                <p className="text-[18px] text-dark leading-[28.6px] font-[420] mb-8">
+                  {project.problem}
+                </p>
 
-            <p className="font-normal text-dark/85 mb-5">{project.problem}</p>
-
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="bg-white rounded-xl border border-amber-100 p-4">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-600 block mb-1.5">Who is the user?</span>
-                <p className="text-sm font-normal text-dark/80">{project.problemUser}</p>
-              </div>
-              <div className="bg-white rounded-xl border border-amber-100 p-4">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-600 block mb-1.5">Data / Context</span>
-                <p className="text-sm font-normal text-dark/80">{project.problemData}</p>
-              </div>
-            </div>
-          </div>
-
-          {/* ── Section 3: Goal / Success Metrics ── */}
-          <div className="rounded-2xl border border-accent/20 bg-accent/5 p-6 md:p-8">
-            <div className="flex items-center gap-2.5 mb-5">
-              <div className="p-2 rounded-lg bg-accent/10 border border-accent/20">
-                <Target className="h-5 w-5 text-accent" />
-              </div>
-              <h2 className="font-sans text-xl font-bold text-dark">
-                {project.goalMetrics.metrics && project.goalMetrics.metrics.length > 0 ? "3. Goal & Success Metrics" : "3. Goal"}
-              </h2>
-            </div>
-
-            <p className="font-normal text-dark/85 mb-5">{project.goalMetrics.goal}</p>
-
-            {project.goalMetrics.metrics && project.goalMetrics.metrics.length > 0 && (
-              <div className="space-y-2">
-                {project.goalMetrics.metrics.map((metric, idx) => (
-                  <div key={idx} className="flex items-start gap-3 bg-white rounded-xl border border-accent/10 px-4 py-3">
-                    <CheckCircle2 className="h-4 w-4 text-accent mt-0.5 shrink-0" />
-                    <span className="text-sm font-normal text-dark/80">{metric}</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <div>
+                    <span className="text-[12px] font-bold uppercase tracking-wider text-[#8E8E93] block mb-1.5">Who is the user?</span>
+                    <p className="text-[16px] text-dark/85 leading-relaxed font-[420]">{project.problemUser}</p>
                   </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* ── Section 4: Research / Insights ── */}
-          <div className="rounded-2xl border border-warm-border bg-white p-6 md:p-8 shadow-sm">
-            <div className="flex items-center gap-2.5 mb-6">
-              <div className="p-2 rounded-lg bg-blue-50 border border-blue-100">
-                <FlaskConical className="h-5 w-5 text-blue-600" />
-              </div>
-              <h2 className="font-sans text-xl font-bold text-dark">4. Research & Insights</h2>
-            </div>
-
-            {project.researchIntro && (
-              <p className="text-dark/85 font-normal mb-8 leading-relaxed">
-                {project.researchIntro}
-              </p>
-            )}
-
-            <div className="relative border-l border-warm-border/60 pl-6 ml-3 space-y-8">
-              {project.research.map((item, idx) => (
-                <div key={idx} className="relative">
-                  <span className="absolute -left-[31px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-warm-bg border-2 border-blue-400">
-                    <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
-                  </span>
-                  <h3 className="font-sans text-base font-bold text-dark mb-1.5">{item.title}</h3>
-                  <p className="font-normal text-dark/80 text-sm">{item.content}</p>
+                  <div>
+                    <span className="text-[12px] font-bold uppercase tracking-wider text-[#8E8E93] block mb-1.5">Data / Context</span>
+                    <p className="text-[16px] text-dark/85 leading-relaxed font-[420]">{project.problemData}</p>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* ── Section 5: Solution ── */}
-          <div className="rounded-2xl border border-warm-border bg-white p-6 md:p-8 shadow-sm">
-            <div className="flex items-center gap-2.5 mb-5">
-              <div className="p-2 rounded-lg bg-emerald-50 border border-emerald-100">
-                <Lightbulb className="h-5 w-5 text-emerald-600" />
               </div>
-              <h2 className="font-sans text-xl font-bold text-dark">5. Solution & Feature Proposal</h2>
             </div>
+          </ScrollReveal>
 
-            <p className="font-normal text-dark/85 mb-5 text-base">{project.solution}</p>
+          {/* ── Section 2: Goal & Focus ── */}
+          <ScrollReveal>
+            <div className="flex flex-col md:flex-row gap-6 md:gap-10 pt-12 border-t border-warm-border/50">
+              <div className="w-full md:w-[22%] shrink-0">
+                <span className="section-label block">02. Focus</span>
+              </div>
+              <div className="w-full md:w-[78%]">
+                <p className="text-[18px] text-dark leading-[28.6px] font-[420]">{project.goalMetrics.goal}</p>
 
-            <div className="space-y-2.5">
-              {project.solutionDetails.map((detail, idx) => (
-                <div key={idx} className="flex items-start gap-3 rounded-xl bg-warm-surface border border-warm-border/50 px-4 py-3">
-                  <span className="w-5 h-5 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-700 text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">
-                    {idx + 1}
-                  </span>
-                  <span className="text-sm font-normal text-dark/80">{detail}</span>
+                {project.goalMetrics.metrics && project.goalMetrics.metrics.length > 0 && (
+                  <div className="space-y-4 mt-6">
+                    <span className="text-[12px] font-bold uppercase tracking-wider text-[#8E8E93] block mb-2">Success Metrics</span>
+                    {project.goalMetrics.metrics.map((metric, idx) => (
+                      <div key={idx} className="flex items-start gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
+                        <span className="text-[16px] text-dark/85 leading-relaxed font-[420]">{metric}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* ── Section 3: Research & Insights ── */}
+          <ScrollReveal>
+            <div className="flex flex-col md:flex-row gap-6 md:gap-10 pt-12 border-t border-warm-border/50">
+              <div className="w-full md:w-[22%] shrink-0">
+                <span className="section-label block">03. Research</span>
+              </div>
+              <div className="w-full md:w-[78%]">
+                {project.researchIntro && (
+                  <p className="text-[18px] text-dark leading-[28.6px] font-[420] mb-8">
+                    {project.researchIntro}
+                  </p>
+                )}
+
+                <div className="space-y-8 pl-5 border-l-2 border-warm-border/60">
+                  {project.research.map((item, idx) => (
+                    <div key={idx} className="relative">
+                      <span className="absolute -left-[27px] top-2 flex h-2.5 w-2.5 items-center justify-center rounded-full bg-white border border-accent shrink-0">
+                        <span className="h-1 w-1 rounded-full bg-accent" />
+                      </span>
+                      <h4 className="text-[17px] font-bold text-dark mb-1.5">{item.title}</h4>
+                      <p className="text-[16px] text-[#8E8E93] leading-relaxed font-[420]">{item.content}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
 
-          {/* ── Section 6: Prioritization (optional) ── */}
+          {/* ── Section 4: Solution & Proposal ── */}
+          <ScrollReveal>
+            <div className="flex flex-col md:flex-row gap-6 md:gap-10 pt-12 border-t border-warm-border/50">
+              <div className="w-full md:w-[22%] shrink-0">
+                <span className="section-label block">04. Solution</span>
+              </div>
+              <div className="w-full md:w-[78%]">
+                <p className="text-[18px] text-dark leading-[28.6px] font-[420] mb-6">{project.solution}</p>
+
+                <div className="space-y-6">
+                  {project.solutionDetails.map((detail, idx) => (
+                    <div key={idx} className="flex items-start gap-4">
+                      <span className="text-[12px] font-bold text-accent tracking-widest uppercase mt-0.5">
+                        0{idx + 1}
+                      </span>
+                      <span className="text-[16px] text-dark/85 leading-relaxed font-[420]">{detail}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* ── Section 5: Prioritization ── */}
           {project.prioritization && (
-            <div className="rounded-2xl border border-purple-100 bg-purple-50/40 p-6 md:p-8">
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="p-2 rounded-lg bg-purple-100 border border-purple-200">
-                  <Layers className="h-5 w-5 text-purple-600" />
+            <ScrollReveal>
+              <div className="flex flex-col md:flex-row gap-6 md:gap-10 pt-12 border-t border-warm-border/50">
+                <div className="w-full md:w-[22%] shrink-0">
+                  <span className="section-label block">05. Prioritisation</span>
                 </div>
-                <h2 className="font-sans text-xl font-bold text-dark">6. Prioritization</h2>
+                <div className="w-full md:w-[78%]">
+                  <p className="text-[18px] text-dark leading-[28.6px] font-[420]">{project.prioritization}</p>
+                </div>
               </div>
-              <p className="font-normal text-dark/85">{project.prioritization}</p>
-            </div>
+            </ScrollReveal>
           )}
 
-          {/* ── Section 7: Outcome / Measurement ── */}
-          <div className="rounded-2xl border border-accent/25 bg-gradient-to-br from-accent/5 to-accent/10 p-6 md:p-8">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="p-2 rounded-lg bg-accent/15 border border-accent/20">
-                <BarChart3 className="h-5 w-5 text-accent" />
+          {/* ── Section 6: Outcome & Measurement ── */}
+          <ScrollReveal>
+            <div className="flex flex-col md:flex-row gap-6 md:gap-10 pt-12 border-t border-warm-border/50">
+              <div className="w-full md:w-[22%] shrink-0">
+                <span className="section-label block">06. Outcome</span>
               </div>
-              <h2 className="font-sans text-xl font-bold text-dark">
-                {project.measurementPoints ? "7. What I'd Measure" : "7. Outcome & What I'd Measure"}
-              </h2>
+              <div className="w-full md:w-[78%]">
+                {project.measurementPoints ? (
+                  <div className="space-y-8">
+                    <div>
+                      <span className="text-[12px] font-bold uppercase tracking-wider text-accent block mb-1">North Star</span>
+                      <p className="text-[24px] font-bold text-dark tracking-tight">{project.measurementPoints.northStar}</p>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <span className="text-[12px] font-bold uppercase tracking-wider text-accent block mb-2">Supporting Metrics</span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {project.measurementPoints.points.map((point, idx) => (
+                          <div key={idx} className="flex items-start gap-3">
+                            <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2.5 shrink-0" />
+                            <span className="text-[16px] text-dark/85 leading-relaxed font-[420]">{point}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-[18px] text-dark leading-[28.6px] font-[420] whitespace-pre-line">{project.measurement}</p>
+                )}
+              </div>
             </div>
-            {project.measurementPoints ? (
-              <div className="space-y-6">
-                <div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-accent/90 block mb-1">North Star</span>
-                  <p className="text-lg font-bold text-dark">{project.measurementPoints.northStar}</p>
+          </ScrollReveal>
+
+          {/* ── Section 7: Assets & Wireframes ── */}
+          {project.additionalImages && project.additionalImages.length > 0 && (
+            <ScrollReveal>
+              <div className="flex flex-col md:flex-row gap-6 md:gap-10 pt-12 border-t border-warm-border/50">
+                <div className="w-full md:w-[22%] shrink-0">
+                  <span className="section-label block">07. Assets & Wireframes</span>
                 </div>
-                
-                <div className="space-y-2">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-accent/90 block mb-2">Supporting Metrics</span>
-                  <div className="grid sm:grid-cols-2 gap-3">
-                    {project.measurementPoints.points.map((point, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 bg-white/80 backdrop-blur-xs rounded-xl border border-accent/10 px-4 py-3 shadow-[0_2px_8px_rgba(26,26,26,0.02)]">
-                        <CheckCircle2 className="h-4.5 w-4.5 text-accent mt-0.5 shrink-0" />
-                        <span className="text-sm font-medium text-dark/95">{point}</span>
+                <div className="w-full md:w-[78%]">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {project.additionalImages.map((img, idx) => (
+                      <div key={idx} className="relative overflow-hidden rounded-xl border border-warm-border/40 bg-warm-bg shadow-xs">
+                        <img src={img.url} alt={img.caption || `Asset ${idx + 1}`} className="w-full h-auto object-cover" />
+                        {img.caption && (
+                          <div className="p-3 bg-white border-t border-warm-border/30 text-xs font-medium text-[#8E8E93]">
+                            {img.caption}
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
-            ) : (
-              <p className="font-normal text-dark/85 whitespace-pre-line">{project.measurement}</p>
-            )}
-          </div>
+            </ScrollReveal>
+          )}
 
-          {/* ── Self-Reflection ── */}
-          <div className="p-6 md:p-8 rounded-2xl border border-warm-border bg-white shadow-sm">
-            <div className="flex items-center gap-2.5 mb-3">
-              <BookOpen className="h-5 w-5 text-muted" />
-              <h2 className="font-sans text-lg font-bold text-dark">What I'd Do Differently</h2>
+          {/* ── Section 8: What I'd Do Differently ── */}
+          <ScrollReveal>
+            <div className="flex flex-col md:flex-row gap-6 md:gap-10 pt-12 border-t border-warm-border/50">
+              <div className="w-full md:w-[22%] shrink-0">
+                <span className="section-label block">08. Reflection</span>
+              </div>
+              <div className="w-full md:w-[78%]">
+                <p className="text-[18px] italic text-[#8E8E93] leading-[28.6px] font-[420]">
+                  "{project.learnings}"
+                </p>
+              </div>
             </div>
-            <p className="font-normal italic text-dark/70">"{project.learnings}"</p>
-          </div>
+          </ScrollReveal>
 
         </div>
 
-        {/* Recruiter CTA */}
-        <div className="mt-16 pt-12 border-t border-warm-border text-center">
-          <p className="text-sm font-semibold uppercase tracking-wider text-muted mb-4">
-            Like how I think? Let's connect.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="mailto:ujjavalbhardwaj6@gmail.com"
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-accent text-white font-medium hover:bg-accent-hover transition-custom shadow-sm text-sm"
-            >
-              Email Ujjaval
-            </a>
-            <a
-              href={portfolio.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-white border border-warm-border text-dark font-medium hover:bg-warm-surface transition-custom text-sm"
-            >
-              Connect on LinkedIn
-            </a>
-          </div>
-        </div>
 
       </div>
     </article>

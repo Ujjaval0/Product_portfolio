@@ -24,28 +24,36 @@
 }
 
 html {
-  scroll-padding-top: 4.5rem;
+  scroll-padding-top: 5rem; /* Accounts for 64px navbar + extra buffer */
+  -webkit-tap-highlight-color: transparent; /* Remove tap flash on mobile */
 }
 
 body {
   background-color: #ffffff;
-  color: var(--text-primary);
-  font-family: var(--font-schibsted-grotesk), sans-serif;
+  color: rgb(0, 0, 0);
+  font-family: var(--font-manrope), Manrope, "Manrope Placeholder", sans-serif;
+  font-size: 19px;
+  font-weight: 420;
+  line-height: 28.6px;
+  text-align: left;
+  vertical-align: baseline;
+  /* Prevent horizontal overflow on all screens */
+  overflow-x: hidden;
 }
 
-p {
-  font-family: var(--font-schibsted-grotesk), sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 25px;
-  color: rgba(42, 42, 60, 0.85);
+p, li, span.body-text {
+  font-family: var(--font-manrope), Manrope, "Manrope Placeholder", sans-serif;
+  font-size: 19px;
+  font-weight: 420;
+  line-height: 28.6px;
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  text-align: left;
+  vertical-align: baseline;
 }
 
-@media (min-width: 768px) {
-  p {
-    font-size: 18px;
-    line-height: 28px;
-  }
+strong, b {
+  font-weight: 700 !important;
 }
 
 /* Custom premium scrollbar */
@@ -68,5 +76,61 @@ p {
 /* Custom transitions and styles */
 .transition-custom {
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.element {
+  font-family: var(--font-manrope), Manrope, "Manrope Placeholder", sans-serif;
+  font-size: clamp(28px, 8vw, 38px);
+  line-height: 1.2;
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  text-align: left;
+  vertical-align: baseline;
+}
+
+@media (min-width: 768px) {
+  .element {
+    font-size: 64px;
+    line-height: 76.8px;
+  }
+}
+
+.element .muted {
+  color: rgb(142, 142, 147);
+}
+
+.section-label {
+  font-family: var(--font-manrope), Manrope, "Manrope Placeholder", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 26.4px;
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  text-align: left;
+  vertical-align: baseline;
+}
+
+article h2,
+article h3 {
+  font-family: var(--font-manrope), Manrope, "Manrope Placeholder", sans-serif !important;
+  font-size: clamp(16px, 4vw, 24px) !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+  color: rgb(0, 0, 0) !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  text-align: left !important;
+  vertical-align: baseline !important;
+}
+
+.project-card-heading {
+  font-family: var(--font-manrope), Manrope, "Manrope Placeholder", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 33.6px;
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  text-align: left;
+  vertical-align: baseline;
 }
 

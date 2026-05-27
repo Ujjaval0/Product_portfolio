@@ -41,6 +41,10 @@ export interface CaseStudy {
     northStar: string;
     points: string[];
   };
+  additionalImages?: {
+    url: string;
+    caption?: string;
+  }[];
   // Legacy fields
   role: string;
   process: {

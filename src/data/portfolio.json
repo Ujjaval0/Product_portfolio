@@ -34,7 +34,7 @@
       "oneLiner": "Eliminating WhatsApp dependency by building a structured learning community directly inside Accredian's student portal",
       "subtitle": "Designing a student communication dashboard that eliminates dependency on third-party chat apps",
       "description": "I designed a student communication dashboard to eliminate WhatsApp, Telegram, and LinkedIn dependencies for post-graduate students, creating structured in-portal communities and study spaces.",
-      "tags": ["Product Plan", "Feature Design", "Community Architecture", "Tradeoff Decisions"],
+      "tags": [],
       "skills": ["Product Spec Writing", "User Journeys", "Prioritization", "Launch Strategy"],
       "links": {
         "prd": "/documents/Accredian Connect- Ujjaval (2).pdf",
@@ -108,7 +108,7 @@
       "oneLiner": "Improving activation, trust, and support by solving fundamental product and UX gaps",
       "subtitle": "Redesigning onboarding, identity management, and checkout for a 13-app health ecosystem",
       "description": "I audited the 13-app MantraCare ecosystem and designed a Single Sign-On (SSO) engine, guest onboarding, active provider directories, and native payment processing to solve database lockouts and user drop-offs.",
-      "tags": ["Ecosystem Strategy", "Trust Engineering", "User Onboarding", "Product Spec"],
+      "tags": [],
       "skills": ["Ecosystem Mapping", "Technical Trade-offs", "Database Planning", "User Testing"],
       "links": {
         "prd": "https://docs.google.com/document/d/1ExampleMantra/edit"
@@ -174,7 +174,7 @@
       "oneLiner": "Designing structured feedback pipelines to systematically reduce hallucination rates in production LLMs",
       "subtitle": "Designing evaluation methodologies and structured feedback loops to improve LLM accuracy",
       "description": "I designed prompt safety rubrics and structured feedback pipelines to help engineering teams systematically align LLM outputs.",
-      "tags": ["AI/LLM Product", "Quality Systems", "Feedback Loops", "Dataset Design"],
+      "tags": [],
       "skills": ["System Rubrics", "Boundary Testing", "Requirement Translation", "Quality Engineering"],
       "links": {
         "note": "https://docs.google.com/document/d/1ExampleLLM/edit"
