@@ -38,6 +38,9 @@ export default function Home() {
         className="relative flex flex-col justify-center overflow-hidden bg-transparent"
         style={{ minHeight: "100svh" }}
       >
+        {/* Subtle premium gradient mesh glow */}
+        <div className="absolute top-0 right-0 -z-10 w-[70%] h-[70%] max-w-[800px] pointer-events-none opacity-60 bg-[radial-gradient(circle_at_top_right,rgba(100,141,229,0.06),transparent_55%)]" />
+
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -45,7 +48,7 @@ export default function Home() {
           className="relative w-full pt-20"
         >
           {/* Tagline */}
-          <motion.div variants={itemVariants} className="mb-10 select-none">
+          <motion.div variants={itemVariants} className="mb-6 md:mb-10 select-none">
             <span
               className="font-bold text-[13px] md:text-[14px] text-dark/95 tracking-widest uppercase"
               style={{ fontFamily: 'var(--font-manrope), Manrope, "Manrope Placeholder", sans-serif' }}
@@ -55,18 +58,28 @@ export default function Home() {
           </motion.div>
 
           {/* Giant Title */}
-          <motion.h1 variants={itemVariants} className="element mb-12 ml-0 pl-0">
-            Most people see features. <span className="muted">I see the friction behind them - and build to remove it.</span>
+          <motion.h1 
+            variants={itemVariants} 
+            className="font-sans text-[28px] sm:text-[38px] md:text-[52px] lg:text-[64px] font-medium tracking-tight leading-[1.25] md:leading-[76.8px] text-dark mb-8 md:mb-12 ml-0 pl-0"
+            style={{ fontFamily: 'var(--font-manrope), Manrope, "Manrope Placeholder", sans-serif' }}
+          >
+            Most people see features. <span className="text-[#8E8E93]">I see the friction behind them - and build to remove it.</span>
           </motion.h1>
 
           {/* Actions Row */}
           <motion.div variants={itemVariants} className="pt-2">
-            <div className="flex flex-col md:flex-row items-center gap-3 w-full">
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
               <Link
                 href="#works"
-                className="inline-flex items-center justify-center w-full md:w-auto px-8 py-3.5 rounded-full bg-black text-white font-medium hover:bg-neutral-800 transition-colors text-base"
+                className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 rounded-full bg-black text-white font-medium hover:bg-neutral-800 active:scale-[0.98] transition-all text-base shadow-sm"
               >
                 See My Work <span className="text-[17px] ml-1">↗</span>
+              </Link>
+              <Link
+                href="#connect"
+                className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 rounded-full border border-warm-border/80 bg-white/40 backdrop-blur-xs text-dark font-medium hover:bg-dark/[0.04] active:scale-[0.98] transition-all text-base"
+              >
+                Get in Touch
               </Link>
             </div>
           </motion.div>
@@ -76,9 +89,9 @@ export default function Home() {
 
       {/* Profile & Identity Section */}
       <section id="about" className="relative overflow-hidden pt-8 pb-8 md:pt-10 md:pb-10 bg-transparent">
-        <div className="relative w-full flex flex-col md:flex-row items-center gap-3 md:gap-4">
+        <div className="relative w-full flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
           {/* Left Column: Identity details (65%) */}
-          <ScrollReveal className="w-full md:w-[65%] flex flex-col items-start text-left">
+          <ScrollReveal className="w-full md:w-[65%] flex flex-col items-start text-left order-2 md:order-1">
             <h2
               className="font-sans text-xl sm:text-2xl font-extrabold text-dark tracking-tight mb-3"
               style={{ fontFamily: 'var(--font-manrope), Manrope, "Manrope Placeholder", sans-serif' }}
@@ -107,8 +120,8 @@ export default function Home() {
           </ScrollReveal>
 
           {/* Right Column: Profile Image (35%) */}
-          <ScrollReveal delay={150} className="w-full md:w-[35%] flex justify-center md:justify-end mt-8 md:mt-0">
-            <div className="relative w-full max-w-[290px] aspect-[3/4] rounded-3xl overflow-hidden shadow-lg border border-warm-border bg-white">
+          <ScrollReveal delay={100} className="w-full md:w-[35%] flex justify-center md:justify-end order-1 md:order-2 mb-6 md:mb-0">
+            <div className="relative w-full max-w-[220px] sm:max-w-[260px] md:max-w-[290px] aspect-[3/4] rounded-3xl overflow-hidden shadow-lg border border-warm-border bg-white">
               <img 
                 src="/images/profile.png" 
                 alt={portfolio.name} 
@@ -186,7 +199,7 @@ export default function Home() {
       <section id="approach" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-transparent">
         <div className="w-full flex flex-col md:flex-row gap-4 md:gap-6">
           {/* Left Column: Heading */}
-          <div className="w-full md:w-[18%] shrink-0 pt-1.5 md:sticky md:top-28 self-start">
+          <div className="w-full md:w-[18%] shrink-0 pt-1.5 self-start">
             <ScrollReveal>
               <span className="section-label block">Approach</span>
             </ScrollReveal>
@@ -238,7 +251,7 @@ export default function Home() {
       <section id="tools" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-transparent">
         <div className="w-full flex flex-col md:flex-row gap-4 md:gap-6">
           {/* Left Column: Heading */}
-          <div className="w-full md:w-[18%] shrink-0 pt-1.5 md:sticky md:top-28 self-start">
+          <div className="w-full md:w-[18%] shrink-0 pt-1.5 self-start">
             <ScrollReveal>
               <span className="section-label block">Tools & Stack</span>
             </ScrollReveal>
@@ -315,7 +328,7 @@ export default function Home() {
       <section id="experience" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-transparent">
         <div className="w-full flex flex-col md:flex-row gap-4 md:gap-6">
           {/* Left Column: Heading */}
-          <div className="w-full md:w-[18%] shrink-0 pt-1.5 md:sticky md:top-28 self-start">
+          <div className="w-full md:w-[18%] shrink-0 pt-1.5 self-start">
             <ScrollReveal>
               <span className="section-label block">Experience</span>
             </ScrollReveal>
@@ -362,7 +375,7 @@ export default function Home() {
       <section id="education" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-transparent">
         <div className="w-full flex flex-col md:flex-row gap-4 md:gap-6">
           {/* Left Column: Heading */}
-          <div className="w-full md:w-[18%] shrink-0 pt-1.5 md:sticky md:top-28 self-start">
+          <div className="w-full md:w-[18%] shrink-0 pt-1.5 self-start">
             <ScrollReveal>
               <span className="section-label block">Education</span>
             </ScrollReveal>
@@ -401,7 +414,7 @@ export default function Home() {
       <section id="connect" className="pt-24 pb-20 md:pt-32 md:pb-28 bg-transparent">
         <div className="w-full flex flex-col md:flex-row gap-4 md:gap-6">
           {/* Left Column: Heading */}
-          <div className="w-full md:w-[18%] shrink-0 pt-1.5 md:sticky md:top-28 self-start">
+          <div className="w-full md:w-[18%] shrink-0 pt-1.5 self-start">
             <ScrollReveal>
               <span className="section-label block">Contact</span>
             </ScrollReveal>

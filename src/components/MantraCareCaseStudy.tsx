@@ -26,13 +26,13 @@ import {
   FileText
 } from "lucide-react";
 import { CaseStudy } from "@/data/portfolio";
-import ScrollProgress from "@/components/ScrollProgress";
+
 import ScrollReveal from "@/components/ScrollReveal";
 
 export default function MantraCareCaseStudy({ project }: { project: CaseStudy }) {
   return (
     <article className="min-h-screen pt-36 pb-20 md:pt-44">
-      <ScrollProgress />
+
       <div className="w-full">
 
         {/* ── HEADER ── */}
@@ -73,11 +73,10 @@ export default function MantraCareCaseStudy({ project }: { project: CaseStudy })
         {/* ── CONTENT SECTIONS ── */}
         <div className="mt-16 space-y-16 md:space-y-24">
 
-          {/* ── SECTION 1: ABOUT THE PROJECT ── */}
-          <ScrollReveal>
+          {/* ── SECTION 1: CONTEXT ── */}
             <section id="step-1" className="scroll-mt-24 pt-12 border-t border-warm-border/50">
               <div className="flex flex-col md:flex-row gap-6 md:gap-10">
-                <div className="w-full md:w-[22%] shrink-0 md:sticky md:top-28 self-start">
+                <div className="w-full md:w-[22%] shrink-0 self-start">
                   <span className="section-label block">01. Context</span>
                 </div>
                 <div className="w-full md:w-[78%] space-y-6">
@@ -151,13 +150,11 @@ export default function MantraCareCaseStudy({ project }: { project: CaseStudy })
                 </div>
               </div>
             </section>
-          </ScrollReveal>
 
           {/* ── SECTION 2: EMPATHISE ── */}
-          <ScrollReveal>
             <section id="step-2" className="scroll-mt-24 pt-12 border-t border-warm-border/50">
               <div className="flex flex-col md:flex-row gap-6 md:gap-10">
-                <div className="w-full md:w-[22%] shrink-0 md:sticky md:top-28 self-start">
+                <div className="w-full md:w-[22%] shrink-0 self-start">
                   <span className="section-label block">02. Empathise</span>
                 </div>
                 <div className="w-full md:w-[78%] space-y-8">
@@ -316,13 +313,11 @@ export default function MantraCareCaseStudy({ project }: { project: CaseStudy })
                 </div>
               </div>
             </section>
-          </ScrollReveal>
 
           {/* ── SECTION 3: DEFINE ── */}
-          <ScrollReveal>
             <section id="step-3" className="scroll-mt-24 pt-12 border-t border-warm-border/50">
               <div className="flex flex-col md:flex-row gap-6 md:gap-10">
-                <div className="w-full md:w-[22%] shrink-0 md:sticky md:top-28 self-start">
+                <div className="w-full md:w-[22%] shrink-0 self-start">
                   <span className="section-label block">03. Define</span>
                 </div>
                 <div className="w-full md:w-[78%] space-y-8">
@@ -543,13 +538,11 @@ export default function MantraCareCaseStudy({ project }: { project: CaseStudy })
                 </div>
               </div>
             </section>
-          </ScrollReveal>
 
           {/* ── SECTION 4: IDEATE ── */}
-          <ScrollReveal>
             <section id="step-4" className="scroll-mt-24 pt-12 border-t border-warm-border/50">
               <div className="flex flex-col md:flex-row gap-6 md:gap-10">
-                <div className="w-full md:w-[22%] shrink-0 md:sticky md:top-28 self-start">
+                <div className="w-full md:w-[22%] shrink-0 self-start">
                   <span className="section-label block">04. Ideate</span>
                 </div>
                 <div className="w-full md:w-[78%] space-y-8">
@@ -653,13 +646,11 @@ export default function MantraCareCaseStudy({ project }: { project: CaseStudy })
                 </div>
               </div>
             </section>
-          </ScrollReveal>
 
           {/* ── SECTION 5: PROTOTYPE ── */}
-          <ScrollReveal>
             <section id="step-5" className="scroll-mt-24 pt-12 border-t border-warm-border/50">
               <div className="flex flex-col md:flex-row gap-6 md:gap-10">
-                <div className="w-full md:w-[22%] shrink-0 md:sticky md:top-28 self-start">
+                <div className="w-full md:w-[22%] shrink-0 self-start">
                   <span className="section-label block">05. Prototype</span>
                 </div>
                 <div className="w-full md:w-[78%] space-y-8">
@@ -803,13 +794,11 @@ export default function MantraCareCaseStudy({ project }: { project: CaseStudy })
                 </div>
               </div>
             </section>
-          </ScrollReveal>
 
           {/* ── SECTION 6: TEST & SUCCESS ── */}
-          <ScrollReveal>
             <section id="step-6" className="scroll-mt-24 pt-12 border-t border-warm-border/50">
               <div className="flex flex-col md:flex-row gap-6 md:gap-10">
-                <div className="w-full md:w-[22%] shrink-0 md:sticky md:top-28 self-start">
+                <div className="w-full md:w-[22%] shrink-0 self-start">
                   <span className="section-label block">06. Outcomes</span>
                 </div>
                 <div className="w-full md:w-[78%] space-y-8">
@@ -951,13 +940,11 @@ export default function MantraCareCaseStudy({ project }: { project: CaseStudy })
                 </div>
               </div>
             </section>
-          </ScrollReveal>
 
           {/* ── SECTION 7: REFLECTION ── */}
-          <ScrollReveal>
             <section id="step-7" className="scroll-mt-24 pt-12 border-t border-warm-border/50">
               <div className="flex flex-col md:flex-row gap-6 md:gap-10">
-                <div className="w-full md:w-[22%] shrink-0 md:sticky md:top-28 self-start">
+                <div className="w-full md:w-[22%] shrink-0 self-start">
                   <span className="section-label block">07. Reflection</span>
                 </div>
                 <div className="w-full md:w-[78%]">
@@ -984,7 +971,6 @@ export default function MantraCareCaseStudy({ project }: { project: CaseStudy })
                 </div>
               </div>
             </section>
-          </ScrollReveal>
 
         </div>
 

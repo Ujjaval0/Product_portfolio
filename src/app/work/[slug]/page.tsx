@@ -6,7 +6,7 @@ import {
   BookOpen, Target, Lightbulb,
   FlaskConical, BarChart3, Layers
 } from "lucide-react";
-import ScrollProgress from "@/components/ScrollProgress";
+
 import ScrollReveal from "@/components/ScrollReveal";
 import MantraCareCaseStudy from "@/components/MantraCareCaseStudy";
 import PremiumActionButtons from "@/components/PremiumActionButtons";
@@ -35,7 +35,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
   return (
     <article className="min-h-screen pt-36 pb-12 md:pt-44 md:pb-20">
-      <ScrollProgress />
+
       <div className="w-full">
 
 

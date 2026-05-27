@@ -3,18 +3,11 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { portfolio } from "@/data/portfolio";
-import { useRef, useEffect } from "react";
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from "motion/react";
-import { useState } from "react";
+import { useRef } from "react";
+import { motion, useInView } from "motion/react";
 
 const FONT = 'Manrope, "Manrope Placeholder", sans-serif';
 
-// Heading split into 3 lines for staggered word reveals
 const HEADING_LINES = ["Let's build", "something", "together"];
 
 const NAV_LINKS = [
@@ -30,98 +23,21 @@ const SOCIAL_LINKS = [
   { label: "Resume",   href: portfolio.resumeUrl },
 ];
 
+// Shared easing
+const ease = [0.16, 1, 0.3, 1] as const;
+
 export default function Footer() {
-  const footerRef = useRef<HTMLElement>(null);
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  // Detect desktop viewport (>= 1024px) to conditionally enable sticky+animations
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    setIsDesktop(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-
-  // Raw progress 0→1 as footer is revealed by scrolling
-  const raw = useMotionValue(0);
-  // Smooth spring so animations feel fluid during scroll
-  const progress = useSpring(raw, { stiffness: 80, damping: 22, mass: 0.8 });
-
-  useEffect(() => {
-    // Only run scroll-tracking on desktop for the reveal animation
-    if (!isDesktop) {
-      raw.set(1); // Force fully visible on mobile/tablet
-      return;
-    }
-    const onScroll = () => {
-      const footer = footerRef.current;
-      if (!footer) return;
-      const footerH  = footer.offsetHeight;
-      const docH     = document.documentElement.scrollHeight;
-      const scrollY  = window.scrollY;
-      const winH     = window.innerHeight;
-      const revealed = scrollY + winH - (docH - footerH);
-      raw.set(Math.max(0, Math.min(1, revealed / footerH)));
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [raw, isDesktop]);
-
-  // ── Derived animation values ──────────────────────────────────────
-
-  // Label "Contact"
-  const labelOpacity = useTransform(progress, [0, 0.25], [0, 1]);
-  const labelY       = useTransform(progress, [0, 0.25], [16, 0]);
-
-  // Heading lines (staggered)
-  const line0Opacity = useTransform(progress, [0.05, 0.35], [0, 1]);
-  const line0Y       = useTransform(progress, [0.05, 0.35], [50, 0]);
-  const line1Opacity = useTransform(progress, [0.12, 0.42], [0, 1]);
-  const line1Y       = useTransform(progress, [0.12, 0.42], [50, 0]);
-  const line2Opacity = useTransform(progress, [0.2,  0.5 ], [0, 1]);
-  const line2Y       = useTransform(progress, [0.2,  0.5 ], [50, 0]);
-
-  const lineAnimations = [
-    { opacity: line0Opacity, y: line0Y },
-    { opacity: line1Opacity, y: line1Y },
-    { opacity: line2Opacity, y: line2Y },
-  ];
-
-  // Button
-  const btnOpacity = useTransform(progress, [0.3, 0.55], [0, 1]);
-  const btnY       = useTransform(progress, [0.3, 0.55], [20, 0]);
-
-  // Nav links (staggered per item)
-  const navOpacities = NAV_LINKS.map((_, i) =>
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useTransform(progress, [0.2 + i * 0.06, 0.45 + i * 0.06], [0, 1])
-  );
-  const navYs = NAV_LINKS.map((_, i) =>
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useTransform(progress, [0.2 + i * 0.06, 0.45 + i * 0.06], [20, 0])
-  );
-
-  // Social links (staggered per item)
-  const socialOpacities = SOCIAL_LINKS.map((_, i) =>
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useTransform(progress, [0.25 + i * 0.06, 0.5 + i * 0.06], [0, 1])
-  );
-  const socialYs = SOCIAL_LINKS.map((_, i) =>
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useTransform(progress, [0.25 + i * 0.06, 0.5 + i * 0.06], [20, 0])
-  );
-
-  // Bottom bar
-  const barOpacity = useTransform(progress, [0.4, 0.65], [0, 1]);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  // Trigger animations when the sentinel enters the viewport
+  const isInView = useInView(sentinelRef, { once: true, amount: 0.1 });
 
   return (
-    <footer
-      ref={footerRef}
-      className="w-full bg-black text-white overflow-hidden px-6 md:px-12 lg:px-20 pt-14 pb-12"
-      style={isDesktop ? { position: "sticky", bottom: 0, zIndex: 0 } : { position: "relative", zIndex: 10 }}
-    >
+    <>
+      {/* Invisible sentinel in standard flow to trigger reveal animations when reached */}
+      <div ref={sentinelRef} className="w-full h-px pointer-events-none bg-transparent" />
+      <footer
+        className="w-full bg-black text-white px-6 md:px-12 lg:px-20 pt-14 pb-12 sticky bottom-0 z-0"
+      >
       <div className="w-full flex flex-col">
 
         {/* Top row */}
@@ -132,7 +48,10 @@ export default function Footer() {
 
             {/* "Contact" label */}
             <motion.span
-              style={{ opacity: labelOpacity, y: labelY, fontFamily: FONT, fontSize: "14px", fontWeight: 500, color: "rgba(255,255,255,0.5)", letterSpacing: "0.02em", marginBottom: "24px", display: "block" }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, ease, delay: 0.05 }}
+              style={{ fontFamily: FONT, fontSize: "14px", fontWeight: 500, color: "rgba(255,255,255,0.5)", letterSpacing: "0.02em", marginBottom: "24px", display: "block" }}
             >
               Contact
             </motion.span>
@@ -142,9 +61,10 @@ export default function Footer() {
               {HEADING_LINES.map((line, i) => (
                 <motion.span
                   key={i}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.7, ease, delay: 0.1 + i * 0.08 }}
                   style={{
-                    opacity: lineAnimations[i].opacity,
-                    y: lineAnimations[i].y,
                     display: "block",
                     fontFamily: FONT,
                     fontSize: "clamp(40px, 6vw, 72px)",
@@ -161,9 +81,10 @@ export default function Footer() {
             {/* "Let's talk" button */}
             <motion.a
               href="mailto:ujjavalbhardwaj6@gmail.com"
+              initial={{ opacity: 0, y: 16 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, ease, delay: 0.38 }}
               style={{
-                opacity: btnOpacity,
-                y: btnY,
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
@@ -182,8 +103,8 @@ export default function Footer() {
                 backgroundColor: "rgba(255,255,255,0.08)",
                 borderColor: "rgba(255,255,255,0.7)",
                 scale: 1.03,
+                transition: { duration: 0.2 },
               }}
-              transition={{ duration: 0.2 }}
             >
               Let&apos;s talk
               <ArrowUpRight size={16} />
@@ -196,7 +117,12 @@ export default function Footer() {
             {/* Nav links */}
             <div className="flex flex-col gap-4">
               {NAV_LINKS.map((link, i) => (
-                <motion.div key={link.label} style={{ opacity: navOpacities[i], y: navYs[i] }}>
+                <motion.div
+                  key={link.label}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.45, ease, delay: 0.15 + i * 0.06 }}
+                >
                   <Link
                     href={link.href}
                     style={{ fontFamily: FONT, fontSize: "18px", fontWeight: 500, color: "rgba(255,255,255,0.75)", textDecoration: "none", lineHeight: "25.2px", display: "block" }}
@@ -212,7 +138,12 @@ export default function Footer() {
             {/* Social links */}
             <div className="flex flex-col gap-4">
               {SOCIAL_LINKS.map((link, i) => (
-                <motion.div key={link.label} style={{ opacity: socialOpacities[i], y: socialYs[i] }}>
+                <motion.div
+                  key={link.label}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.45, ease, delay: 0.2 + i * 0.06 }}
+                >
                   <a
                     href={link.href}
                     target="_blank"
@@ -232,8 +163,10 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, ease, delay: 0.5 }}
           style={{
-            opacity: barOpacity,
             marginTop: "64px",
             paddingTop: "24px",
             borderTop: "1px solid rgba(255,255,255,0.1)",
@@ -252,5 +185,6 @@ export default function Footer() {
 
       </div>
     </footer>
+    </>
   );
 }

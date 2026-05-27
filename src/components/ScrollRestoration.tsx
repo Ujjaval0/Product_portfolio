@@ -25,6 +25,9 @@ export default function ScrollRestoration() {
 
     const timer = setTimeout(() => {
       const lenis = getLenisInstance();
+      if (lenis) {
+        lenis.resize();
+      }
 
       if (backToHomeFromProject) {
         // Scroll to the Works section so the user lands right where they were

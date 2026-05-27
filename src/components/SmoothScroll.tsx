@@ -25,14 +25,23 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      // syncTouch: let touch devices use native inertia then sync — prevents lock-up
-      syncTouch: true,
+      // syncTouch: false lets touch devices and trackpads use browser-native scrolling, avoiding lock-ups
+      syncTouch: false,
       wheelMultiplier: 1,
       touchMultiplier: 1.5,
     });
 
     lenisRef.current = lenis;
     _lenisInstance = lenis;
+
+    // Automatically recalculate scroll boundaries when height changes (route transitions, image loads)
+    const resizeObserver = new ResizeObserver(() => {
+      lenis.resize();
+    });
+    
+    if (document.body) {
+      resizeObserver.observe(document.body);
+    }
 
     let rafId: number;
     function raf(time: number) {
@@ -42,6 +51,7 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     rafId = requestAnimationFrame(raf);
 
     return () => {
+      resizeObserver.disconnect();
       cancelAnimationFrame(rafId);
       lenis.destroy();
       _lenisInstance = null;
