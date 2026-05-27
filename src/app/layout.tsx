@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Lora, Schibsted_Grotesk } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
 const lora = Lora({
@@ -34,9 +35,21 @@ export default function RootLayout({
       className={`${lora.variable} ${schibstedGrotesk.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-warm-bg text-dark font-sans selection:bg-accent/10 selection:text-accent">
-        <Navbar />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        <SmoothScroll>
+          <Navbar />
+          <main
+            className="flex-grow bg-white"
+            style={{
+              paddingLeft: "80px",
+              paddingRight: "80px",
+              position: "relative",
+              zIndex: 10,
+            }}
+          >
+            {children}
+          </main>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

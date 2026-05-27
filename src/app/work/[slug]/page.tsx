@@ -32,30 +32,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
   }
 
   return (
-    <article className="min-h-screen py-12 px-2 md:px-3 md:py-20">
+    <article className="min-h-screen pt-24 pb-12 md:pt-28 md:pb-20">
       <ScrollProgress />
-      <div className="mx-auto max-w-6xl w-full">
+      <div className="w-full">
 
-        {/* Back Link */}
-        <Link
-          href="/#works"
-          className="inline-flex items-center gap-2 text-base font-semibold text-dark hover:text-accent transition-custom mb-10 group"
-        >
-          <ArrowLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" /> Back to Work
-        </Link>
 
-        {/* ── Section 1: Title + One-Liner ── */}
-        <header className="border-b border-warm-border pb-10 mb-12">
-          <div className="flex flex-wrap gap-2 mb-5">
-            {project.tags.map((tag, idx) => (
-              <span
-                key={idx}
-                className="px-2 py-0.5 rounded bg-warm-surface text-[10px] font-semibold tracking-wider text-muted uppercase border border-warm-border/50"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
 
           <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-extrabold text-dark tracking-tight leading-[1.15] mb-3">
             {project.title}
@@ -92,7 +73,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
               </a>
             )}
           </div>
-        </header>
+
 
         {/* Project Screenshot */}
         <div className="relative w-full overflow-hidden rounded-2xl border border-warm-border bg-warm-bg mb-12 shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex justify-center">

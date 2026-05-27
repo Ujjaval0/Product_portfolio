@@ -28,9 +28,7 @@ html {
 }
 
 body {
-  background-color: var(--bg-primary);
-  background-image: radial-gradient(#D3D9E5 1.2px, transparent 1.2px);
-  background-size: 24px 24px;
+  background-color: #ffffff;
   color: var(--text-primary);
   font-family: var(--font-schibsted-grotesk), sans-serif;
 }

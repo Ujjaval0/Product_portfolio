@@ -30,29 +30,12 @@ import ScrollProgress from "@/components/ScrollProgress";
 
 export default function MantraCareCaseStudy({ project }: { project: CaseStudy }) {
   return (
-    <article className="min-h-screen pb-20 bg-warm-bg/30">
+    <article className="min-h-screen pt-24 pb-20 md:pt-28">
       <ScrollProgress />
-      <div className="mx-auto max-w-6xl px-2 md:px-3 pt-10">
-        {/* Back Link */}
-        <Link
-          href="/#works"
-          className="inline-flex items-center gap-2 text-base font-semibold text-dark hover:text-accent transition-custom mb-8 group"
-        >
-          <ArrowLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" /> Back to Work
-        </Link>
+      <div className="w-full">
 
         {/* ── HEADER ── */}
         <header className="border-b border-warm-border pb-8 mb-12">
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.tags.map((tag, idx) => (
-              <span
-                key={idx}
-                className="px-2.5 py-1 rounded-md bg-white text-[10px] font-bold tracking-wider text-accent uppercase border border-accent/20 shadow-3xs"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
 
           <h1 className="font-sans text-3xl sm:text-4xl md:text-5.5xl font-extrabold text-dark tracking-tight leading-[1.1] mb-4">
             {project.title}

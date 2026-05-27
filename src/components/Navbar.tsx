@@ -4,37 +4,58 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 
 export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [isOpen, setIsOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
   const isFirstMount = useRef(true);
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  // ── Scroll-direction hide/show ──────────────────────────────────────
   useEffect(() => {
-    // Force instant scroll behavior by default on page load / path change
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollY.current;
+
+      if (currentY < 60) {
+        setVisible(true);
+      } else if (delta > 6) {
+        setVisible(false);
+        setIsOpen(false);
+      } else if (delta < -6) {
+        setVisible(true);
+      }
+
+      lastScrollY.current = currentY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // ── Scroll behaviour & anchor handling ─────────────────────────────
+  useEffect(() => {
     document.documentElement.style.scrollBehavior = "auto";
     document.documentElement.classList.remove("scroll-smooth");
 
     if (isFirstMount.current) {
       isFirstMount.current = false;
-      // On fresh load / reload, always start from the top
       window.scrollTo(0, 0);
-      // Clean up any hash in the URL quietly so reload doesn't trigger scroll next time
       if (window.location.hash) {
         window.history.replaceState(null, "", window.location.pathname);
       }
     } else {
-      // Reset scroll position to top instantly if there is no hash in the URL
       if (window.location.hash) {
         const targetId = window.location.hash.substring(1);
         const element = document.getElementById(targetId);
-        if (element) {
-          element.scrollIntoView({ behavior: "auto" });
-        }
+        if (element) element.scrollIntoView({ behavior: "auto" });
       } else {
         window.scrollTo(0, 0);
       }
@@ -46,19 +67,15 @@ export default function Navbar() {
       const target = e.target as HTMLElement;
       const anchor = target.closest("a");
       if (!anchor) return;
-      
       const href = anchor.getAttribute("href");
       if (!href) return;
-      
-      // Check if it is a same-page anchor link
-      const isHash = href.startsWith("#") || (pathname === "/" && href.startsWith("/#"));
-      
+      const isHash =
+        href.startsWith("#") ||
+        (pathname === "/" && href.startsWith("/#"));
       if (isHash) {
         clearTimeout(timer);
-        // Temporarily enable smooth scroll for this user action
         document.documentElement.style.scrollBehavior = "smooth";
         document.documentElement.classList.add("scroll-smooth");
-        
         timer = setTimeout(() => {
           document.documentElement.style.scrollBehavior = "auto";
           document.documentElement.classList.remove("scroll-smooth");
@@ -74,54 +91,93 @@ export default function Navbar() {
   }, [pathname]);
 
   const navLinks = [
-    { name: "About", href: isHome ? "#about" : "/#about" },
-    { name: "Works", href: isHome ? "#works" : "/#works" },
-    { name: "Approach", href: isHome ? "#approach" : "/#approach" },
-    { name: "Tools", href: isHome ? "#tools" : "/#tools" },
+    { name: "About",      href: isHome ? "#about"      : "/#about" },
+    { name: "Works",      href: isHome ? "#works"      : "/#works" },
     { name: "Experience", href: isHome ? "#experience" : "/#experience" },
-    { name: "Education", href: isHome ? "#education" : "/#education" },
+    { name: "Contact",    href: isHome ? "#connect"    : "/#connect" },
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-warm-border/60 bg-warm-bg/80 backdrop-blur-md">
-      <div className="mx-auto max-w-6xl px-3 md:px-4 h-16 flex items-center justify-between">
-        <Link href="/" onClick={closeMenu} className="flex items-center hover:opacity-90 transition-opacity min-w-0 mr-2">
-          <span className="font-display italic text-dark text-[17px] mr-1.5 shrink-0">by</span>
-          <span className="font-sans font-bold tracking-tight text-dark text-[17px] mr-1.5 truncate">Ujjaval Bhardwaj</span>
+    <motion.header
+      initial={{ y: 0 }}
+      animate={{ y: visible ? 0 : "-100%" }}
+      transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+      className="fixed top-0 z-50 w-full"
+    >
+      <div className="w-full h-16 flex items-center justify-between relative" style={{ paddingLeft: "80px", paddingRight: "80px" }}>
+
+        {/* Logo — left */}
+        <Link
+          href="/"
+          onClick={closeMenu}
+          className="flex items-center hover:opacity-70 transition-opacity duration-200 min-w-0"
+          style={{
+            fontFamily: 'Manrope, "Manrope Placeholder", sans-serif',
+            fontSize: '18px',
+            fontWeight: 500,
+            lineHeight: '25.2px',
+            color: 'rgb(0, 0, 0)',
+          }}
+        >
+          <span className="shrink-0">by Ujjaval</span>
         </Link>
-        
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-6 md:space-x-7 text-[14.5px] font-medium text-dark/95">
+
+        {/* Desktop Nav — absolutely centered */}
+        <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-1">
           {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              href={link.href} 
-              className="hover:text-accent transition-custom"
+            <Link
+              key={link.name}
+              href={link.href}
+              onMouseEnter={() => setHoveredLink(link.name)}
+              onMouseLeave={() => setHoveredLink(null)}
+              style={{
+                fontFamily: 'Manrope, "Manrope Placeholder", sans-serif',
+                fontSize: '18px',
+                fontWeight: 500,
+                lineHeight: '25.2px',
+                color: 'rgb(0, 0, 0)',
+                backgroundColor: 'rgba(0, 0, 0, 0)',
+                textAlign: 'left',
+                verticalAlign: 'baseline',
+              }}
+              className="relative px-4 py-2 rounded-lg"
             >
-              {link.name}
+              {/* Hover pill background */}
+              <AnimatePresence>
+                {hoveredLink === link.name && (
+                  <motion.span
+                    layoutId="nav-hover-pill"
+                    className="absolute inset-0 rounded-lg bg-dark/[0.06]"
+                    initial={{ opacity: 0, scale: 0.92 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.92 }}
+                    transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+                  />
+                )}
+              </AnimatePresence>
+
+              {/* Link text with subtle lift */}
+              <motion.span
+                className="relative z-10"
+                animate={{
+                  y: hoveredLink === link.name ? -1 : 0,
+                }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+              >
+                {link.name}
+              </motion.span>
             </Link>
           ))}
-
-          <Link 
-            href={isHome ? "#connect" : "/#connect"} 
-            className="inline-flex items-center justify-center bg-[#1F242E] text-white hover:bg-black px-4.5 py-2 rounded-full transition-custom font-bold text-[13px]"
-          >
-            Connect
-          </Link>
         </nav>
 
-        {/* Mobile Navigation Controls */}
-        <div className="flex lg:hidden items-center space-x-2.5 shrink-0">
-          <Link 
-            href={isHome ? "#connect" : "/#connect"} 
-            onClick={closeMenu}
-            className="hidden md:inline-flex shrink-0 items-center justify-center bg-[#1F242E] text-white hover:bg-black px-3 py-1.5 rounded-full transition-custom font-bold text-[12px]"
-          >
-            Connect
-          </Link>
+        {/* Right spacer (keeps logo truly left-aligned) */}
+        <div className="hidden lg:block w-[110px]" />
+
+        {/* Mobile Controls */}
+        <div className="flex lg:hidden items-center shrink-0">
           <button
             onClick={toggleMenu}
-            className="p-1.5 text-dark hover:bg-dark/5 rounded-lg transition-custom shrink-0"
+            className="p-1.5 text-dark hover:bg-dark/5 rounded-lg transition-colors duration-200"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -130,28 +186,41 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu Dropdown */}
-      {isOpen && (
-        <div className="absolute top-full left-0 w-full lg:hidden border-b border-warm-border/60 bg-warm-bg/95 backdrop-blur-md py-4 px-4 flex flex-col space-y-4 shadow-lg">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              onClick={closeMenu}
-              className="text-[15px] font-semibold text-dark/90 hover:text-accent py-1 transition-custom border-b border-warm-border/30 last:border-b-0"
-            >
-              {link.name}
-            </Link>
-          ))}
-          {/* Connect link shown inside hamburger menu ONLY on mobile (under 768px) */}
-          <Link
-            href={isHome ? "#connect" : "/#connect"}
-            onClick={closeMenu}
-            className="md:hidden text-[15px] font-semibold text-accent hover:text-accent-hover py-1 transition-custom border-t border-warm-border/30 pt-3"
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+            className="absolute top-full left-0 w-full lg:hidden bg-white/95 backdrop-blur-md py-4 px-4 flex flex-col space-y-1 shadow-lg border-b border-warm-border/40"
           >
-            Connect
-          </Link>
-        </div>
-      )}
-    </header>
+            {navLinks.map((link, i) => (
+              <motion.div
+                key={link.name}
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.05, duration: 0.2, ease: "easeOut" }}
+              >
+                <Link
+                  href={link.href}
+                  onClick={closeMenu}
+                  style={{
+                    fontFamily: 'Manrope, "Manrope Placeholder", sans-serif',
+                    fontSize: '18px',
+                    fontWeight: 500,
+                    lineHeight: '25.2px',
+                    color: 'rgb(0, 0, 0)',
+                  }}
+                  className="block py-2.5 px-2 rounded-lg hover:bg-dark/5 transition-colors duration-150 border-b border-warm-border/20 last:border-b-0"
+                >
+                  {link.name}
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }

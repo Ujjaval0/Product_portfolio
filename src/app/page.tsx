@@ -4,30 +4,59 @@ import Link from "next/link";
 import { portfolio } from "@/data/portfolio";
 import { ArrowRight, FileText, Mail } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import { motion } from "motion/react";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1] as const, // easeOutExpo
+    },
+  },
+};
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section id="hero" className="relative overflow-hidden pt-6 pb-6 px-6 md:pt-10 md:pb-16 md:px-4 border-b border-warm-border/60 bg-transparent">
-        <div className="relative mx-auto max-w-6xl pt-0">
+      <section id="hero" className="relative overflow-hidden pt-24 pb-6 md:pt-28 md:pb-16 border-b border-warm-border/60 bg-transparent">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="relative w-full pt-0"
+        >
           {/* Unique Glassmorphic Tag */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-warm-border/80 bg-white/80 backdrop-blur-md shadow-[0_2px_12px_rgba(100,141,229,0.08)] mb-6 select-none">
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-warm-border/80 bg-white/80 backdrop-blur-md shadow-[0_2px_12px_rgba(100,141,229,0.08)] mb-6 select-none">
             {/* Glowing Accent Indicator */}
             <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
             
             <span className="font-sans font-bold text-[13px] md:text-[14px] text-dark/95 tracking-widest uppercase">
               Product · Data · AI
             </span>
-          </div>
+          </motion.div>
           
           {/* Giant Title with typography-split styling matching Screenshot 1 and exact CSS properties */}
-          <h1 className="font-sans text-[3.3rem] md:text-[95px] lg:text-[105px] font-extrabold font-[800] md:font-bold md:font-[700] text-[#1a1a2e] tracking-[-0.02em] md:tracking-[-4px] leading-[1.1] md:leading-[1.05] mb-6 md:mb-8 ml-0 pl-0">
+          <motion.h1 variants={itemVariants} className="font-sans text-[3.3rem] md:text-[95px] lg:text-[105px] font-extrabold font-[800] md:font-bold md:font-[700] text-[#1a1a2e] tracking-[-0.02em] md:tracking-[-4px] leading-[1.1] md:leading-[1.05] mb-6 md:mb-8 ml-0 pl-0">
             <span className="font-display italic font-light font-[300] md:font-normal md:font-[400]">Most people see</span> <span className="opacity-[0.92]">features.</span> <span className="font-display italic font-light font-[300] md:font-normal md:font-[400]">I see the friction behind them - and build to</span> <span className="opacity-[0.92]">remove it.</span>
-          </h1>
+          </motion.h1>
           
           {/* Actions Row */}
-          <div className="pt-5 border-t border-warm-border/30">
+          <motion.div variants={itemVariants} className="pt-5 border-t border-warm-border/30">
             <div className="flex flex-col md:flex-row items-center gap-3 w-full">
               <Link 
                 href="#connect" 
@@ -42,13 +71,13 @@ export default function Home() {
                 See My Work
               </Link>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Profile & Identity Section */}
-      <section id="about" className="relative overflow-hidden py-12 md:py-16 px-3 md:px-4 border-b border-warm-border/60 bg-transparent">
-        <div className="relative mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-8 md:gap-10">
+      <section id="about" className="relative overflow-hidden py-12 md:py-16 border-b border-warm-border/60 bg-transparent">
+        <div className="relative w-full flex flex-col md:flex-row items-center gap-8 md:gap-10">
           {/* Left Column: Identity details (65%) */}
           <ScrollReveal className="w-full md:w-[65%] flex flex-col items-start text-left">
             <h2 className="font-sans text-xl sm:text-2xl font-extrabold text-dark tracking-tight mb-3">
@@ -90,8 +119,8 @@ export default function Home() {
 
 
       {/* Selected Works Section */}
-      <section id="works" className="py-12 md:py-16 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
-        <div className="mx-auto max-w-6xl">
+      <section id="works" className="py-12 md:py-16 bg-transparent border-b border-warm-border/50">
+        <div className="w-full">
           <ScrollReveal className="border-b border-warm-border/60 pb-6 mb-6">
             <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Selected Works</span>
             <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
@@ -164,8 +193,8 @@ export default function Home() {
 
 
       {/* Approach Section */}
-      <section id="approach" className="py-12 md:py-16 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
-        <div className="mx-auto max-w-6xl">
+      <section id="approach" className="py-12 md:py-16 bg-transparent border-b border-warm-border/50">
+        <div className="w-full">
           <ScrollReveal className="border-b border-warm-border/60 pb-6 mb-6">
             <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Approach</span>
             <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
@@ -209,8 +238,8 @@ export default function Home() {
       </section>
 
       {/* Tools Section */}
-      <section id="tools" className="py-12 md:py-16 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
-        <div className="mx-auto max-w-6xl">
+      <section id="tools" className="py-12 md:py-16 bg-transparent border-b border-warm-border/50">
+        <div className="w-full">
           <ScrollReveal className="border-b border-warm-border/60 pb-6 mb-6">
             <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Tools & Stack</span>
             <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
@@ -267,8 +296,8 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-12 md:py-16 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
-        <div className="mx-auto max-w-6xl">
+      <section id="experience" className="py-12 md:py-16 bg-transparent border-b border-warm-border/50">
+        <div className="w-full">
           <ScrollReveal className="border-b border-warm-border/60 pb-6 mb-6">
             <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Experience</span>
             <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
@@ -317,8 +346,8 @@ export default function Home() {
       </section>
 
       {/* Education Section */}
-      <section id="education" className="py-12 md:py-16 px-3 md:px-4 bg-transparent border-b border-warm-border/50">
-        <div className="mx-auto max-w-6xl">
+      <section id="education" className="py-12 md:py-16 bg-transparent border-b border-warm-border/50">
+        <div className="w-full">
           <ScrollReveal className="border-b border-warm-border/60 pb-6 mb-6">
             <span className="font-display italic font-medium text-accent text-[22px] leading-[26px] tracking-[-0.48px] block mb-2">Education</span>
             <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-dark tracking-tight mt-2">
@@ -364,11 +393,10 @@ export default function Home() {
       </section>
 
       {/* Connect Section */}
-      <section id="connect" className="py-14 md:py-16 px-3 md:px-4 bg-transparent">
-        <div className="mx-auto max-w-6xl text-center">
+      <section id="connect" className="py-14 md:py-16 bg-transparent">
+        <div className="w-full text-center">
           <ScrollReveal className="relative p-8 md:p-12 rounded-3xl border border-warm-border bg-white shadow-[0_4px_16px_rgba(26,26,26,0.02)] overflow-hidden">
-            {/* Background Grid Pattern inside card */}
-            <div className="absolute inset-0 bg-[radial-gradient(#D3D9E5_1px,transparent_1px)] [background-size:20px_20px] opacity-40 pointer-events-none" />
+
 
             <div className="relative max-w-xl mx-auto flex flex-col items-center">
               <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-bold uppercase tracking-wider mb-4 shadow-3xs">
