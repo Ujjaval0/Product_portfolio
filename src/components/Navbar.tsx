@@ -14,6 +14,16 @@ export default function Navbar() {
   const [visible, setVisible] = useState(true);
   const lastScrollY = useRef(0);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const toggleMenu = () => setIsOpen((o) => !o);
   const closeMenu = () => setIsOpen(false);
@@ -75,7 +85,7 @@ export default function Navbar() {
   }, [pathname]);
 
   const navLinks = [
-    { name: "About",      href: isHome ? "#about"      : "/#about" },
+    { name: "About",      href: isMobile ? "/about" : (isHome ? "#about" : "/#about") },
     { name: "Works",      href: isHome ? "#works"      : "/#works" },
     { name: "Experience", href: isHome ? "#experience" : "/#experience" },
     { name: "Contact",    href: isHome ? "#connect"    : "/#connect" },
@@ -88,7 +98,7 @@ export default function Navbar() {
       transition={{ duration: visible ? 0.4 : 0.2, ease: [0.4, 0, 0.2, 1] }}
       className="fixed top-0 z-50 w-full pt-4 md:pt-6"
     >
-      <div className="w-full h-16 flex items-center justify-between relative px-6 md:px-12 lg:px-20">
+      <div className="w-full h-16 flex flex-row-reverse md:flex-row items-center justify-between relative px-6 md:px-12 lg:px-20">
 
         {/* Logo */}
         <Link

@@ -32,11 +32,10 @@ const itemVariants = {
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section — full viewport height */}
+      {/* Hero Section — full viewport height on desktop, auto on mobile */}
       <section
         id="hero"
-        className="relative flex flex-col justify-center overflow-hidden bg-transparent"
-        style={{ minHeight: "100svh" }}
+        className="relative flex flex-col justify-center overflow-hidden bg-transparent min-h-0 pt-28 pb-12 md:min-h-[100svh] md:pt-20 md:pb-0"
       >
         {/* Subtle premium gradient mesh glow */}
         <div className="absolute top-0 right-0 -z-10 w-[70%] h-[70%] max-w-[800px] pointer-events-none opacity-60 bg-[radial-gradient(circle_at_top_right,rgba(100,141,229,0.06),transparent_55%)]" />
@@ -68,16 +67,16 @@ export default function Home() {
 
           {/* Actions Row */}
           <motion.div variants={itemVariants} className="pt-2">
-            <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+            <div className="flex flex-row flex-wrap items-center gap-3 w-full md:w-auto justify-start">
               <Link
                 href="#works"
-                className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 rounded-full bg-black text-white font-medium hover:bg-neutral-800 active:scale-[0.98] transition-all text-base shadow-sm"
+                className="inline-flex items-center justify-center w-auto px-8 py-3.5 rounded-full bg-black text-white font-medium hover:bg-neutral-800 active:scale-[0.98] transition-all text-base shadow-sm"
               >
                 See My Work <span className="text-[17px] ml-1">↗</span>
               </Link>
               <Link
                 href="#connect"
-                className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 rounded-full border border-warm-border/80 bg-white/40 backdrop-blur-xs text-dark font-medium hover:bg-dark/[0.04] active:scale-[0.98] transition-all text-base"
+                className="inline-flex items-center justify-center w-auto px-8 py-3.5 rounded-full border border-warm-border/80 bg-white/40 backdrop-blur-xs text-dark font-medium hover:bg-dark/[0.04] active:scale-[0.98] transition-all text-base"
               >
                 Get in Touch
               </Link>
@@ -88,7 +87,7 @@ export default function Home() {
 
 
       {/* Profile & Identity Section */}
-      <section id="about" className="relative overflow-hidden pt-8 pb-8 md:pt-10 md:pb-10 bg-transparent">
+      <section id="about" className="hidden md:block relative overflow-hidden pt-8 pb-8 md:pt-10 md:pb-10 bg-transparent">
         <div className="relative w-full flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
           {/* Left Column: Identity details (65%) */}
           <ScrollReveal className="w-full md:w-[65%] flex flex-col items-start text-left order-2 md:order-1">
@@ -136,9 +135,7 @@ export default function Home() {
       {/* Selected Works Section */}
       <section id="works" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-transparent">
         <div className="w-full">
-          <ScrollReveal className="mb-10">
-            <span className="section-label block mb-2">Selected Works</span>
-          </ScrollReveal>
+
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
             {portfolio.caseStudies.map((project, idx) => {

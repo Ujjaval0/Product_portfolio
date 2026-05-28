@@ -80,9 +80,11 @@ export default function MantraCareCaseStudy({ project }: { project: CaseStudy })
                   <span className="section-label block">01. Context</span>
                 </div>
                 <div className="w-full md:w-[78%] space-y-6">
-                  <p className="font-normal text-dark/85">
-                    MantraCare is marketed as an all-in-one platform for mental, physical, and chronic care, designed to connect users with therapists, trainers, and health coaches globally.
-                  </p>
+                  <ScrollReveal variant="focus-fade">
+                    <p className="font-normal text-dark/85">
+                      MantraCare is marketed as an all-in-one platform for mental, physical, and chronic care, designed to connect users with therapists, trainers, and health coaches globally.
+                    </p>
+                  </ScrollReveal>
 
                   {/* Visual: Ideal vs Reality Journey */}
                   <div className="bg-warm-bg/30 rounded-2xl p-6 my-8">
@@ -133,19 +135,25 @@ export default function MantraCareCaseStudy({ project }: { project: CaseStudy })
                     </div>
                   </div>
 
-                  <p className="font-normal text-dark/85">
-                    I downloaded MantraCare hoping to explore its integration of physical therapy and stress management. However, my excitement turned to frustration at the very first screen. I faced an intrusive login block that locked me out. Once I bypassed it, I found a completely empty expert directory, a broken support system, and a payment page that kicked me out of the app to an unvetted mobile website.
-                  </p>
-                  <p className="font-normal text-dark/85">
-                    I was surprised to see similar reactions from real users on the Play Store, many of whom felt disconnected or abandoned by the app. I decided to utilize my time to analyze the platform, looking past the visual pixels to diagnose the core systemic issues and build a trustworthy, unified wellness experience.
-                  </p>
+                  <ScrollReveal variant="focus-fade">
+                    <p className="font-normal text-dark/85">
+                      I downloaded MantraCare hoping to explore its integration of physical therapy and stress management. However, my excitement turned to frustration at the very first screen. I faced an intrusive login block that locked me out. Once I bypassed it, I found a completely empty expert directory, a broken support system, and a payment page that kicked me out of the app to an unvetted mobile website.
+                    </p>
+                  </ScrollReveal>
+                  <ScrollReveal variant="focus-fade">
+                    <p className="font-normal text-dark/85">
+                      I was surprised to see similar reactions from real users on the Play Store, many of whom felt disconnected or abandoned by the app. I decided to utilize my time to analyze the platform, looking past the visual pixels to diagnose the core systemic issues and build a trustworthy, unified wellness experience.
+                    </p>
+                  </ScrollReveal>
 
                   {/* Objective text (cleaner typography) */}
                   <div className="mt-8 pt-6 border-t border-warm-border/50">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-accent block mb-1">Project Objective</span>
-                    <p className="font-sans font-bold text-dark text-lg md:text-xl leading-relaxed">
-                      Understand the current product and UX challenges of the MantraCare ecosystem, and design a high-leverage, **20% solution that resolves 80%** of its trust and activation problems.
-                    </p>
+                    <ScrollReveal variant="focus-fade">
+                      <p className="font-sans font-bold text-dark text-lg md:text-xl leading-relaxed">
+                        Understand the current product and UX challenges of the MantraCare ecosystem, and design a high-leverage, **20% solution that resolves 80%** of its trust and activation problems.
+                      </p>
+                    </ScrollReveal>
                   </div>
                 </div>
               </div>
@@ -186,17 +194,21 @@ export default function MantraCareCaseStudy({ project }: { project: CaseStudy })
                   {/* Substep 1 */}
                   <div>
                     <h3 className="font-sans text-lg font-bold text-dark mb-3">Step 1: Define the Research Method</h3>
-                    <p className="font-normal text-dark/80">
-                      Before diving into designs, I established a structured 2-week research plan to audit the app, mine review data, analyze cross-app integration, and benchmark against competitors like Wysa.
-                    </p>
+                    <ScrollReveal variant="focus-fade">
+                      <p className="font-normal text-dark/80">
+                        Before diving into designs, I established a structured 2-week research plan to audit the app, mine review data, analyze cross-app integration, and benchmark against competitors like Wysa.
+                      </p>
+                    </ScrollReveal>
                   </div>
 
                   {/* Substep 2 */}
                   <div>
                     <h3 className="font-sans text-lg font-bold text-dark mb-4">Step 2: Secondary Research (100+ Reviews Audited)</h3>
-                    <p className="font-normal text-dark/80 mb-6">
-                      I analyzed over 100 recent Google Play Store reviews to understand real-world pain points. The feedback fell into consistent, troubling categories:
-                    </p>
+                    <ScrollReveal variant="focus-fade">
+                      <p className="font-normal text-dark/80 mb-6">
+                        I analyzed over 100 recent Google Play Store reviews to understand real-world pain points. The feedback fell into consistent, troubling categories:
+                      </p>
+                    </ScrollReveal>
                     
                     <div className="grid md:grid-cols-3 gap-8">
                       <div>
@@ -232,9 +244,11 @@ export default function MantraCareCaseStudy({ project }: { project: CaseStudy })
                   {/* Substep 3 */}
                   <div>
                     <h3 className="font-sans text-lg font-bold text-dark mb-4">Step 3: Primary Research (Ecosystem Mapping & Benchmarking)</h3>
-                    <p className="font-normal text-dark/80 mb-6">
-                      My primary research focused on mapping MantraCare's brand ecosystem. I discovered they operate **13 separate niche applications** (e.g., DiabetesMantra, PhysioMantra, HerMantra) under the parent brand. Testing these revealed a critical database gatekeeping bug:
-                    </p>
+                    <ScrollReveal variant="focus-fade">
+                      <p className="font-normal text-dark/80 mb-6">
+                        My primary research focused on mapping MantraCare's brand ecosystem. I discovered they operate **13 separate niche applications** (e.g., DiabetesMantra, PhysioMantra, HerMantra) under the parent brand. Testing these revealed a critical database gatekeeping bug:
+                      </p>
+                    </ScrollReveal>
 
                     {/* Ecosystem Bug Diagram */}
                     <div className="bg-rose-50/10 rounded-2xl p-6 mb-8 max-w-2xl mx-auto border border-rose-250/20">
@@ -267,9 +281,11 @@ export default function MantraCareCaseStudy({ project }: { project: CaseStudy })
                       </div>
                     </div>
 
-                    <p className="font-normal text-dark/80 mb-6">
-                      Because there is no Single Sign-On (SSO) or federated identity provider, the database recognizes the email in the parent database but refuses to authenticate the user locally on the second app. This creates an infinite lockout loop.
-                    </p>
+                    <ScrollReveal variant="focus-fade">
+                      <p className="font-normal text-dark/80 mb-6">
+                        Because there is no Single Sign-On (SSO) or federated identity provider, the database recognizes the email in the parent database but refuses to authenticate the user locally on the second app. This creates an infinite lockout loop.
+                      </p>
+                    </ScrollReveal>
 
                     {/* Benchmarking Table */}
                     <div className="mt-8">
@@ -325,9 +341,11 @@ export default function MantraCareCaseStudy({ project }: { project: CaseStudy })
                   {/* Step 1: Metric Selection */}
                   <div>
                     <h3 className="font-sans text-lg font-bold text-dark mb-4">Step 1: Choosing the Right Metric</h3>
-                    <p className="font-normal text-dark/80 mb-6">
-                      I used the **AARRR Framework** to identify where product/engineering modifications would have the highest leverage:
-                    </p>
+                    <ScrollReveal variant="focus-fade">
+                      <p className="font-normal text-dark/80 mb-6">
+                        I used the **AARRR Framework** to identify where product/engineering modifications would have the highest leverage:
+                      </p>
+                    </ScrollReveal>
 
                     {/* AARRR Funnel */}
                     <div className="max-w-md mx-auto space-y-4 my-8">
@@ -372,9 +390,11 @@ export default function MantraCareCaseStudy({ project }: { project: CaseStudy })
                       </div>
                     </div>
 
-                    <p className="font-normal text-dark/80">
-                      Instead of focusing on Acquisition (which is already high due to search-optimized niche apps), we must prioritize Activation and Retention. If users cannot bypass the login screen or find active providers, top-of-funnel acquisition budget is wasted.
-                    </p>
+                    <ScrollReveal variant="focus-fade">
+                      <p className="font-normal text-dark/80">
+                        Instead of focusing on Acquisition (which is already high due to search-optimized niche apps), we must prioritize Activation and Retention. If users cannot bypass the login screen or find active providers, top-of-funnel acquisition budget is wasted.
+                      </p>
+                    </ScrollReveal>
                   </div>
 
                   {/* Step 2: Affinity Map */}

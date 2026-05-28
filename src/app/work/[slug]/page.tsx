@@ -71,18 +71,24 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 <span className="section-label block">01. Problem</span>
               </div>
               <div className="w-full md:w-[78%]">
-                <p className="text-[18px] text-dark leading-[28.6px] font-[420] mb-8">
-                  {project.problem}
-                </p>
+                <ScrollReveal variant="focus-fade">
+                  <p className="text-[18px] text-dark leading-[28.6px] font-[420] mb-8">
+                    {project.problem}
+                  </p>
+                </ScrollReveal>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   <div>
                     <span className="text-[12px] font-bold uppercase tracking-wider text-[#8E8E93] block mb-1.5">Who is the user?</span>
-                    <p className="text-[16px] text-dark/85 leading-relaxed font-[420]">{project.problemUser}</p>
+                    <ScrollReveal variant="focus-fade">
+                      <p className="text-[16px] text-dark/85 leading-relaxed font-[420]">{project.problemUser}</p>
+                    </ScrollReveal>
                   </div>
                   <div>
                     <span className="text-[12px] font-bold uppercase tracking-wider text-[#8E8E93] block mb-1.5">Data / Context</span>
-                    <p className="text-[16px] text-dark/85 leading-relaxed font-[420]">{project.problemData}</p>
+                    <ScrollReveal variant="focus-fade">
+                      <p className="text-[16px] text-dark/85 leading-relaxed font-[420]">{project.problemData}</p>
+                    </ScrollReveal>
                   </div>
                 </div>
               </div>
@@ -96,7 +102,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 <span className="section-label block">02. Focus</span>
               </div>
               <div className="w-full md:w-[78%]">
-                <p className="text-[18px] text-dark leading-[28.6px] font-[420]">{project.goalMetrics.goal}</p>
+                <ScrollReveal variant="focus-fade">
+                  <p className="text-[18px] text-dark leading-[28.6px] font-[420]">{project.goalMetrics.goal}</p>
+                </ScrollReveal>
 
                 {project.goalMetrics.metrics && project.goalMetrics.metrics.length > 0 && (
                   <div className="space-y-4 mt-6">
@@ -121,9 +129,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
               </div>
               <div className="w-full md:w-[78%]">
                 {project.researchIntro && (
-                  <p className="text-[18px] text-dark leading-[28.6px] font-[420] mb-8">
-                    {project.researchIntro}
-                  </p>
+                  <ScrollReveal variant="focus-fade">
+                    <p className="text-[18px] text-dark leading-[28.6px] font-[420] mb-8">
+                      {project.researchIntro}
+                    </p>
+                  </ScrollReveal>
                 )}
 
                 <div className="space-y-8 pl-5 border-l-2 border-warm-border/60">
@@ -133,7 +143,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
                         <span className="h-1 w-1 rounded-full bg-accent" />
                       </span>
                       <h4 className="text-[17px] font-bold text-dark mb-1.5">{item.title}</h4>
-                      <p className="text-[16px] text-[#8E8E93] leading-relaxed font-[420]">{item.content}</p>
+                      <ScrollReveal variant="focus-fade">
+                        <p className="text-[16px] text-[#8E8E93] leading-relaxed font-[420]">{item.content}</p>
+                      </ScrollReveal>
                     </div>
                   ))}
                 </div>
@@ -148,7 +160,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 <span className="section-label block">04. Solution</span>
               </div>
               <div className="w-full md:w-[78%]">
-                <p className="text-[18px] text-dark leading-[28.6px] font-[420] mb-6">{project.solution}</p>
+                <ScrollReveal variant="focus-fade">
+                  <p className="text-[18px] text-dark leading-[28.6px] font-[420] mb-6">{project.solution}</p>
+                </ScrollReveal>
 
                 <div className="space-y-6">
                   {project.solutionDetails.map((detail, idx) => (
@@ -172,7 +186,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
                   <span className="section-label block">05. Prioritisation</span>
                 </div>
                 <div className="w-full md:w-[78%]">
-                  <p className="text-[18px] text-dark leading-[28.6px] font-[420]">{project.prioritization}</p>
+                  {project.prioritization && (
+                    <ScrollReveal variant="focus-fade">
+                      <p className="text-[18px] text-dark leading-[28.6px] font-[420]">{project.prioritization}</p>
+                    </ScrollReveal>
+                  )}
                 </div>
               </div>
             </ScrollReveal>
@@ -205,7 +223,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
                     </div>
                   </div>
                 ) : (
-                  <p className="text-[18px] text-dark leading-[28.6px] font-[420] whitespace-pre-line">{project.measurement}</p>
+                  <ScrollReveal variant="focus-fade">
+                    <p className="text-[18px] text-dark leading-[28.6px] font-[420] whitespace-pre-line">{project.measurement}</p>
+                  </ScrollReveal>
                 )}
               </div>
             </div>
@@ -243,9 +263,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 <span className="section-label block">08. Reflection</span>
               </div>
               <div className="w-full md:w-[78%]">
-                <p className="text-[18px] italic text-[#8E8E93] leading-[28.6px] font-[420]">
-                  "{project.learnings}"
-                </p>
+                <ScrollReveal variant="focus-fade">
+                  <p className="text-[18px] italic text-[#8E8E93] leading-[28.6px] font-[420]">
+                    "{project.learnings}"
+                  </p>
+                </ScrollReveal>
               </div>
             </div>
           </ScrollReveal>
