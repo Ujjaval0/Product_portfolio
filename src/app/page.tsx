@@ -59,8 +59,7 @@ export default function Home() {
           {/* Giant Title */}
           <motion.h1 
             variants={itemVariants} 
-            className="font-sans text-[28px] sm:text-[38px] md:text-[52px] lg:text-[64px] font-medium tracking-tight leading-[1.25] md:leading-[76.8px] text-dark mb-8 md:mb-12 ml-0 pl-0"
-            style={{ fontFamily: 'var(--font-manrope), Manrope, "Manrope Placeholder", sans-serif' }}
+            className="element mb-8 md:mb-12 ml-0 pl-0"
           >
             Most people see features. <span className="text-[#8E8E93]">I see the friction behind them - and build to remove it.</span>
           </motion.h1>
