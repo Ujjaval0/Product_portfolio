@@ -35,7 +35,7 @@ export default function Home() {
       {/* Hero Section — full viewport height on desktop, auto on mobile */}
       <section
         id="hero"
-        className="relative flex flex-col justify-center overflow-hidden bg-transparent min-h-0 pt-20 pb-4 md:min-h-[100svh] md:pt-20 md:pb-0"
+        className="relative flex flex-col justify-center overflow-hidden bg-transparent min-h-0 pt-24 pb-12 md:min-h-[100svh] md:pt-20 md:pb-0"
       >
         {/* Subtle premium gradient mesh glow */}
         <div className="absolute top-0 right-0 -z-10 w-[70%] h-[70%] max-w-[800px] pointer-events-none opacity-60 bg-[radial-gradient(circle_at_top_right,rgba(100,141,229,0.06),transparent_55%)]" />
@@ -44,7 +44,7 @@ export default function Home() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="relative w-full pt-4 md:pt-20"
+          className="relative w-full pt-12 md:pt-20"
         >
           {/* Tagline */}
           <motion.div variants={itemVariants} className="mb-4 md:mb-10 select-none">
@@ -132,7 +132,7 @@ export default function Home() {
 
 
       {/* Selected Works Section */}
-      <section id="works" className="pt-10 pb-12 md:pt-32 md:pb-16 bg-transparent">
+      <section id="works" className="pt-20 pb-12 md:pt-32 md:pb-16 bg-transparent">
         <div className="w-full">
 
 
