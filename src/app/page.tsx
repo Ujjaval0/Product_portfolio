@@ -35,7 +35,7 @@ export default function Home() {
       {/* Hero Section — full viewport height on desktop, auto on mobile */}
       <section
         id="hero"
-        className="relative flex flex-col justify-center overflow-hidden bg-transparent min-h-0 pt-28 pb-12 md:min-h-[100svh] md:pt-20 md:pb-0"
+        className="relative flex flex-col justify-center overflow-hidden bg-transparent min-h-0 pt-20 pb-4 md:min-h-[100svh] md:pt-20 md:pb-0"
       >
         {/* Subtle premium gradient mesh glow */}
         <div className="absolute top-0 right-0 -z-10 w-[70%] h-[70%] max-w-[800px] pointer-events-none opacity-60 bg-[radial-gradient(circle_at_top_right,rgba(100,141,229,0.06),transparent_55%)]" />
@@ -44,10 +44,10 @@ export default function Home() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="relative w-full pt-20"
+          className="relative w-full pt-4 md:pt-20"
         >
           {/* Tagline */}
-          <motion.div variants={itemVariants} className="mb-6 md:mb-10 select-none">
+          <motion.div variants={itemVariants} className="mb-4 md:mb-10 select-none">
             <span
               className="font-bold text-[13px] md:text-[14px] text-dark/95 tracking-widest uppercase"
               style={{ fontFamily: 'var(--font-manrope), Manrope, "Manrope Placeholder", sans-serif' }}
@@ -59,7 +59,7 @@ export default function Home() {
           {/* Giant Title */}
           <motion.h1 
             variants={itemVariants} 
-            className="element mb-8 md:mb-12 ml-0 pl-0"
+            className="element mb-6 md:mb-12 ml-0 pl-0"
           >
             Most people see features. <span className="text-[#8E8E93]">I see the friction behind them - and build to remove it.</span>
           </motion.h1>
@@ -132,7 +132,7 @@ export default function Home() {
 
 
       {/* Selected Works Section */}
-      <section id="works" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-transparent">
+      <section id="works" className="pt-10 pb-12 md:pt-32 md:pb-16 bg-transparent">
         <div className="w-full">
 
 
