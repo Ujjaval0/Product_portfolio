@@ -29,8 +29,26 @@ export default function ScrollRestoration() {
         lenis.resize();
       }
 
-      if (backToHomeFromProject) {
-        // Scroll to the Works section so the user lands right where they were
+      // Check if there is a specific hash target in the navigated URL
+      const hash = window.location.hash;
+      const targetElement = hash && hash !== "#top" ? document.getElementById(hash.substring(1)) : null;
+
+      if (hash === "#top") {
+        // If the hash is explicitly #top, scroll to the top of the viewport
+        if (lenis) {
+          lenis.scrollTo(0, { immediate: true });
+        } else {
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        }
+      } else if (targetElement) {
+        // If a specific hash target exists on the page, scroll to it
+        if (lenis) {
+          lenis.scrollTo(targetElement, { offset: -80, immediate: true });
+        } else {
+          targetElement.scrollIntoView();
+        }
+      } else if (backToHomeFromProject) {
+        // If returning from project generally without a hash (e.g., logo clicked), scroll to works section
         const worksSection = document.getElementById("works");
         if (worksSection) {
           if (lenis) {

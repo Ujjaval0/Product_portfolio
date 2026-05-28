@@ -102,7 +102,7 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link
-          href="/"
+          href="/#top"
           onClick={closeMenu}
           className="flex items-center hover:opacity-70 transition-opacity duration-200 min-w-0"
           style={{
