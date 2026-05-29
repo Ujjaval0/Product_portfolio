@@ -160,7 +160,7 @@ export default function Home() {
                       <div className="relative aspect-[16/10] w-full overflow-hidden bg-warm-bg rounded-[24px] border border-warm-border/30 shrink-0">
                         <div className="absolute inset-0 bg-black/[0.01] group-hover:bg-black/[0.04] transition-colors duration-300 z-10" />
                         <img 
-                          src={`/images/${project.slug}.png`}
+                          src={`/images/${project.slug}.png?v=3`}
                           alt={project.title}
                           className="object-cover w-full h-full transform group-hover:scale-[1.02] transition-transform duration-500"
                         />

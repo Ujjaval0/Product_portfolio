@@ -117,7 +117,7 @@ article h3 {
   font-size: clamp(16px, 4vw, 24px) !important;
   font-weight: 500 !important;
   line-height: 1.4 !important;
-  color: rgb(0, 0, 0) !important;
+  color: inherit;
   background-color: rgba(0, 0, 0, 0) !important;
   text-align: left !important;
   vertical-align: baseline !important;
